@@ -8,9 +8,10 @@
 
 #import "MineViewController.h"
 #import "FeedTimeLineCell.h"
+#import "CommentListViewController.h"
+#import "FriendSearchViewController.h"
 
-
-@interface MineViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface MineViewController () <UITableViewDataSource, UITableViewDelegate,FeedTimeLineCellDelegate>
 
 @property (nonatomic, strong) IBOutlet UIView *headView;
 
@@ -23,6 +24,7 @@
 
 - (IBAction)onEditBtnClick:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UIButton *editInfoBtn;
+@property (strong, nonatomic) IBOutlet UIView *attentView;
 @property (weak, nonatomic) IBOutlet UILabel *levelInfoLabel;
 @property (weak, nonatomic) IBOutlet UILabel *positionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *introductionLabel;
@@ -36,9 +38,13 @@
     // Do any additional setup after loading the view from its nib.
     self.title = @"个人中心";
     self.tableView.tableHeaderView = self.personInfoView;
-    self.tableView.rowHeight = 195;
-    [self.tableView reloadData];
+    self.tableView.rowHeight = 205;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
+    [self.tableView reloadData];
+    if (!_isFriend) {
+        [self initNavBar];
+    }
     [self initUI];
 }
 
@@ -57,6 +63,24 @@
 }
 */
 
+#pragma mark - custom
+- (void)initNavBar
+{
+    UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    rightBtn.frame = CGRectMake(0, 0, 44, 44);
+    [rightBtn setImage:[UIImage imageNamed:@"friend"] forState:UIControlStateNormal];
+    [rightBtn addTarget:self action:@selector(rightItemClick:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
+    self.navigationItem.rightBarButtonItem = rightItem;
+    
+}
+-(void)rightItemClick:(id)sender{
+    
+    FriendSearchViewController *vc = [[FriendSearchViewController alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 //更新界面
 - (void)initUI
 {
@@ -68,6 +92,13 @@
     
     self.editInfoBtn.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.editInfoBtn.layer.borderWidth = 0.5;
+    if (_isFriend) {
+        self.editInfoBtn.hidden = YES;
+        self.attentView.hidden = NO;
+    }else{
+        self.editInfoBtn.hidden = NO;
+        self.attentView.hidden = YES;
+    }
 }
 
 - (IBAction)onEditBtnClick:(UIButton *)sender {
@@ -91,8 +122,8 @@
         NSArray* cells = [[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:nil options:nil];
         cell = [cells objectAtIndex:0];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.delegate = self;
     }
-    
 //    [cell.conImageView setImageWithURL:[NSURL URLWithString:@"http://y0.ifengimg.com/e7f199c1e0dbba14/2013/0722/rdn_51ece7b8ad179.jpg"] placeholderImage:[UIImage imageNamed:@""]];
     
 //    NSDictionary *rankDic = self.dataSource[indexPath.row];
@@ -100,6 +131,19 @@
 //    cell.positionLabel.text = [NSString stringWithFormat:@"%ld",indexPath.row];
     
     return cell;
+}
+
+#pragma mark - FeedTimeLineCellDelegate
+-(void)commentActionWithFeedTime:(FeedTimeLineCell *)cell{
+    CommentListViewController *vc = [[CommentListViewController alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+-(void)praiseActionWithFeedTime:(FeedTimeLineCell *)cell{
+    
+}
+-(void)likeActionWithFeedTime:(FeedTimeLineCell *)cell{
+    
 }
 
 @end

@@ -9,8 +9,10 @@
 #import "DynamicViewController.h"
 #import "FriendDynamicCell.h"
 #import "DynamicContentController.h"
+#import "MineViewController.h"
+#import "CommentListViewController.h"
 
-@interface DynamicViewController ()
+@interface DynamicViewController ()<FriendDynamicCellDelegate>
 
 @end
 
@@ -102,6 +104,7 @@
         NSArray* cells = [[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:nil options:nil];
         cell = [cells objectAtIndex:0];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.delegate = self;
     }
     
     return cell;
@@ -113,6 +116,19 @@
 
     DynamicContentController *contentVC = [[DynamicContentController alloc] init];
     [self.navigationController pushViewController:contentVC animated:YES];
+}
+
+#pragma mark - FriendDynamicCellDelegate
+-(void)commentClickWithFeedTime:(FriendDynamicCell *)cell{
+    CommentListViewController *vc = [[CommentListViewController alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+-(void)avatarCilckWithFeedTime:(FriendDynamicCell *)cell{
+    MineViewController *vc = [[MineViewController alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    vc.isFriend = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

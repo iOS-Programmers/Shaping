@@ -8,6 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol FriendDynamicCellDelegate;
+
 @interface FriendDynamicCell : UITableViewCell
+
+@property (assign, nonatomic) id <FriendDynamicCellDelegate>delegate;
+
+- (IBAction)commentAction:(id)sender;
+- (IBAction)avatarAction:(id)sender;
+@end
+
+@protocol FriendDynamicCellDelegate <NSObject>
+@optional
+-(void)commentClickWithFeedTime:(FriendDynamicCell *)cell;
+-(void)avatarCilckWithFeedTime:(FriendDynamicCell *)cell;
 
 @end

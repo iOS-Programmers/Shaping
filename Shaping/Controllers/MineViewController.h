@@ -10,4 +10,6 @@
 
 @interface MineViewController : YHBaseTableViewController
 
+@property (nonatomic, assign) BOOL isFriend;
+
 @end

@@ -104,6 +104,16 @@
 		16B3E4221A3413170041FCBF /* FriendDynamicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16B3E4201A3413170041FCBF /* FriendDynamicCell.xib */; };
 		16C458161A34253C0047C536 /* DynamicContentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C458141A34253C0047C536 /* DynamicContentController.m */; };
 		16C458171A34253C0047C536 /* DynamicContentController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16C458151A34253C0047C536 /* DynamicContentController.xib */; };
+		7E0A10841A3CB97D00883D50 /* CommentListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0A10821A3CB97D00883D50 /* CommentListViewController.m */; };
+		7E0A10851A3CB97D00883D50 /* CommentListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E0A10831A3CB97D00883D50 /* CommentListViewController.xib */; };
+		7E0A10891A3CBDAF00883D50 /* CommentViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0A10871A3CBDAF00883D50 /* CommentViewCell.m */; };
+		7E0A108A1A3CBDAF00883D50 /* CommentViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E0A10881A3CBDAF00883D50 /* CommentViewCell.xib */; };
+		7E0A108E1A3CC30200883D50 /* InputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0A108C1A3CC30200883D50 /* InputViewController.m */; };
+		7E0A108F1A3CC30200883D50 /* InputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E0A108D1A3CC30200883D50 /* InputViewController.xib */; };
+		7E0A10931A3CCFC300883D50 /* FriendSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0A10911A3CCFC300883D50 /* FriendSearchViewController.m */; };
+		7E0A10941A3CCFC300883D50 /* FriendSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E0A10921A3CCFC300883D50 /* FriendSearchViewController.xib */; };
+		7E0A10981A3CD76800883D50 /* FriendShowViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0A10961A3CD76800883D50 /* FriendShowViewCell.m */; };
+		7E0A10991A3CD76800883D50 /* FriendShowViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E0A10971A3CD76800883D50 /* FriendShowViewCell.xib */; };
 		7E65EC7D1A33758500B9855F /* FeedTimeLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E65EC7B1A33758500B9855F /* FeedTimeLineCell.m */; };
 		7E65EC7E1A33758500B9855F /* FeedTimeLineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E65EC7C1A33758500B9855F /* FeedTimeLineCell.xib */; };
 /* End PBXBuildFile section */
@@ -288,6 +298,21 @@
 		16C458131A34253C0047C536 /* DynamicContentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicContentController.h; sourceTree = "<group>"; };
 		16C458141A34253C0047C536 /* DynamicContentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicContentController.m; sourceTree = "<group>"; };
 		16C458151A34253C0047C536 /* DynamicContentController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DynamicContentController.xib; sourceTree = "<group>"; };
+		7E0A10811A3CB97D00883D50 /* CommentListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentListViewController.h; sourceTree = "<group>"; };
+		7E0A10821A3CB97D00883D50 /* CommentListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentListViewController.m; sourceTree = "<group>"; };
+		7E0A10831A3CB97D00883D50 /* CommentListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentListViewController.xib; sourceTree = "<group>"; };
+		7E0A10861A3CBDAF00883D50 /* CommentViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentViewCell.h; sourceTree = "<group>"; };
+		7E0A10871A3CBDAF00883D50 /* CommentViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentViewCell.m; sourceTree = "<group>"; };
+		7E0A10881A3CBDAF00883D50 /* CommentViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentViewCell.xib; sourceTree = "<group>"; };
+		7E0A108B1A3CC30200883D50 /* InputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputViewController.h; sourceTree = "<group>"; };
+		7E0A108C1A3CC30200883D50 /* InputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputViewController.m; sourceTree = "<group>"; };
+		7E0A108D1A3CC30200883D50 /* InputViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputViewController.xib; sourceTree = "<group>"; };
+		7E0A10901A3CCFC300883D50 /* FriendSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendSearchViewController.h; sourceTree = "<group>"; };
+		7E0A10911A3CCFC300883D50 /* FriendSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendSearchViewController.m; sourceTree = "<group>"; };
+		7E0A10921A3CCFC300883D50 /* FriendSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendSearchViewController.xib; sourceTree = "<group>"; };
+		7E0A10951A3CD76800883D50 /* FriendShowViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendShowViewCell.h; sourceTree = "<group>"; };
+		7E0A10961A3CD76800883D50 /* FriendShowViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendShowViewCell.m; sourceTree = "<group>"; };
+		7E0A10971A3CD76800883D50 /* FriendShowViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendShowViewCell.xib; sourceTree = "<group>"; };
 		7E65EC7A1A33758500B9855F /* FeedTimeLineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedTimeLineCell.h; sourceTree = "<group>"; };
 		7E65EC7B1A33758500B9855F /* FeedTimeLineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedTimeLineCell.m; sourceTree = "<group>"; };
 		7E65EC7C1A33758500B9855F /* FeedTimeLineCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedTimeLineCell.xib; sourceTree = "<group>"; };
@@ -608,6 +633,21 @@
 				7E65EC7A1A33758500B9855F /* FeedTimeLineCell.h */,
 				7E65EC7B1A33758500B9855F /* FeedTimeLineCell.m */,
 				7E65EC7C1A33758500B9855F /* FeedTimeLineCell.xib */,
+				7E0A10811A3CB97D00883D50 /* CommentListViewController.h */,
+				7E0A10821A3CB97D00883D50 /* CommentListViewController.m */,
+				7E0A10831A3CB97D00883D50 /* CommentListViewController.xib */,
+				7E0A10861A3CBDAF00883D50 /* CommentViewCell.h */,
+				7E0A10871A3CBDAF00883D50 /* CommentViewCell.m */,
+				7E0A10881A3CBDAF00883D50 /* CommentViewCell.xib */,
+				7E0A108B1A3CC30200883D50 /* InputViewController.h */,
+				7E0A108C1A3CC30200883D50 /* InputViewController.m */,
+				7E0A108D1A3CC30200883D50 /* InputViewController.xib */,
+				7E0A10901A3CCFC300883D50 /* FriendSearchViewController.h */,
+				7E0A10911A3CCFC300883D50 /* FriendSearchViewController.m */,
+				7E0A10921A3CCFC300883D50 /* FriendSearchViewController.xib */,
+				7E0A10951A3CD76800883D50 /* FriendShowViewCell.h */,
+				7E0A10961A3CD76800883D50 /* FriendShowViewCell.m */,
+				7E0A10971A3CD76800883D50 /* FriendShowViewCell.xib */,
 			);
 			name = Mine;
 			sourceTree = "<group>";
@@ -833,17 +873,21 @@
 				163CCE531A3CA9DE00889C2B /* FriendViewController.xib in Resources */,
 				160A937E1A31890B00D17DAB /* 37x-Checkmark@2x.png in Resources */,
 				16B3E4221A3413170041FCBF /* FriendDynamicCell.xib in Resources */,
+				7E0A10991A3CD76800883D50 /* FriendShowViewCell.xib in Resources */,
 				16B3E41D1A3410100041FCBF /* PlanCell.xib in Resources */,
 				16AA40B61A320B04004C6057 /* DynamicCell.xib in Resources */,
 				7E65EC7E1A33758500B9855F /* FeedTimeLineCell.xib in Resources */,
 				163CCE651A3CAA9C00889C2B /* AboutViewController.xib in Resources */,
 				160A92611A317E9700D17DAB /* InfoPlist.strings in Resources */,
+				7E0A10941A3CCFC300883D50 /* FriendSearchViewController.xib in Resources */,
 				16C458171A34253C0047C536 /* DynamicContentController.xib in Resources */,
 				163CCE4D1A3CA9B200889C2B /* CollectViewController.xib in Resources */,
 				16217FEB1A31941400ADCCDC /* DynamicViewController.xib in Resources */,
 				160A93A51A318BC400D17DAB /* MJRefresh.bundle in Resources */,
 				160A92691A317E9700D17DAB /* Images.xcassets in Resources */,
 				160A937D1A31890B00D17DAB /* 37x-Checkmark.png in Resources */,
+				7E0A108A1A3CBDAF00883D50 /* CommentViewCell.xib in Resources */,
+				7E0A10851A3CB97D00883D50 /* CommentListViewController.xib in Resources */,
 				164089791A3C69B700DB4FF6 /* RootViewController.xib in Resources */,
 				16217FF51A31957700ADCCDC /* PublishViewController.xib in Resources */,
 				1640896D1A3C687E00DB4FF6 /* leftTableViewCell.xib in Resources */,
@@ -855,6 +899,7 @@
 				163CCE5F1A3CAA6600889C2B /* SettingViewController.xib in Resources */,
 				16217FDC1A31931000ADCCDC /* RegisterViewController.xib in Resources */,
 				16217FE11A31935600ADCCDC /* HomeViewController.xib in Resources */,
+				7E0A108F1A3CC30200883D50 /* InputViewController.xib in Resources */,
 				16217FF01A3194A100ADCCDC /* MineViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -886,9 +931,11 @@
 				16B3E4211A3413170041FCBF /* FriendDynamicCell.m in Sources */,
 				160A93911A31890B00D17DAB /* UIButton+WebCache.m in Sources */,
 				16C458161A34253C0047C536 /* DynamicContentController.m in Sources */,
+				7E0A10891A3CBDAF00883D50 /* CommentViewCell.m in Sources */,
 				160A93841A31890B00D17DAB /* PinyinFormatter.m in Sources */,
 				160A93B11A318BDD00D17DAB /* NSString+LT.m in Sources */,
 				16AA40B51A320B04004C6057 /* DynamicCell.m in Sources */,
+				7E0A10981A3CD76800883D50 /* FriendShowViewCell.m in Sources */,
 				160A93A61A318BC400D17DAB /* MJRefreshBaseView.m in Sources */,
 				160A93C11A318FD600D17DAB /* YHBaseTabbarController.m in Sources */,
 				1640896E1A3C687E00DB4FF6 /* RightViewController.m in Sources */,
@@ -900,6 +947,7 @@
 				16B3E41C1A3410100041FCBF /* PlanCell.m in Sources */,
 				1640896C1A3C687E00DB4FF6 /* leftTableViewCell.m in Sources */,
 				160A93B01A318BDD00D17DAB /* LXUtils.m in Sources */,
+				7E0A10841A3CB97D00883D50 /* CommentListViewController.m in Sources */,
 				160A93951A31890B00D17DAB /* UIImageView+WebCache.m in Sources */,
 				160A93BE1A318E6A00D17DAB /* YHMultipleSectionTableViewController.m in Sources */,
 				16217FE01A31935600ADCCDC /* HomeViewController.m in Sources */,
@@ -908,6 +956,7 @@
 				164089811A3C6A1200DB4FF6 /* LeveyTabBar.m in Sources */,
 				160A938C1A31890B00D17DAB /* SDWebImageDecoder.m in Sources */,
 				160A92671A317E9700D17DAB /* SPAppDelegate.m in Sources */,
+				7E0A10931A3CCFC300883D50 /* FriendSearchViewController.m in Sources */,
 				16B3E4131A3405DD0041FCBF /* SGFocusImageFrame.m in Sources */,
 				160A93811A31890B00D17DAB /* ChineseToPinyinResource.m in Sources */,
 				160A93891A31890B00D17DAB /* NSData+GIF.m in Sources */,
@@ -920,6 +969,7 @@
 				163CCE641A3CAA9C00889C2B /* AboutViewController.m in Sources */,
 				16217FE51A31938A00ADCCDC /* PlanViewController.m in Sources */,
 				160A93921A31890B00D17DAB /* UIImage+GIF.m in Sources */,
+				7E0A108E1A3CC30200883D50 /* InputViewController.m in Sources */,
 				163CCE581A3CAA3800889C2B /* ToolViewController.m in Sources */,
 				16B3E4171A340B420041FCBF /* HomeCommandCell.m in Sources */,
 				16217FEA1A31941400ADCCDC /* DynamicViewController.m in Sources */,

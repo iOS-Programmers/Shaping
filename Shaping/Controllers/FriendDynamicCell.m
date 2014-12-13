@@ -20,4 +20,15 @@
     // Configure the view for the selected state
 }
 
+- (IBAction)commentAction:(id)sender {
+    if (_delegate && [self.delegate respondsToSelector:@selector(commentClickWithFeedTime:)]) {
+        [self.delegate commentClickWithFeedTime:self];
+    }
+}
+
+- (IBAction)avatarAction:(id)sender {
+    if (_delegate && [self.delegate respondsToSelector:@selector(avatarCilckWithFeedTime:)]) {
+        [self.delegate avatarCilckWithFeedTime:self];
+    }
+}
 @end

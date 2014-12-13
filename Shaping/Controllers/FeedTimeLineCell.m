@@ -23,4 +23,21 @@
     // Configure the view for the selected state
 }
 
+- (IBAction)commentAction:(id)sender {
+    if (_delegate && [self.delegate respondsToSelector:@selector(commentActionWithFeedTime:)]) {
+        [self.delegate commentActionWithFeedTime:self];
+    }
+}
+
+- (IBAction)praiseAction:(id)sender {
+    if (_delegate && [self.delegate respondsToSelector:@selector(praiseActionWithFeedTime:)]) {
+        [self.delegate praiseActionWithFeedTime:self];
+    }
+}
+
+- (IBAction)likeAction:(id)sender {
+    if (_delegate && [self.delegate respondsToSelector:@selector(likeActionWithFeedTime:)]) {
+        [self.delegate likeActionWithFeedTime:self];
+    }
+}
 @end
