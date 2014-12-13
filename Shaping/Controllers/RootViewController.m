@@ -18,6 +18,8 @@
 #import "DynamicViewController.h"
 #import "MineViewController.h"
 
+#import "CHTumblrMenuView.h"
+
 @interface RootViewController () <centerBtnDelegate>
 {
     LeveyTabBarController *leveyTabBarController;
@@ -119,7 +121,17 @@
 #pragma mark - 点击发布按钮
 - (void)publishbuttonClicked
 {
-
+    CHTumblrMenuView *menuView = [[CHTumblrMenuView alloc] init];
+    
+    [menuView addMenuItemWithTitle:@"相册" andIcon:[UIImage imageNamed:@"photo"] andSelectedBlock:^{
+        NSLog(@"Photo selected");
+    }];
+    
+    [menuView addMenuItemWithTitle:@"相机" andIcon:[UIImage imageNamed:@"xiangji"] andSelectedBlock:^{
+        NSLog(@"Text selected");
+    }];
+    
+    [menuView show];
 }
 
 - (void)didReceiveMemoryWarning {

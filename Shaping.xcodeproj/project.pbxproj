@@ -80,6 +80,7 @@
 		163CCE5F1A3CAA6600889C2B /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 163CCE5D1A3CAA6600889C2B /* SettingViewController.xib */; };
 		163CCE641A3CAA9C00889C2B /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 163CCE621A3CAA9C00889C2B /* AboutViewController.m */; };
 		163CCE651A3CAA9C00889C2B /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 163CCE631A3CAA9C00889C2B /* AboutViewController.xib */; };
+		163CCE691A3CC79A00889C2B /* CHTumblrMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 163CCE681A3CC79A00889C2B /* CHTumblrMenuView.m */; };
 		1640896B1A3C687E00DB4FF6 /* LeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 164089651A3C687E00DB4FF6 /* LeftViewController.m */; };
 		1640896C1A3C687E00DB4FF6 /* leftTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 164089671A3C687E00DB4FF6 /* leftTableViewCell.m */; };
 		1640896D1A3C687E00DB4FF6 /* leftTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 164089681A3C687E00DB4FF6 /* leftTableViewCell.xib */; };
@@ -246,6 +247,8 @@
 		163CCE611A3CAA9C00889C2B /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		163CCE621A3CAA9C00889C2B /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		163CCE631A3CAA9C00889C2B /* AboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
+		163CCE671A3CC79A00889C2B /* CHTumblrMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHTumblrMenuView.h; sourceTree = "<group>"; };
+		163CCE681A3CC79A00889C2B /* CHTumblrMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHTumblrMenuView.m; sourceTree = "<group>"; };
 		164089641A3C687E00DB4FF6 /* LeftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftViewController.h; sourceTree = "<group>"; };
 		164089651A3C687E00DB4FF6 /* LeftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftViewController.m; sourceTree = "<group>"; };
 		164089661A3C687E00DB4FF6 /* leftTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = leftTableViewCell.h; sourceTree = "<group>"; };
@@ -426,6 +429,7 @@
 		160A928E1A31890B00D17DAB /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				163CCE661A3CC79A00889C2B /* TumblrMenu */,
 				1640897A1A3C69F200DB4FF6 /* LeveyTabBar */,
 				164089631A3C685400DB4FF6 /* SlideViewController */,
 				16B3E40A1A3402630041FCBF /* SGFocusImage */,
@@ -684,6 +688,15 @@
 			name = About;
 			sourceTree = "<group>";
 		};
+		163CCE661A3CC79A00889C2B /* TumblrMenu */ = {
+			isa = PBXGroup;
+			children = (
+				163CCE671A3CC79A00889C2B /* CHTumblrMenuView.h */,
+				163CCE681A3CC79A00889C2B /* CHTumblrMenuView.m */,
+			);
+			path = TumblrMenu;
+			sourceTree = "<group>";
+		};
 		164089631A3C685400DB4FF6 /* SlideViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -899,6 +912,7 @@
 				160A93811A31890B00D17DAB /* ChineseToPinyinResource.m in Sources */,
 				160A93891A31890B00D17DAB /* NSData+GIF.m in Sources */,
 				160A93C41A31900D00D17DAB /* YHBaseNavigationController.m in Sources */,
+				163CCE691A3CC79A00889C2B /* CHTumblrMenuView.m in Sources */,
 				160A93BB1A318E6100D17DAB /* YHBaseTableViewController.m in Sources */,
 				16AA40B11A31EF7E004C6057 /* CustomTextField.m in Sources */,
 				160A938A1A31890B00D17DAB /* SDImageCache.m in Sources */,
