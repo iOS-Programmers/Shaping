@@ -6,8 +6,8 @@
 //  Copyright (c) 2014年 YH. All rights reserved.
 //
 
-#import "YHBaseTableViewController.h"
+#import "YHBaseViewController.h"
 
-@interface ToolViewController : YHBaseTableViewController
+@interface ToolViewController : YHBaseViewController
 
 @end

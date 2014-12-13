@@ -6,8 +6,8 @@
 //  Copyright (c) 2014年 YH. All rights reserved.
 //
 
-#import "YHBaseTableViewController.h"
+#import "YHMultipleSectionTableViewController.h"
 
-@interface SettingViewController : YHBaseTableViewController
+@interface SettingViewController : YHMultipleSectionTableViewController
 
 @end

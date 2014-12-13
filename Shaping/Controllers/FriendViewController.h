@@ -6,8 +6,8 @@
 //  Copyright (c) 2014年 YH. All rights reserved.
 //
 
-#import "YHBaseTableViewController.h"
+#import "YHBaseViewController.h"
 
-@interface FriendViewController : YHBaseTableViewController
+@interface FriendViewController : YHBaseViewController
 
 @end

@@ -10,7 +10,8 @@
 #import "leftTableViewCell.h"
 #import "SliderViewController.h"
 #import "loginViewController.h"
-
+#import "SettingViewController.h"
+#import "YHBaseNavigationController.h"
 
 @interface LeftViewController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -144,9 +145,9 @@
             [[SliderViewController sharedSliderController] showContentControllerWithModel:@"ToolViewController"];
             
             break;
-        case 4:
+        case 4: {
             [[SliderViewController sharedSliderController] showContentControllerWithModel:@"SettingViewController"];
-            
+        }
             break;
         case 5:
             [[SliderViewController sharedSliderController] showContentControllerWithModel:@"AboutViewController"];
