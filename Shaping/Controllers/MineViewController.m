@@ -10,6 +10,7 @@
 #import "FeedTimeLineCell.h"
 #import "CommentListViewController.h"
 #import "FriendSearchViewController.h"
+#import "EditInformationViewController.h"
 
 @interface MineViewController () <UITableViewDataSource, UITableViewDelegate,FeedTimeLineCellDelegate>
 
@@ -115,6 +116,10 @@
 }
 
 - (IBAction)onEditBtnClick:(UIButton *)sender {
+    
+    EditInformationViewController *vc = [[EditInformationViewController alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - UITableView DataSource

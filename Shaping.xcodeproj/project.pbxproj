@@ -119,6 +119,10 @@
 		7E0A10991A3CD76800883D50 /* FriendShowViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E0A10971A3CD76800883D50 /* FriendShowViewCell.xib */; };
 		7E65EC7D1A33758500B9855F /* FeedTimeLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E65EC7B1A33758500B9855F /* FeedTimeLineCell.m */; };
 		7E65EC7E1A33758500B9855F /* FeedTimeLineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E65EC7C1A33758500B9855F /* FeedTimeLineCell.xib */; };
+		7E97AF7A1A3D82B200C2CE86 /* IntroduceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E97AF781A3D82B200C2CE86 /* IntroduceViewController.m */; };
+		7E97AF7B1A3D82B200C2CE86 /* IntroduceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E97AF791A3D82B200C2CE86 /* IntroduceViewController.xib */; };
+		7E97AF7F1A3D903A00C2CE86 /* EditInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E97AF7D1A3D903A00C2CE86 /* EditInformationViewController.m */; };
+		7E97AF801A3D903A00C2CE86 /* EditInformationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E97AF7E1A3D903A00C2CE86 /* EditInformationViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -324,6 +328,12 @@
 		7E65EC7A1A33758500B9855F /* FeedTimeLineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedTimeLineCell.h; sourceTree = "<group>"; };
 		7E65EC7B1A33758500B9855F /* FeedTimeLineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedTimeLineCell.m; sourceTree = "<group>"; };
 		7E65EC7C1A33758500B9855F /* FeedTimeLineCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedTimeLineCell.xib; sourceTree = "<group>"; };
+		7E97AF771A3D82B200C2CE86 /* IntroduceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroduceViewController.h; sourceTree = "<group>"; };
+		7E97AF781A3D82B200C2CE86 /* IntroduceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroduceViewController.m; sourceTree = "<group>"; };
+		7E97AF791A3D82B200C2CE86 /* IntroduceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntroduceViewController.xib; sourceTree = "<group>"; };
+		7E97AF7C1A3D903A00C2CE86 /* EditInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditInformationViewController.h; sourceTree = "<group>"; };
+		7E97AF7D1A3D903A00C2CE86 /* EditInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditInformationViewController.m; sourceTree = "<group>"; };
+		7E97AF7E1A3D903A00C2CE86 /* EditInformationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditInformationViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -620,6 +630,9 @@
 				16BE66111A3D46D200F74D5B /* FriendDynamicViewController.h */,
 				16BE66121A3D46D200F74D5B /* FriendDynamicViewController.m */,
 				16BE66131A3D46D200F74D5B /* FriendDynamicViewController.xib */,
+				7E97AF771A3D82B200C2CE86 /* IntroduceViewController.h */,
+				7E97AF781A3D82B200C2CE86 /* IntroduceViewController.m */,
+				7E97AF791A3D82B200C2CE86 /* IntroduceViewController.xib */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -661,6 +674,9 @@
 				7E0A10951A3CD76800883D50 /* FriendShowViewCell.h */,
 				7E0A10961A3CD76800883D50 /* FriendShowViewCell.m */,
 				7E0A10971A3CD76800883D50 /* FriendShowViewCell.xib */,
+				7E97AF7C1A3D903A00C2CE86 /* EditInformationViewController.h */,
+				7E97AF7D1A3D903A00C2CE86 /* EditInformationViewController.m */,
+				7E97AF7E1A3D903A00C2CE86 /* EditInformationViewController.xib */,
 			);
 			name = Mine;
 			sourceTree = "<group>";
@@ -908,6 +924,8 @@
 				16217FE61A31938A00ADCCDC /* PlanViewController.xib in Resources */,
 				16217FD71A3192F700ADCCDC /* LoginViewController.xib in Resources */,
 				160A93871A31890B00D17DAB /* unicode_to_hanyu_pinyin.txt in Resources */,
+				7E97AF7B1A3D82B200C2CE86 /* IntroduceViewController.xib in Resources */,
+				7E97AF801A3D903A00C2CE86 /* EditInformationViewController.xib in Resources */,
 				16B3E4181A340B420041FCBF /* HomeCommandCell.xib in Resources */,
 				163CCE591A3CAA3800889C2B /* ToolViewController.xib in Resources */,
 				163CCE5F1A3CAA6600889C2B /* SettingViewController.xib in Resources */,
@@ -941,6 +959,7 @@
 				160A93A81A318BC400D17DAB /* MJRefreshHeaderView.m in Sources */,
 				16B59E7E1A3D384D007A6CDE /* YHBaseWebViewController.m in Sources */,
 				160A93941A31890B00D17DAB /* UIImage+WebP.m in Sources */,
+				7E97AF7A1A3D82B200C2CE86 /* IntroduceViewController.m in Sources */,
 				160A937F1A31890B00D17DAB /* MBProgressHUD.m in Sources */,
 				163CCE4C1A3CA9B200889C2B /* CollectViewController.m in Sources */,
 				16B3E4211A3413170041FCBF /* FriendDynamicCell.m in Sources */,
@@ -954,6 +973,7 @@
 				160A93A61A318BC400D17DAB /* MJRefreshBaseView.m in Sources */,
 				160A93C11A318FD600D17DAB /* YHBaseTabbarController.m in Sources */,
 				16BE66141A3D46D200F74D5B /* FriendDynamicViewController.m in Sources */,
+				7E97AF7F1A3D903A00C2CE86 /* EditInformationViewController.m in Sources */,
 				1640896E1A3C687E00DB4FF6 /* RightViewController.m in Sources */,
 				1640896B1A3C687E00DB4FF6 /* LeftViewController.m in Sources */,
 				164089741A3C688900DB4FF6 /* WWSideslipViewController.m in Sources */,

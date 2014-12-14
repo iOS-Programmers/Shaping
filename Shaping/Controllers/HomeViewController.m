@@ -10,6 +10,7 @@
 #import "SGFocusImageFrame.h"
 #import "HomeCommandCell.h"
 #import "FriendDynamicViewController.h"
+#import "IntroduceViewController.h"
 
 @interface HomeViewController () <SGFocusImageFrameDelegate>
 {
@@ -216,6 +217,14 @@
     
 }
 
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (indexPath.section == 0) {
+        IntroduceViewController *vc = [[IntroduceViewController alloc] init];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
+}
 
 @end
