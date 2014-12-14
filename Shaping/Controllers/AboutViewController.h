@@ -6,8 +6,8 @@
 //  Copyright (c) 2014年 YH. All rights reserved.
 //
 
-#import "YHBaseViewController.h"
+#import "YHBaseWebViewController.h"
 
-@interface AboutViewController : YHBaseViewController
+@interface AboutViewController : YHBaseWebViewController
 
 @end

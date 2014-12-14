@@ -20,7 +20,7 @@
 
 #import "CHTumblrMenuView.h"
 
-@interface RootViewController () <centerBtnDelegate>
+@interface RootViewController () <centerBtnDelegate,UINavigationControllerDelegate>
 {
     LeveyTabBarController *leveyTabBarController;
 }
@@ -37,12 +37,14 @@
         homeViewController.tabBarItem.image = [UIImage imageNamed:@"sy"];
         homeViewController.tabBarItem.selectedImage = [UIImage imageNamed:@"syS"];
         YHBaseNavigationController *homeNav = [[YHBaseNavigationController alloc] initWithRootViewController:homeViewController];
+        homeNav.delegate = self;
     
         //Plan
         PlanViewController *planViewController = [[PlanViewController alloc] init];
         planViewController.tabBarItem.image = [UIImage imageNamed:@"jh"];
         planViewController.tabBarItem.selectedImage = [UIImage imageNamed:@"jhS"];
         YHBaseNavigationController *planNav = [[YHBaseNavigationController alloc] initWithRootViewController:planViewController];
+        planNav.delegate = self;
     
         //Publish
         PublishViewController *publishViewController = [[PublishViewController alloc] init];
@@ -50,6 +52,7 @@
         publishViewController.tabBarItem.image = [UIImage imageNamed:@"tab_home"];
         publishViewController.tabBarItem.selectedImage = [UIImage imageNamed:@"tab_home_selected"];
         YHBaseNavigationController *pulishNav = [[YHBaseNavigationController alloc] initWithRootViewController:publishViewController];
+        pulishNav.delegate = self;
     
         //Dynamic
         DynamicViewController *dynamicViewController = [[DynamicViewController alloc] init];
@@ -57,12 +60,14 @@
         dynamicViewController.tabBarItem.image = [UIImage imageNamed:@"hb"];
         dynamicViewController.tabBarItem.selectedImage = [UIImage imageNamed:@"hbS"];
         YHBaseNavigationController *dynamicNav = [[YHBaseNavigationController alloc] initWithRootViewController:dynamicViewController];
+        dynamicNav.delegate = self;
     
         //Mine
         MineViewController *mineViewController = [[MineViewController alloc] init];
         mineViewController.tabBarItem.image = [UIImage imageNamed:@"my"];
         mineViewController.tabBarItem.selectedImage = [UIImage imageNamed:@"myS"];
         YHBaseNavigationController *mineNav = [[YHBaseNavigationController alloc] initWithRootViewController:mineViewController];
+        mineNav.delegate = self;
     
         //tabBar
         YHBaseTabbarController *rootTabBarController = [[YHBaseTabbarController alloc] init];
@@ -139,6 +144,22 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - UINavigationController Delegate
+- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    if (!viewController.hidesBottomBarWhenPushed) {
+        leveyTabBarController.tabBar.hidden = NO;
+        [leveyTabBarController hidesTabBar:NO animated:YES];
+    }
+}
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    if (viewController.hidesBottomBarWhenPushed) {
+        
+        [leveyTabBarController hidesTabBar:YES animated:YES];
+        leveyTabBarController.tabBar.hidden = YES;
+    }
+}
 /*
 #pragma mark - Navigation
 

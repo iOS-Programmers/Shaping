@@ -68,19 +68,32 @@
 {
     UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     rightBtn.frame = CGRectMake(0, 0, 44, 44);
-    [rightBtn setImage:[UIImage imageNamed:@"friend"] forState:UIControlStateNormal];
-    [rightBtn addTarget:self action:@selector(rightItemClick:) forControlEvents:UIControlEventTouchUpInside];
+    [rightBtn setImage:[UIImage imageNamed:@"mine_addFriend"] forState:UIControlStateNormal];
+    [rightBtn addTarget:self action:@selector(mineRightItemClick:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
     self.navigationItem.rightBarButtonItem = rightItem;
     
+    UIButton *leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    leftBtn.frame = CGRectMake(0, 0, 44, 44);
+    [leftBtn setImage:[UIImage imageNamed:@"leftlist"] forState:UIControlStateNormal];
+    [leftBtn setImage:[UIImage imageNamed:@"leftlist_selected"] forState:UIControlStateHighlighted];
+    [leftBtn addTarget:self action:@selector(mineLeftItemClick) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:leftBtn];
+    self.navigationItem.leftBarButtonItem = leftItem;
+    
 }
--(void)rightItemClick:(id)sender{
+-(void)mineRightItemClick:(id)sender{
     
     FriendSearchViewController *vc = [[FriendSearchViewController alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+//左边按钮
+- (void)mineLeftItemClick
+{
+    [[SliderViewController sharedSliderController] leftItemClick];
+}
 //更新界面
 - (void)initUI
 {

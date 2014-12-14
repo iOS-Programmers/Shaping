@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
+    [self loadDataWithURL:@"http://www.baidu.com"];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -48,6 +48,7 @@
     UIButton *leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     leftBtn.frame = CGRectMake(0, 0, 44, 44);
     [leftBtn setImage:[UIImage imageNamed:@"leftlist"] forState:UIControlStateNormal];
+    [leftBtn setImage:[UIImage imageNamed:@"leftlist_selected"] forState:UIControlStateHighlighted];
     [leftBtn addTarget:self action:@selector(homeLeftItemClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:leftBtn];
     self.navigationItem.leftBarButtonItem = leftItem;

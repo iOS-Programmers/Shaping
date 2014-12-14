@@ -40,6 +40,20 @@
     
     [segment addTarget:self action:@selector(dynamicSegmentAction:) forControlEvents:UIControlEventValueChanged];
     self.navigationItem.titleView = segment;
+    
+    UIButton *leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    leftBtn.frame = CGRectMake(0, 0, 44, 44);
+    [leftBtn setImage:[UIImage imageNamed:@"leftlist"] forState:UIControlStateNormal];
+    [leftBtn setImage:[UIImage imageNamed:@"leftlist_selected"] forState:UIControlStateHighlighted];
+    [leftBtn addTarget:self action:@selector(dynamicLeftItemClick) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:leftBtn];
+    self.navigationItem.leftBarButtonItem = leftItem;
+}
+
+//左边按钮
+- (void)dynamicLeftItemClick
+{
+    [[SliderViewController sharedSliderController] leftItemClick];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -115,6 +129,7 @@
 {
 
     DynamicContentController *contentVC = [[DynamicContentController alloc] init];
+    contentVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:contentVC animated:YES];
 }
 

@@ -13,7 +13,6 @@
 		160A92611A317E9700D17DAB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 160A925F1A317E9700D17DAB /* InfoPlist.strings */; };
 		160A92631A317E9700D17DAB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 160A92621A317E9700D17DAB /* main.m */; };
 		160A92671A317E9700D17DAB /* SPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 160A92661A317E9700D17DAB /* SPAppDelegate.m */; };
-		160A92691A317E9700D17DAB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 160A92681A317E9700D17DAB /* Images.xcassets */; };
 		160A92701A317E9700D17DAB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 160A926F1A317E9700D17DAB /* XCTest.framework */; };
 		160A92711A317E9700D17DAB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 160A92561A317E9700D17DAB /* Foundation.framework */; };
 		160A92721A317E9700D17DAB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 160A925A1A317E9700D17DAB /* UIKit.framework */; };
@@ -102,6 +101,8 @@
 		16B3E41D1A3410100041FCBF /* PlanCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16B3E41B1A3410100041FCBF /* PlanCell.xib */; };
 		16B3E4211A3413170041FCBF /* FriendDynamicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B3E41F1A3413170041FCBF /* FriendDynamicCell.m */; };
 		16B3E4221A3413170041FCBF /* FriendDynamicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16B3E4201A3413170041FCBF /* FriendDynamicCell.xib */; };
+		16B59E7E1A3D384D007A6CDE /* YHBaseWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B59E7D1A3D384D007A6CDE /* YHBaseWebViewController.m */; };
+		16B59E801A3D3D3B007A6CDE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16B59E7F1A3D3D3B007A6CDE /* Images.xcassets */; };
 		16C458161A34253C0047C536 /* DynamicContentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C458141A34253C0047C536 /* DynamicContentController.m */; };
 		16C458171A34253C0047C536 /* DynamicContentController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16C458151A34253C0047C536 /* DynamicContentController.xib */; };
 		7E0A10841A3CB97D00883D50 /* CommentListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0A10821A3CB97D00883D50 /* CommentListViewController.m */; };
@@ -139,7 +140,6 @@
 		160A92641A317E9700D17DAB /* Shaping-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Shaping-Prefix.pch"; sourceTree = "<group>"; };
 		160A92651A317E9700D17DAB /* SPAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPAppDelegate.h; sourceTree = "<group>"; };
 		160A92661A317E9700D17DAB /* SPAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPAppDelegate.m; sourceTree = "<group>"; };
-		160A92681A317E9700D17DAB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		160A926E1A317E9700D17DAB /* ShapingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShapingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		160A926F1A317E9700D17DAB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		160A92771A317E9700D17DAB /* ShapingTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ShapingTests-Info.plist"; sourceTree = "<group>"; };
@@ -295,6 +295,9 @@
 		16B3E41E1A3413170041FCBF /* FriendDynamicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendDynamicCell.h; sourceTree = "<group>"; };
 		16B3E41F1A3413170041FCBF /* FriendDynamicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendDynamicCell.m; sourceTree = "<group>"; };
 		16B3E4201A3413170041FCBF /* FriendDynamicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendDynamicCell.xib; sourceTree = "<group>"; };
+		16B59E7C1A3D384D007A6CDE /* YHBaseWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHBaseWebViewController.h; sourceTree = "<group>"; };
+		16B59E7D1A3D384D007A6CDE /* YHBaseWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHBaseWebViewController.m; sourceTree = "<group>"; };
+		16B59E7F1A3D3D3B007A6CDE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		16C458131A34253C0047C536 /* DynamicContentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicContentController.h; sourceTree = "<group>"; };
 		16C458141A34253C0047C536 /* DynamicContentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicContentController.m; sourceTree = "<group>"; };
 		16C458151A34253C0047C536 /* DynamicContentController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DynamicContentController.xib; sourceTree = "<group>"; };
@@ -383,7 +386,6 @@
 				160A92851A317F1400D17DAB /* Controllers */,
 				160A92651A317E9700D17DAB /* SPAppDelegate.h */,
 				160A92661A317E9700D17DAB /* SPAppDelegate.m */,
-				160A92681A317E9700D17DAB /* Images.xcassets */,
 				160A925D1A317E9700D17DAB /* Supporting Files */,
 			);
 			path = Shaping;
@@ -392,6 +394,7 @@
 		160A925D1A317E9700D17DAB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				16B59E7F1A3D3D3B007A6CDE /* Images.xcassets */,
 				160A925E1A317E9700D17DAB /* Shaping-Info.plist */,
 				160A925F1A317E9700D17DAB /* InfoPlist.strings */,
 				160A92621A317E9700D17DAB /* main.m */,
@@ -591,6 +594,8 @@
 				160A93BA1A318E6100D17DAB /* YHBaseTableViewController.m */,
 				160A92861A317F1400D17DAB /* YHBaseViewController.h */,
 				160A92871A317F1400D17DAB /* YHBaseViewController.m */,
+				16B59E7C1A3D384D007A6CDE /* YHBaseWebViewController.h */,
+				16B59E7D1A3D384D007A6CDE /* YHBaseWebViewController.m */,
 			);
 			name = BaseController;
 			sourceTree = "<group>";
@@ -875,6 +880,7 @@
 				16B3E4221A3413170041FCBF /* FriendDynamicCell.xib in Resources */,
 				7E0A10991A3CD76800883D50 /* FriendShowViewCell.xib in Resources */,
 				16B3E41D1A3410100041FCBF /* PlanCell.xib in Resources */,
+				16B59E801A3D3D3B007A6CDE /* Images.xcassets in Resources */,
 				16AA40B61A320B04004C6057 /* DynamicCell.xib in Resources */,
 				7E65EC7E1A33758500B9855F /* FeedTimeLineCell.xib in Resources */,
 				163CCE651A3CAA9C00889C2B /* AboutViewController.xib in Resources */,
@@ -884,7 +890,6 @@
 				163CCE4D1A3CA9B200889C2B /* CollectViewController.xib in Resources */,
 				16217FEB1A31941400ADCCDC /* DynamicViewController.xib in Resources */,
 				160A93A51A318BC400D17DAB /* MJRefresh.bundle in Resources */,
-				160A92691A317E9700D17DAB /* Images.xcassets in Resources */,
 				160A937D1A31890B00D17DAB /* 37x-Checkmark.png in Resources */,
 				7E0A108A1A3CBDAF00883D50 /* CommentViewCell.xib in Resources */,
 				7E0A10851A3CB97D00883D50 /* CommentListViewController.xib in Resources */,
@@ -925,6 +930,7 @@
 				16217FDB1A31931000ADCCDC /* RegisterViewController.m in Sources */,
 				163CCE521A3CA9DE00889C2B /* FriendViewController.m in Sources */,
 				160A93A81A318BC400D17DAB /* MJRefreshHeaderView.m in Sources */,
+				16B59E7E1A3D384D007A6CDE /* YHBaseWebViewController.m in Sources */,
 				160A93941A31890B00D17DAB /* UIImage+WebP.m in Sources */,
 				160A937F1A31890B00D17DAB /* MBProgressHUD.m in Sources */,
 				163CCE4C1A3CA9B200889C2B /* CollectViewController.m in Sources */,

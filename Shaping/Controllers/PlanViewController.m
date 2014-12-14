@@ -41,27 +41,16 @@
     UIButton *leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     leftBtn.frame = CGRectMake(0, 0, 44, 44);
     [leftBtn setImage:[UIImage imageNamed:@"leftlist"] forState:UIControlStateNormal];
-        [leftBtn addTarget:self action:@selector(leftItemClick) forControlEvents:UIControlEventTouchUpInside];
+    [leftBtn setImage:[UIImage imageNamed:@"leftlist_selected"] forState:UIControlStateHighlighted];
+    [leftBtn addTarget:self action:@selector(planLeftItemClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:leftBtn];
     self.navigationItem.leftBarButtonItem = leftItem;
-    
-//    UIButton *rightSettingBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    rightSettingBtn.frame = CGRectMake(self.view.frame.size.width-44, 0, 44, 44);
-//    [rightSettingBtn setImage:[UIImage imageNamed:@"plan_setup"] forState:UIControlStateNormal];
-//        [rightSettingBtn addTarget:self action:@selector(rightSettingClick) forControlEvents:UIControlEventTouchUpInside];
-//    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:rightSettingBtn];
-//    self.navigationItem.rightBarButtonItem = rightItem;
 }
 
 //左边按钮
-- (void)leftItemClick
+- (void)planLeftItemClick
 {
-    
-}
-//右边设置按钮
-- (void)rightSettingClick
-{
-    
+    [[SliderViewController sharedSliderController] leftItemClick];
 }
 /*
 #pragma mark - Navigation
