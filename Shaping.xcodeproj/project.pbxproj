@@ -103,6 +103,8 @@
 		16B3E4221A3413170041FCBF /* FriendDynamicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16B3E4201A3413170041FCBF /* FriendDynamicCell.xib */; };
 		16B59E7E1A3D384D007A6CDE /* YHBaseWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B59E7D1A3D384D007A6CDE /* YHBaseWebViewController.m */; };
 		16B59E801A3D3D3B007A6CDE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16B59E7F1A3D3D3B007A6CDE /* Images.xcassets */; };
+		16BE66141A3D46D200F74D5B /* FriendDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16BE66121A3D46D200F74D5B /* FriendDynamicViewController.m */; };
+		16BE66151A3D46D200F74D5B /* FriendDynamicViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16BE66131A3D46D200F74D5B /* FriendDynamicViewController.xib */; };
 		16C458161A34253C0047C536 /* DynamicContentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16C458141A34253C0047C536 /* DynamicContentController.m */; };
 		16C458171A34253C0047C536 /* DynamicContentController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16C458151A34253C0047C536 /* DynamicContentController.xib */; };
 		7E0A10841A3CB97D00883D50 /* CommentListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0A10821A3CB97D00883D50 /* CommentListViewController.m */; };
@@ -298,6 +300,9 @@
 		16B59E7C1A3D384D007A6CDE /* YHBaseWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHBaseWebViewController.h; sourceTree = "<group>"; };
 		16B59E7D1A3D384D007A6CDE /* YHBaseWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHBaseWebViewController.m; sourceTree = "<group>"; };
 		16B59E7F1A3D3D3B007A6CDE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		16BE66111A3D46D200F74D5B /* FriendDynamicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendDynamicViewController.h; sourceTree = "<group>"; };
+		16BE66121A3D46D200F74D5B /* FriendDynamicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendDynamicViewController.m; sourceTree = "<group>"; };
+		16BE66131A3D46D200F74D5B /* FriendDynamicViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendDynamicViewController.xib; sourceTree = "<group>"; };
 		16C458131A34253C0047C536 /* DynamicContentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicContentController.h; sourceTree = "<group>"; };
 		16C458141A34253C0047C536 /* DynamicContentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicContentController.m; sourceTree = "<group>"; };
 		16C458151A34253C0047C536 /* DynamicContentController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DynamicContentController.xib; sourceTree = "<group>"; };
@@ -612,6 +617,9 @@
 				16AA40B21A320B04004C6057 /* DynamicCell.h */,
 				16AA40B31A320B04004C6057 /* DynamicCell.m */,
 				16AA40B41A320B04004C6057 /* DynamicCell.xib */,
+				16BE66111A3D46D200F74D5B /* FriendDynamicViewController.h */,
+				16BE66121A3D46D200F74D5B /* FriendDynamicViewController.m */,
+				16BE66131A3D46D200F74D5B /* FriendDynamicViewController.xib */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -887,6 +895,7 @@
 				160A92611A317E9700D17DAB /* InfoPlist.strings in Resources */,
 				7E0A10941A3CCFC300883D50 /* FriendSearchViewController.xib in Resources */,
 				16C458171A34253C0047C536 /* DynamicContentController.xib in Resources */,
+				16BE66151A3D46D200F74D5B /* FriendDynamicViewController.xib in Resources */,
 				163CCE4D1A3CA9B200889C2B /* CollectViewController.xib in Resources */,
 				16217FEB1A31941400ADCCDC /* DynamicViewController.xib in Resources */,
 				160A93A51A318BC400D17DAB /* MJRefresh.bundle in Resources */,
@@ -944,6 +953,7 @@
 				7E0A10981A3CD76800883D50 /* FriendShowViewCell.m in Sources */,
 				160A93A61A318BC400D17DAB /* MJRefreshBaseView.m in Sources */,
 				160A93C11A318FD600D17DAB /* YHBaseTabbarController.m in Sources */,
+				16BE66141A3D46D200F74D5B /* FriendDynamicViewController.m in Sources */,
 				1640896E1A3C687E00DB4FF6 /* RightViewController.m in Sources */,
 				1640896B1A3C687E00DB4FF6 /* LeftViewController.m in Sources */,
 				164089741A3C688900DB4FF6 /* WWSideslipViewController.m in Sources */,

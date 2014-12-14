@@ -123,6 +123,16 @@
         
 }
 
+- (void)gotoPublish
+{
+    PublishViewController *publishViewController = [[PublishViewController alloc] init];
+    YHBaseNavigationController *pulishNav = [[YHBaseNavigationController alloc] initWithRootViewController:publishViewController];
+//    [self.navigationController pushViewController:pulishNav animated:YES];
+    [self presentViewController:pulishNav animated:YES completion:^{
+        
+    }];
+}
+
 #pragma mark - 点击发布按钮
 - (void)publishbuttonClicked
 {
@@ -130,10 +140,13 @@
     
     [menuView addMenuItemWithTitle:@"相册" andIcon:[UIImage imageNamed:@"photo"] andSelectedBlock:^{
         NSLog(@"Photo selected");
+        [self gotoPublish];
+        
     }];
     
     [menuView addMenuItemWithTitle:@"相机" andIcon:[UIImage imageNamed:@"xiangji"] andSelectedBlock:^{
         NSLog(@"Text selected");
+        [self gotoPublish];
     }];
     
     [menuView show];

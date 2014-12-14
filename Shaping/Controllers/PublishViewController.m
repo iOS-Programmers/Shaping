@@ -9,6 +9,7 @@
 #import "PublishViewController.h"
 
 @interface PublishViewController ()
+- (IBAction)onPublishBtnClick:(UIButton *)sender;
 
 @end
 
@@ -17,6 +18,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.title = @"发布";
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -34,4 +37,10 @@
 }
 */
 
+- (IBAction)onPublishBtnClick:(UIButton *)sender {
+    
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
 @end

@@ -9,6 +9,7 @@
 #import "HomeViewController.h"
 #import "SGFocusImageFrame.h"
 #import "HomeCommandCell.h"
+#import "FriendDynamicViewController.h"
 
 @interface HomeViewController () <SGFocusImageFrameDelegate>
 {
@@ -91,6 +92,15 @@
 #pragma mark - SGFocusImageFrameDelegate
 - (void)foucusImageFrame:(SGFocusImageFrame *)imageFrame didSelectItem:(SGFocusImageItem *)item
 {
+    
+    if (item.tag == 0) {
+        FriendDynamicViewController *vc = [[FriendDynamicViewController alloc] init];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    if (item.tag == 1) {
+        
+    }
 //    BannerClass *banner;
 //    if (item.tag == -1) {
 //        banner = [listOneArray objectAtIndex:([listOneArray count] - 1)];
@@ -110,6 +120,7 @@
 - (void)foucusImageFrame:(SGFocusImageFrame *)imageFrame currentItem:(int)index;
 {
     //NSLog(@"%s \n scrollToIndex===>%d",__FUNCTION__,index);
+
 }
 
 #pragma mark - IBAction
