@@ -17,6 +17,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.titleText = @"关于Shaping";
+    [self addNavigationBar];
+    
+    self.webView.frame = CGRectMake(0, 64, [LXUtils GetScreeWidth], [LXUtils getContentViewHeight]);
     [self loadDataWithURL:@"http://www.baidu.com"];
 }
 

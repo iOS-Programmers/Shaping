@@ -18,6 +18,9 @@ typedef NS_ENUM(NSInteger, HTBarbuttonItemStyle) {
 
 @interface YHBaseViewController : UIViewController
 
+//自定义导航的标题
+@property (nonatomic, copy) NSString *titleText;
+
 /**
  *  统一设置背景图片
  *
@@ -86,5 +89,11 @@ typedef NS_ENUM(NSInteger, HTBarbuttonItemStyle) {
 - (void)hideLoading;
 
 - (void)configureBarbuttonItemStyle:(HTBarbuttonItemStyle)style action:(HTBarButtonItemActionBlock)action;
+
+
+/**
+ *  自定义导航条
+ */
+- (void)addNavigationBar;
 
 @end

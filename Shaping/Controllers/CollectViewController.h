@@ -6,7 +6,7 @@
 //  Copyright (c) 2014年 YH. All rights reserved.
 //
 
-#import "YHBaseViewController.h"
+#import "YHBaseTableViewController.h"
 
-@interface CollectViewController : YHBaseViewController
+@interface CollectViewController : YHBaseTableViewController
 @end

@@ -17,7 +17,13 @@
 
 @property (nonatomic, copy) HTBarButtonItemActionBlock barbuttonItemAction;
 
-@property (nonatomic,retain)UIControl *ctrlView;
+@property (nonatomic,retain) UIControl *ctrlView;
+
+
+/**
+ *  自定义导航条View
+ */
+@property (nonatomic,strong) UIView *nBarView;
 
 @end
 
@@ -234,6 +240,37 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+- (void)addNavigationBar
+{
+    self.nBarView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width,64)];
+    [self.nBarView setBackgroundColor:NAVIGATION_BAR_COLCOR];
+    [self.view addSubview:self.nBarView];
+    
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 30, 220, 15)];
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    titleLabel.textColor = [UIColor whiteColor];
+    if (self.titleText) {
+        titleLabel.text = self.titleText;
+    }
+    
+    [self.nBarView addSubview:titleLabel];
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [button setTitle:@"返回" forState:UIControlStateNormal];
+    button.backgroundColor = [UIColor clearColor];
+    
+    button.frame = CGRectMake(0, 0, 100, 44);
+    [button addTarget:self action:@selector(navBackAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+//    [self.nBarView addSubview:button];
+}
+
+-(void)navBackAction:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - View rotation

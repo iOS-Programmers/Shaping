@@ -19,7 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"设置";
+    self.title = @"个人资料";
     
     [self.dataSource addObject:[NSArray arrayWithObjects:@"昵称",@"性别",@"长居地",@"身高",@"体重",@"三围", nil]];
     [self.dataSource addObject:[NSArray arrayWithObjects:@"签名", nil]];

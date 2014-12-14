@@ -17,7 +17,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-
+    self.titleText = @"设置";
+    [self addNavigationBar];
+    
+    self.tableView.frame = CGRectMake(0, 64, [LXUtils GetScreeWidth], [LXUtils getContentViewHeight]);
     
     self.dataSource = [self getSettingConfigureArray];
 
