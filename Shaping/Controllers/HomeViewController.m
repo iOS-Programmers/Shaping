@@ -140,14 +140,34 @@
         return 100;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
+    return 35;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *sectionView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 35)];
+    sectionView.backgroundColor = [UIColor whiteColor];
+    
+    UIImageView *iconImage = [[UIImageView alloc] initWithFrame:CGRectMake(7, 14, 13, 13)];
+    iconImage.image = [UIImage imageNamed:@"home_red"];
+    
+    [sectionView addSubview:iconImage];
+    
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 13, 200, 15)];
+    titleLabel.backgroundColor = [UIColor clearColor];
+    titleLabel.font = [UIFont systemFontOfSize:12];
     if (section == 0) {
-        return @"热点推荐";
+        titleLabel.text = @"热点推荐";
     }
     else {
-        return @"热门健身专辑推荐";
+        titleLabel.text = @"热门健身专辑推荐";
     }
+
+    [sectionView addSubview:titleLabel];
+    
+    return sectionView;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -162,8 +182,10 @@
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CustomerTableIdentifier];
         }
         
-        cell.imageView.image = [UIImage imageNamed:@"test_avatar.jpg"];
+        cell.imageView.image = [UIImage imageNamed:@"35"];
         cell.textLabel.text = @"三种组合训练法";
+        cell.imageView.layer.cornerRadius = 5;
+        [cell.imageView.layer setMasksToBounds:YES];
         
         return cell;
 
