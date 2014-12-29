@@ -17,8 +17,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"暂未开放" delegate:nil cancelButtonTitle:nil otherButtonTitles: nil];
+    [alert show];
+    [alert performSelector:@selector(dismissAnimated:) withObject:@YES afterDelay:1.0];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

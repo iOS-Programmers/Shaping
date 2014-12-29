@@ -17,7 +17,7 @@
             <subviews>
                 <view contentMode="scaleToFill" id="VCA-0h-Im5">
                     <rect key="frame" x="10" y="24" width="300" height="257"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <autoresizingMask key="autoresizingMask"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="104" id="PTV-IY-MiA">
                             <rect key="frame" x="8" y="158" width="85" height="85"/>

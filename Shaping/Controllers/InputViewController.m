@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic) IBOutlet UITextView *inputTextView;
 @property (strong, nonatomic) IBOutlet UILabel *tipLabel;
+
 @end
 
 @implementation InputViewController
