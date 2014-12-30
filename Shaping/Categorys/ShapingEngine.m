@@ -19,7 +19,7 @@
 #define CONNECT_TIMEOUT     20
 #define SP_Confirm @""
 
-static NSString* BASE_URL = @"http://www.wjf123.cn/data/attachment/forum/";
+static NSString* BASE_URL = @"http://115.29.246.35/";
 static NSString* API_URL = @"http://www.wjf123.cn/wjfapi/index.php";//http://test2.api.hiwemeet.com
 //static NSString* API_URL = @"http://test2.api.hiwemeet.com";
 
