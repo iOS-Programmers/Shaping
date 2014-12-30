@@ -9,5 +9,6 @@
 #ifndef Shaping_HttpMacro_h
 #define Shaping_HttpMacro_h
 
+#import "ShapingEngine.h"
 
 #endif

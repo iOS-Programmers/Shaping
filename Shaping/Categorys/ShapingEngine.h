@@ -50,7 +50,15 @@ typedef void(^onAppServiceBlock)(NSInteger tag, NSDictionary* jsonRet, NSError* 
 #pragma mark - HttpRequest
 //注册接口
 - (BOOL)registerUserInfo:(NSString *)userName mobile:(NSString *)mobile password:(NSString *)password confirm:(NSString *)confirm tag:(int)tag;
-//登录接口
-- (BOOL)logInUserInfo:(NSString *)userName token:(NSString *)token password:(NSString *)password confirm:(NSString *)confirm tag:(int)tag;
+
+/**
+ *  登录接口
+ *
+ *  @param params 入参字典
+ *  @param tag
+ *
+ *  @return 
+ */
+- (BOOL)logInUserInfo:(NSDictionary *)params tag:(int)tag;
 
 @end

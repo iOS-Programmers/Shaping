@@ -19,8 +19,8 @@
 #define CONNECT_TIMEOUT     20
 #define SP_Confirm @""
 
-static NSString* BASE_URL = @"http://115.29.246.35/";
-static NSString* API_URL = @"http://www.wjf123.cn/wjfapi/index.php";//http://test2.api.hiwemeet.com
+static NSString* BASE_URL = @"http://115.29.246.35";
+static NSString* API_URL = @"http://115.29.246.35";//http://test2.api.hiwemeet.com
 //static NSString* API_URL = @"http://test2.api.hiwemeet.com";
 
 static ShapingEngine* s_ShareInstance = nil;
@@ -414,22 +414,18 @@ static ShapingEngine* s_ShareInstance = nil;
     return YES;
 }
 
-- (BOOL)logInUserInfo:(NSString *)userName token:(NSString *)token password:(NSString *)password confirm:(NSString *)confirm tag:(int)tag{
-    
-    NSString *url = [NSString stringWithFormat:@"%@/Index/userLogin", API_URL];
-    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
-    if (userName){
-        [params setObject:userName forKey:@"username"];
-    }
-    if (token){
-        [params setObject:token forKey:@"token"];
-    }
-    if (password){
-        [params setObject:password forKey:@"password"];
-    }
-    if (_confirm){
-        [params setObject:_confirm forKey:@"confirm"];
-    }
+
+/**
+ *  登录接口
+ *
+ *  @param params 入参字典
+ *  @param tag
+ *
+ *  @return
+ */
+- (BOOL)logInUserInfo:(NSDictionary *)params tag:(int)tag
+{
+    NSString *url = [NSString stringWithFormat:@"%@/Api/User/login?", API_URL];
     
     [self sendHttpRequestWithUrl:url params:params requestMethod:@"GET" postValue:NO tag:tag];
     return YES;
