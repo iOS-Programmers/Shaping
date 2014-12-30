@@ -21,4 +21,5 @@
 
 - (void)setHotTopicInfoByDic:(NSDictionary*)dic;
 
+- (void)setAlbumTopicInfoByDic:(NSDictionary*)dic;//热门推荐
 @end

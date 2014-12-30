@@ -8,6 +8,7 @@
 
 #import "SPTopicInfo.h"
 #import "JSONKit.h"
+#import "ShapingEngine.h"
 
 @implementation SPTopicInfo
 
@@ -21,13 +22,9 @@
     if (objectForKey) {
         _content = [objectForKey description];
     }
-    objectForKey = [dic objectForKey:@"contet"];
-    if (objectForKey) {
-        _content = [objectForKey description];
-    }
     objectForKey = [dic objectForKey:@"list_img"];
     if (objectForKey) {
-        _imgUrl = [NSURL URLWithString:[objectForKey description]];
+        _imgUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",[ShapingEngine shareInstance].baseUrl,[objectForKey description]]];
     }
     _isIndex = [[dic objectForKey:@"isIndex"] intValue];
     _createTime = [[dic objectForKey:@"createTime"] intValue];
@@ -45,6 +42,45 @@
     }
     @catch (NSException *exception) {
         NSLog(@"####SPTopicInfo setHotTopicInfoByDic exception:%@", exception);
+    }
+    
+    _jsonString = [dic JSONString];
+}
+
+#pragma - mark 热门推荐
+- (void)doSetAlbumTopicInfoByDic:(NSDictionary *)dic{
+    
+    id objectForKey = [dic objectForKey:@"title"];
+    if (objectForKey) {
+        _title = [objectForKey description];
+    }
+    objectForKey = [dic objectForKey:@"index_intro"];
+    if (objectForKey) {
+        _content = [objectForKey description];
+    }
+    objectForKey = [dic objectForKey:@"course_content"];
+    if (objectForKey) {
+//        _content = [objectForKey description];
+    }
+    objectForKey = [dic objectForKey:@"index_img"];
+    if (objectForKey) {
+        _imgUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",[ShapingEngine shareInstance].baseUrl,[objectForKey description]]];
+    }
+    _isIndex = [[dic objectForKey:@"isIndex"] intValue];
+    _createTime = [[dic objectForKey:@"createTime"] intValue];
+}
+- (void)setAlbumTopicInfoByDic:(NSDictionary*)dic{
+    if (![dic isKindOfClass:[NSDictionary class]]) {
+        return;
+    }
+    
+    _tId = [[dic objectForKey:@"album_id"] description];
+    
+    @try {
+        [self doSetAlbumTopicInfoByDic:dic];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"####SPTopicInfo setAlbumTopicInfoByDic exception:%@", exception);
     }
     
     _jsonString = [dic JSONString];

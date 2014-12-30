@@ -28,4 +28,6 @@
 //侧滑
 #import "SliderViewController.h"
 
+#import "NSDictionary+objectForKey.h"
+
 #endif

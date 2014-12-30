@@ -12,6 +12,7 @@
 #import "FriendDynamicViewController.h"
 #import "IntroduceViewController.h"
 #import "ShapingEngine.h"
+#import "SPTopicInfo.h"
 
 @interface HomeViewController () <SGFocusImageFrameDelegate>
 {
@@ -19,6 +20,9 @@
     
     NSMutableArray *bannerArray;//轮播图数组
 }
+
+@property (nonatomic, strong) NSMutableArray *hotTopList;
+@property (nonatomic, strong) NSMutableArray *albumTopList;
 
 @end
 
@@ -52,9 +56,16 @@
         
         NSString* errorMsg = [ShapingEngine getErrorMsgWithReponseDic:jsonRet];
         if (!jsonRet || errorMsg) {
-            
             return;
         }
+        weakSelf.hotTopList = [[NSMutableArray alloc] init];
+        NSArray *listArray = [jsonRet arrayObjectForKey:@"list"];
+        for (NSDictionary *dic in listArray) {
+            SPTopicInfo *topicInfo = [[SPTopicInfo alloc] init];
+            [topicInfo setHotTopicInfoByDic:dic];
+            [weakSelf.hotTopList addObject:topicInfo];
+        }
+        [weakSelf.tableView reloadData];
         
     } tag:tag];
 }
@@ -71,6 +82,15 @@
             
             return;
         }
+        
+        weakSelf.albumTopList = [[NSMutableArray alloc] init];
+        NSArray *listArray = [jsonRet arrayObjectForKey:@"list"];
+        for (NSDictionary *dic in listArray) {
+            SPTopicInfo *topicInfo = [[SPTopicInfo alloc] init];
+            [topicInfo setAlbumTopicInfoByDic:dic];
+            [weakSelf.albumTopList addObject:topicInfo];
+        }
+        [weakSelf.tableView reloadData];
         
     } tag:tag];
 }
@@ -173,9 +193,9 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
     if (section == 0) {
-        return 3;
+        return _hotTopList.count;
     }
-    return 5;
+    return _albumTopList.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -229,8 +249,11 @@
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CustomerTableIdentifier];
         }
         
-        cell.imageView.image = [UIImage imageNamed:@"35"];
-        cell.textLabel.text = @"三种组合训练法";
+        SPTopicInfo *topicInfo = _hotTopList[indexPath.row];
+        
+//        cell.imageView.image = [UIImage imageNamed:@"35"];
+        [cell.imageView setImageWithURL:topicInfo.imgUrl placeholderImage:[UIImage imageNamed:@"35"]];
+        cell.textLabel.text = topicInfo.title;
         cell.imageView.layer.cornerRadius = 5;
         [cell.imageView.layer setMasksToBounds:YES];
         
@@ -246,7 +269,8 @@
             cell = [cells objectAtIndex:0];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-
+        SPTopicInfo *topicInfo = _albumTopList[indexPath.row];
+        cell.topicInfo = topicInfo;
         return cell;
     }
     

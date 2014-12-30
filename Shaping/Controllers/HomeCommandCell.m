@@ -20,4 +20,11 @@
     // Configure the view for the selected state
 }
 
+-(void)setTopicInfo:(SPTopicInfo *)topicInfo{
+    _topicInfo = topicInfo;
+    [self.avatarImageView setImageWithURL:topicInfo.imgUrl placeholderImage:[UIImage imageNamed:@"home_fuji"]];
+    self.titleLabel.text = topicInfo.title;
+    self.contentLabel.text = topicInfo.content;
+}
+
 @end
