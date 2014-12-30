@@ -61,4 +61,9 @@ typedef void(^onAppServiceBlock)(NSInteger tag, NSDictionary* jsonRet, NSError* 
  */
 - (BOOL)logInUserInfo:(NSDictionary *)params tag:(int)tag;
 
+//首页热点推荐
+- (BOOL)getHomeHotTopListWith:(int)page tag:(int)tag;
+//首页专辑推荐
+- (BOOL)getHomeAlbumTopListWith:(int)page tag:(int)tag;
+
 @end

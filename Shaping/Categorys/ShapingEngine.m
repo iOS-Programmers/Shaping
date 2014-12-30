@@ -425,9 +425,28 @@ static ShapingEngine* s_ShareInstance = nil;
  */
 - (BOOL)logInUserInfo:(NSDictionary *)params tag:(int)tag
 {
-    NSString *url = [NSString stringWithFormat:@"%@/Api/User/login?", API_URL];
+    NSString *url = [NSString stringWithFormat:@"%@/Api/User/login", API_URL];
     
     [self sendHttpRequestWithUrl:url params:params requestMethod:@"GET" postValue:NO tag:tag];
     return YES;
 }
+
+//首页热点推荐
+- (BOOL)getHomeHotTopListWith:(int)page tag:(int)tag{
+    NSString *url = [NSString stringWithFormat:@"%@/Api/Hot/topList/%d", API_URL,page];
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
+    
+    [self sendHttpRequestWithUrl:url params:params requestMethod:@"GET" tag:tag];
+    return YES;
+}
+
+//首页专辑推荐
+- (BOOL)getHomeAlbumTopListWith:(int)page tag:(int)tag{
+    NSString *url = [NSString stringWithFormat:@"%@/Api/Album/topList/%d", API_URL,page];
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
+    
+    [self sendHttpRequestWithUrl:url params:params requestMethod:@"GET" tag:tag];
+    return YES;
+}
+
 @end
