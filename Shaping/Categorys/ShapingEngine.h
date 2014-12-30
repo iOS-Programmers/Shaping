@@ -52,5 +52,9 @@ typedef void(^onAppServiceBlock)(NSInteger tag, NSDictionary* jsonRet, NSError* 
 - (BOOL)registerUserInfo:(NSString *)userName mobile:(NSString *)mobile password:(NSString *)password confirm:(NSString *)confirm tag:(int)tag;
 //登录接口
 - (BOOL)logInUserInfo:(NSString *)userName token:(NSString *)token password:(NSString *)password confirm:(NSString *)confirm tag:(int)tag;
+//首页热点推荐
+- (BOOL)getHomeHotTopListWith:(int)page tag:(int)tag;
+//首页专辑推荐
+- (BOOL)getHomeAlbumTopListWith:(int)page tag:(int)tag;
 
 @end

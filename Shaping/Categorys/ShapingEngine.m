@@ -20,7 +20,7 @@
 #define SP_Confirm @""
 
 static NSString* BASE_URL = @"http://115.29.246.35/";
-static NSString* API_URL = @"http://www.wjf123.cn/wjfapi/index.php";//http://test2.api.hiwemeet.com
+static NSString* API_URL = @"http://115.29.246.35/";//http://test2.api.hiwemeet.com
 //static NSString* API_URL = @"http://test2.api.hiwemeet.com";
 
 static ShapingEngine* s_ShareInstance = nil;
@@ -189,15 +189,15 @@ static ShapingEngine* s_ShareInstance = nil;
     if (dic == nil) {
         return @"请检查网络连接是否正常";
     }
-    if ([dic objectForKey:@"error_no"] == nil) {
+    if ([dic objectForKey:@"status"] == nil) {
         return nil;
     }
-    if ([[dic objectForKey:@"error_no"] integerValue] == 0){
+    if ([[dic objectForKey:@"status"] integerValue] == 1){
         return nil;
     }
-    NSString* error = [dic objectForKey:@"error_info"];
+    NSString* error = [dic objectForKey:@"content"];
     if (!error) {
-        error = [dic objectForKey:@"error_no"];
+        error = [dic objectForKey:@"content"];
     }
     if (error == nil) {
         error = @"unknow error";
@@ -206,12 +206,12 @@ static ShapingEngine* s_ShareInstance = nil;
 }
 + (NSString*)getErrorCodeWithReponseDic:(NSDictionary*)dic {
     
-    return [[dic stringObjectForKey:@"error_info"] description];
+    return [[dic stringObjectForKey:@"content"] description];
 }
 
 + (NSInteger)getErrorCodeWithDic:(NSDictionary *)dic{
     
-    return [[dic stringObjectForKey:@"error_no"] integerValue];
+    return [[dic stringObjectForKey:@"status"] integerValue];
 }
 //验证失效重新登录
 + (BOOL)getErrorAuthWithDic:(NSDictionary *)dic{
@@ -269,16 +269,16 @@ static ShapingEngine* s_ShareInstance = nil;
     
     NSDictionary *jsonRet = [responseString objectFromJSONString];
     
-    [self isNeedAnewAuth:jsonRet];
+//    [self isNeedAnewAuth:jsonRet];
     
-    if ([jsonRet objectForKey:@"token"]) {
-        [ShapingEngine saveUserToken:[[jsonRet objectForKey:@"token"] description]];
-    }
+//    if ([jsonRet objectForKey:@"token"]) {
+//        [ShapingEngine saveUserToken:[[jsonRet objectForKey:@"token"] description]];
+//    }
     NSMutableDictionary *mutJsonRet = [NSMutableDictionary dictionaryWithDictionary:jsonRet];
-    if ([[jsonRet objectForKey:@"data"] isKindOfClass:[NSNull class]]) {
-        NSMutableArray *tmpArray = [NSMutableArray array];
-        [mutJsonRet setObject:tmpArray forKey:@"data"];
-    }
+//    if ([[jsonRet objectForKey:@"data"] isKindOfClass:[NSNull class]]) {
+//        NSMutableArray *tmpArray = [NSMutableArray array];
+//        [mutJsonRet setObject:tmpArray forKey:@"data"];
+//    }
     
     NSLog(@"response tag:%d url=%@, string: %@", request.tag, [request url], responseString);
     dispatch_async(dispatch_get_main_queue(), ^(){
@@ -434,4 +434,23 @@ static ShapingEngine* s_ShareInstance = nil;
     [self sendHttpRequestWithUrl:url params:params requestMethod:@"GET" postValue:NO tag:tag];
     return YES;
 }
+
+- (BOOL)getHomeHotTopListWith:(int)page tag:(int)tag{
+    
+    NSString *url = [NSString stringWithFormat:@"%@Api/Hot/topList/%d", API_URL,page];
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
+    
+    [self sendHttpRequestWithUrl:url params:params requestMethod:@"GET" tag:tag];
+    return YES;
+}
+
+- (BOOL)getHomeAlbumTopListWith:(int)page tag:(int)tag{
+    
+    NSString *url = [NSString stringWithFormat:@"%@Api/Album/topList/%d", API_URL,page];
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
+    
+    [self sendHttpRequestWithUrl:url params:params requestMethod:@"GET" tag:tag];
+    return YES;
+}
+
 @end
