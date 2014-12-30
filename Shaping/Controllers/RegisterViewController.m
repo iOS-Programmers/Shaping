@@ -186,17 +186,17 @@
 }
 - (void)registerAction:(UIButton *)sender
 {
-//    if (![self isEmpty]) {
-//        if ([self isValidateEmail:emailText.text]) {
-////            [self registerBegin];
-//            
-//        }else {
-//            [self showWithText:@"邮箱无效"];
-//            [UIView animateWithDuration:0.15 animations:^{
-//                [self.view setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-//            }];
-//        }
-//    }
+    if (![self isEmpty]) {
+        if ([self isValidateEmail:emailText.text]) {
+//            [self registerBegin];
+            
+        }else {
+            [self showWithText:@"邮箱无效"];
+            [UIView animateWithDuration:0.15 animations:^{
+                [self.view setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+            }];
+        }
+    }
 }
 //- (void)registerBegin
 //{
@@ -256,45 +256,7 @@
 //    
 //    
 //}
-//- (void)registerForEaseMob:(NSString *)userID
-//{
-//    //向环信注册
-//    
-//    [[EaseMob sharedInstance].chatManager setNickname:nickText.text];//设置昵称
-//    
-//    [self showHudInView:self.view hint:@"正在注册..."];
-//    [[EaseMob sharedInstance].chatManager asyncRegisterNewAccount:[ToolClass getMd5_32Bit_String:userID]
-//                                                         password:passwordText.text
-//                                                   withCompletion:
-//     ^(NSString *username, NSString *password, EMError *error) {
-//         [self hideHud];
-//         
-//         if (!error) {
-//             [AppDelegate shareappdelegate].currentLoginUserID = userID;
-//             
-//             [[loginViewController shareloginViewController] loginWithUsername:username password:password];
-//             
-//             
-//         }else{
-//             switch (error.errorCode) {
-//                 case EMErrorServerNotReachable:
-//                     TTAlertNoTitle(@"连接服务器失败!");
-//                     break;
-//                 case EMErrorServerDuplicatedAccount:
-//                     TTAlertNoTitle(@"您注册的用户已存在!");
-//                     break;
-//                 case EMErrorServerTimeout:
-//                     TTAlertNoTitle(@"连接服务器超时!");
-//                     break;
-//                 default:
-//                     TTAlertNoTitle(@"注册失败");
-//                     break;
-//             }
-//         }
-//     } onQueue:nil];
-//    
-//    
-//}
+
 //
 - (BOOL)isEmpty{
     BOOL ret = NO;
