@@ -11,6 +11,7 @@
 #import "HomeCommandCell.h"
 #import "FriendDynamicViewController.h"
 #import "IntroduceViewController.h"
+#import "ShapingEngine.h"
 
 @interface HomeViewController () <SGFocusImageFrameDelegate>
 {
@@ -32,12 +33,46 @@
     
     [self initNavBar];
     [self initUI];
+    [self refreshHotList];
+    [self refreshAlbumList];
     
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)refreshHotList{
+    
+    __weak HomeViewController *weakSelf = self;
+    int tag = [[ShapingEngine shareInstance] getConnectTag];
+    [[ShapingEngine shareInstance] getHomeHotTopListWith:1 tag:tag];
+    [[ShapingEngine shareInstance] addOnAppServiceBlock:^(NSInteger tag, NSDictionary *jsonRet, NSError *err) {
+        
+        NSString* errorMsg = [ShapingEngine getErrorMsgWithReponseDic:jsonRet];
+        if (!jsonRet || errorMsg) {
+            
+            return;
+        }
+        
+    } tag:tag];
+}
+
+-(void)refreshAlbumList{
+    
+    __weak HomeViewController *weakSelf = self;
+    int tag = [[ShapingEngine shareInstance] getConnectTag];
+    [[ShapingEngine shareInstance] getHomeAlbumTopListWith:1 tag:tag];
+    [[ShapingEngine shareInstance] addOnAppServiceBlock:^(NSInteger tag, NSDictionary *jsonRet, NSError *err) {
+        
+        NSString* errorMsg = [ShapingEngine getErrorMsgWithReponseDic:jsonRet];
+        if (!jsonRet || errorMsg) {
+            
+            return;
+        }
+        
+    } tag:tag];
 }
 
 /**
