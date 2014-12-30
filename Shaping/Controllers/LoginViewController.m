@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "RegisterViewController.h"
+#import "SSKeychain.h"
 
 @interface LoginViewController () <UITextFieldDelegate>
 
@@ -33,6 +34,18 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self initUI];
+    
+    //如果钥匙串中有保存账号密码，则给予显示
+    NSString *userName = [SSKeychain passwordForService:@"com.sp.shaping"account:@"username"];
+    NSString *passWord = [SSKeychain passwordForService:@"com.sp.shaping"account:@"password"];
+    
+    if (!FBIsEmpty(userName)) {
+        self.emailTF.text = userName;
+    }
+    if (!FBIsEmpty(passWord)) {
+        self.passwordTF.text = passWord;
+    }
+
 }
 
 - (void)initUI
@@ -70,8 +83,23 @@
     
     __weak LoginViewController *weakSelf = self;
     int tag = [[ShapingEngine shareInstance] getConnectTag];
-    NSDictionary *params = @{@"user.email":@"123@qq.com",
-                             @"user.password":@"123"};
+    
+    if (FBIsEmpty(self.emailTF.text)) {
+        [self showWithText:@"请输入邮箱"];
+        
+        return;
+    }
+    
+    if (FBIsEmpty(self.passwordTF.text)) {
+        [self showWithText:@"请输入密码"];
+        
+        return;
+    }
+    
+    
+    NSDictionary *params = @{@"user.email":self.emailTF.text,
+                             @"user.password":self.passwordTF.text};
+    
     [[ShapingEngine shareInstance] logInUserInfo: params tag:tag];
     
     [[ShapingEngine shareInstance] addOnAppServiceBlock:^(NSInteger tag, NSDictionary *jsonRet, NSError *err) {
@@ -80,37 +108,43 @@
             //            [LSCommonUtils showWarningTip:errorMsg At:weakSelf.view];
             return;
         }
-        
-        
-        //登录成功后，保存用户名跟密码到钥匙串里
-        //        [SSKeychain setPassword:self.userNameTF.text forService:@"com.weijifen" account:@"username"];
-        //        [SSKeychain setPassword:self.passwordTF.text forService:@"com.weijifen" account:@"password"];
-        
+
         
         /**
          *  请求成功后，把服务端返回的信息存起来
          */
-        NSDictionary *dataDic = [jsonRet objectForKey:@"data"];
+        NSString *statusStr = [NSString stringWithFormat:@"%@",[jsonRet objectForKey:@"status"]];
         
-        /**
-         *  登录成功后把token存起来
-         */
-        NSString *tokenStr = [jsonRet objectForKey:@"token"];
-        if (!FBIsEmpty(tokenStr)) {
-            [ShapingEngine saveUserToken:tokenStr];
+        if ([statusStr isEqualToString:@"1"]) {
+            
+            //请求成功
+            //登录成功后，保存用户名跟密码到钥匙串里
+            [SSKeychain setPassword:self.emailTF.text forService:@"com.sp.shaping" account:@"username"];
+            [SSKeychain setPassword:self.passwordTF.text forService:@"com.sp.shaping" account:@"password"];
+            
+            [[SPAppDelegate shareappdelegate] initMainView];
         }
         
+        else {
+        
+            [weakSelf showWithText:@"登录失败！"];
+
+            return;
+        }
+    
         //        JFUserInfo *userInfo = [[JFUserInfo alloc] init];
         //        [userInfo setUserInfoByJsonDic:dataDic];
         //        [ShapingEngine shareInstance].userPassword = self.passwordTF.text;
         //        [[ShapingEngine shareInstance] setUserInfo:userInfo];
-        [[ShapingEngine shareInstance] saveAccount];
+//        [[ShapingEngine shareInstance] saveAccount];
         
 //        [weakSelf loginAction];
         
+        
+        
     } tag:tag];
 
-    [[SPAppDelegate shareappdelegate] initMainView];
+    
 }
 
 /**

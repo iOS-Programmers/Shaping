@@ -193,7 +193,7 @@
             __weak RegisterViewController *weakSelf = self;
             int tag = [[ShapingEngine shareInstance] getConnectTag];
             
-            [[ShapingEngine shareInstance] registerUserInfo:emailText.text mobile:@"" password:passwordText.text confirm:[ShapingEngine shareInstance].confirm tag:tag];
+//            [[ShapingEngine shareInstance] registerUserInfo:emailText.text mobile:@"" password:passwordText.text confirm:[ShapingEngine shareInstance].confirm tag:tag];
             
             [[ShapingEngine shareInstance] addOnAppServiceBlock:^(NSInteger tag, NSDictionary *jsonRet, NSError *err) {
                 NSString* errorMsg = [ShapingEngine getErrorMsgWithReponseDic:jsonRet];

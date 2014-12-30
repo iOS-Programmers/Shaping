@@ -393,24 +393,12 @@ static ShapingEngine* s_ShareInstance = nil;
 
 #pragma mark - HttpRequest
 
-- (BOOL)registerUserInfo:(NSString *)userName mobile:(NSString *)mobile password:(NSString *)password confirm:(NSString *)confirm tag:(int)tag {
-    
-    NSString *url = [NSString stringWithFormat:@"%@/Index/userRegister", API_URL];
-    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
-    if (userName){
-        [params setObject:userName forKey:@"username"];
-    }
-    if (mobile){
-        [params setObject:mobile forKey:@"mobile"];
-    }
-    if (password){
-        [params setObject:password forKey:@"password"];
-    }
-    if (_confirm){
-        [params setObject:_confirm forKey:@"confirm"];
-    }
+- (BOOL)registerUserInfo:(NSDictionary *)params tag:(int)tag
+{
+    NSString *url = [NSString stringWithFormat:@"%@/Api/User/register", API_URL];
     
     [self sendHttpRequestWithUrl:url params:params requestMethod:@"GET" postValue:NO tag:tag];
+ 
     return YES;
 }
 

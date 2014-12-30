@@ -128,6 +128,7 @@
 		164089811A3C6A1200DB4FF6 /* LeveyTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1640897C1A3C6A1200DB4FF6 /* LeveyTabBar.m */; };
 		164089821A3C6A1200DB4FF6 /* LeveyTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1640897E1A3C6A1200DB4FF6 /* LeveyTabBarController.m */; };
 		164089831A3C6A1200DB4FF6 /* selectLeveyTabBarIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = 164089801A3C6A1200DB4FF6 /* selectLeveyTabBarIndex.m */; };
+		165113F71A530D4C00E35A67 /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 165113F61A530D4C00E35A67 /* SSKeychain.m */; };
 		16AA40B11A31EF7E004C6057 /* CustomTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 16AA40B01A31EF7E004C6057 /* CustomTextField.m */; };
 		16AA40B51A320B04004C6057 /* DynamicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 16AA40B31A320B04004C6057 /* DynamicCell.m */; };
 		16AA40B61A320B04004C6057 /* DynamicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16AA40B41A320B04004C6057 /* DynamicCell.xib */; };
@@ -395,6 +396,8 @@
 		1640897E1A3C6A1200DB4FF6 /* LeveyTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeveyTabBarController.m; sourceTree = "<group>"; };
 		1640897F1A3C6A1200DB4FF6 /* selectLeveyTabBarIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = selectLeveyTabBarIndex.h; sourceTree = "<group>"; };
 		164089801A3C6A1200DB4FF6 /* selectLeveyTabBarIndex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = selectLeveyTabBarIndex.m; sourceTree = "<group>"; };
+		165113F51A530D4C00E35A67 /* SSKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKeychain.h; sourceTree = "<group>"; };
+		165113F61A530D4C00E35A67 /* SSKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKeychain.m; sourceTree = "<group>"; };
 		16AA40AF1A31EF7E004C6057 /* CustomTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTextField.h; sourceTree = "<group>"; };
 		16AA40B01A31EF7E004C6057 /* CustomTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTextField.m; sourceTree = "<group>"; };
 		16AA40B21A320B04004C6057 /* DynamicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicCell.h; sourceTree = "<group>"; };
@@ -740,6 +743,7 @@
 		160A928E1A31890B00D17DAB /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				165113F41A530D4C00E35A67 /* SSKeychain */,
 				07E535F41A52491A005E1DA9 /* JSONKit */,
 				07E5359E1A524527005E1DA9 /* ASIHttpRequest 1.8.1 */,
 				163CCE661A3CC79A00889C2B /* TumblrMenu */,
@@ -1075,6 +1079,15 @@
 			name = LeveyTabBar;
 			sourceTree = "<group>";
 		};
+		165113F41A530D4C00E35A67 /* SSKeychain */ = {
+			isa = PBXGroup;
+			children = (
+				165113F51A530D4C00E35A67 /* SSKeychain.h */,
+				165113F61A530D4C00E35A67 /* SSKeychain.m */,
+			);
+			path = SSKeychain;
+			sourceTree = "<group>";
+		};
 		16B3E40A1A3402630041FCBF /* SGFocusImage */ = {
 			isa = PBXGroup;
 			children = (
@@ -1261,6 +1274,7 @@
 				07E535E61A524527005E1DA9 /* ASICloudFilesContainerRequest.m in Sources */,
 				07E5359D1A5240AD005E1DA9 /* SPUserInfo.m in Sources */,
 				160A93951A31890B00D17DAB /* UIImageView+WebCache.m in Sources */,
+				165113F71A530D4C00E35A67 /* SSKeychain.m in Sources */,
 				160A93BE1A318E6A00D17DAB /* YHMultipleSectionTableViewController.m in Sources */,
 				16217FE01A31935600ADCCDC /* HomeViewController.m in Sources */,
 				160A92881A317F1400D17DAB /* YHBaseViewController.m in Sources */,
