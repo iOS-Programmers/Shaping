@@ -188,7 +188,28 @@
 {
     if (![self isEmpty]) {
         if ([self isValidateEmail:emailText.text]) {
-//            [self registerBegin];
+
+            
+            __weak RegisterViewController *weakSelf = self;
+            int tag = [[ShapingEngine shareInstance] getConnectTag];
+            
+            [[ShapingEngine shareInstance] registerUserInfo:emailText.text mobile:@"" password:passwordText.text confirm:[ShapingEngine shareInstance].confirm tag:tag];
+            
+            [[ShapingEngine shareInstance] addOnAppServiceBlock:^(NSInteger tag, NSDictionary *jsonRet, NSError *err) {
+                NSString* errorMsg = [ShapingEngine getErrorMsgWithReponseDic:jsonRet];
+                if (!jsonRet || errorMsg) {
+//                    [LSCommonUtils showWarningTip:errorMsg At:weakSelf.view];
+                    return;
+                }
+                NSDictionary *dataDic = [jsonRet objectForKey:@"data"];
+//                JFUserInfo *userInfo = [[JFUserInfo alloc] init];
+//                [userInfo setUserInfoByJsonDic:dataDic];
+//                [[ShapingEngine shareInstance] setUserInfo:userInfo];
+                
+                [weakSelf registerSuccess];
+                
+            } tag:tag];
+            
             
         }else {
             [self showWithText:@"邮箱无效"];
@@ -197,6 +218,63 @@
             }];
         }
     }
+}
+
+
+/**
+ *  注册成功后的操作
+ */
+- (void)registerSuccess
+{
+    //注册成功后要调用下登录接口
+    __weak RegisterViewController *weakSelf = self;
+    int tag = [[ShapingEngine shareInstance] getConnectTag];
+    
+//    [[ShapingEngine shareInstance] logInUserInfo:emailText.text token:nil password:self.passwordTF.text confirm:[ShapingEngine shareInstance].confirm tag:tag];
+    
+    [[ShapingEngine shareInstance] addOnAppServiceBlock:^(NSInteger tag, NSDictionary *jsonRet, NSError *err) {
+        NSString* errorMsg = [ShapingEngine getErrorMsgWithReponseDic:jsonRet];
+        if (!jsonRet || errorMsg) {
+//            [LSCommonUtils showWarningTip:errorMsg At:weakSelf.view];
+            return;
+        }
+        
+        
+        //登录成功后，保存用户名跟密码到钥匙串里
+//        [SSKeychain setPassword:self.userNameTF.text forService:@"com.weijifen" account:@"username"];
+//        [SSKeychain setPassword:self.passwordTF.text forService:@"com.weijifen" account:@"password"];
+        
+        
+        /**
+         *  请求成功后，把服务端返回的信息存起来
+         */
+        NSDictionary *dataDic = [jsonRet objectForKey:@"data"];
+        
+        /**
+         *  登录成功后把token存起来
+         */
+        NSString *tokenStr = [jsonRet objectForKey:@"token"];
+        if (!FBIsEmpty(tokenStr)) {
+            [ShapingEngine saveUserToken:tokenStr];
+        }
+        
+//        JFUserInfo *userInfo = [[JFUserInfo alloc] init];
+//        [userInfo setUserInfoByJsonDic:dataDic];
+//        [ShapingEngine shareInstance].userPassword = self.passwordTF.text;
+//        [[ShapingEngine shareInstance] setUserInfo:userInfo];
+        [[ShapingEngine shareInstance] saveAccount];
+        
+        [weakSelf loginAction];
+        
+    } tag:tag];
+    
+}
+
+- (void)loginAction
+{
+    //    AppDelegate* appDelegate = (AppDelegate* )[[UIApplication sharedApplication] delegate];
+    //    [appDelegate signIn];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 //- (void)registerBegin
 //{

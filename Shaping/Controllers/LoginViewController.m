@@ -67,6 +67,49 @@
  */
 - (IBAction)loginBtnClick:(UIButton *)sender {
 
+    
+    __weak LoginViewController *weakSelf = self;
+    int tag = [[ShapingEngine shareInstance] getConnectTag];
+    NSDictionary *params = @{@"user.email":@"123@qq.com",
+                             @"user.password":@"123"};
+    [[ShapingEngine shareInstance] logInUserInfo: params tag:tag];
+    
+    [[ShapingEngine shareInstance] addOnAppServiceBlock:^(NSInteger tag, NSDictionary *jsonRet, NSError *err) {
+        NSString* errorMsg = [ShapingEngine getErrorMsgWithReponseDic:jsonRet];
+        if (!jsonRet || errorMsg) {
+            //            [LSCommonUtils showWarningTip:errorMsg At:weakSelf.view];
+            return;
+        }
+        
+        
+        //登录成功后，保存用户名跟密码到钥匙串里
+        //        [SSKeychain setPassword:self.userNameTF.text forService:@"com.weijifen" account:@"username"];
+        //        [SSKeychain setPassword:self.passwordTF.text forService:@"com.weijifen" account:@"password"];
+        
+        
+        /**
+         *  请求成功后，把服务端返回的信息存起来
+         */
+        NSDictionary *dataDic = [jsonRet objectForKey:@"data"];
+        
+        /**
+         *  登录成功后把token存起来
+         */
+        NSString *tokenStr = [jsonRet objectForKey:@"token"];
+        if (!FBIsEmpty(tokenStr)) {
+            [ShapingEngine saveUserToken:tokenStr];
+        }
+        
+        //        JFUserInfo *userInfo = [[JFUserInfo alloc] init];
+        //        [userInfo setUserInfoByJsonDic:dataDic];
+        //        [ShapingEngine shareInstance].userPassword = self.passwordTF.text;
+        //        [[ShapingEngine shareInstance] setUserInfo:userInfo];
+        [[ShapingEngine shareInstance] saveAccount];
+        
+//        [weakSelf loginAction];
+        
+    } tag:tag];
+
     [[SPAppDelegate shareappdelegate] initMainView];
 }
 
