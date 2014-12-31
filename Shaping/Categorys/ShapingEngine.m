@@ -93,13 +93,27 @@ static ShapingEngine* s_ShareInstance = nil;
 {
     if (!FBIsEmpty(str))
     {
-        [[NSUserDefaults standardUserDefaults] setObject:str forKey:@"jf_token"];
+        [[NSUserDefaults standardUserDefaults] setObject:str forKey:@"sp_token"];
     }
 }
 
 + (NSString *)userToken
 {
-    return [[NSUserDefaults standardUserDefaults] objectForKey:@"jf_token"];
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"sp_token"];
+}
+
++ (void)saveUserId:(NSString *)str
+{
+    if (!FBIsEmpty(str))
+    {
+        [[NSUserDefaults standardUserDefaults] setObject:str forKey:@"sp_userId"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+}
+
++ (NSString *)userId
+{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"sp_userId"];
 }
 
 -(NSString *)confirmWithUid{

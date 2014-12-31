@@ -9,6 +9,7 @@
 
 #import "RegisterViewController.h"
 #import "CustomTextField.h"
+#import "SSKeychain.h"
 
 #define textFieldWigth 233
 #define emailDefault @"输入您的常用邮箱"
@@ -135,10 +136,14 @@
     [self.view addGestureRecognizer:tapGesture];
     
 }
-//- (void)viewWillAppear:(BOOL)animated
-//{
-//    self.navigationController.navigationBarHidden = NO;
-//}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    self.navigationController.navigationBarHidden = YES;
+}
+
 - (void)hideKeyBoard:(UITapGestureRecognizer *)tap
 {
     [emailText resignFirstResponder];
@@ -188,12 +193,16 @@
 {
     if (![self isEmpty]) {
         if ([self isValidateEmail:emailText.text]) {
-
+            
+            NSDictionary *registerParams = @{@"user.nickName": nickText.text,
+                                             @"user.email" : emailText.text,
+                                             @"user.password":passwordText.text
+                                             };
             
             __weak RegisterViewController *weakSelf = self;
             int tag = [[ShapingEngine shareInstance] getConnectTag];
             
-//            [[ShapingEngine shareInstance] registerUserInfo:emailText.text mobile:@"" password:passwordText.text confirm:[ShapingEngine shareInstance].confirm tag:tag];
+            [[ShapingEngine shareInstance] registerUserInfo:registerParams tag:tag];
             
             [[ShapingEngine shareInstance] addOnAppServiceBlock:^(NSInteger tag, NSDictionary *jsonRet, NSError *err) {
                 NSString* errorMsg = [ShapingEngine getErrorMsgWithReponseDic:jsonRet];
@@ -201,13 +210,28 @@
 //                    [LSCommonUtils showWarningTip:errorMsg At:weakSelf.view];
                     return;
                 }
-                NSDictionary *dataDic = [jsonRet objectForKey:@"data"];
-//                JFUserInfo *userInfo = [[JFUserInfo alloc] init];
-//                [userInfo setUserInfoByJsonDic:dataDic];
-//                [[ShapingEngine shareInstance] setUserInfo:userInfo];
+
+                NSString *statusStr = [NSString stringWithFormat:@"%@",[jsonRet objectForKey:@"status"]];
                 
-                [weakSelf registerSuccess];
+                if ([statusStr isEqualToString:@"1"]) {
+                    
+                    NSString *userId = [NSString stringWithFormat:@"%@",[jsonRet objectForKey:@"id"]];
+                    
+                    //把用户ID保存起来
+                    [ShapingEngine saveUserId:userId];
+                    
+                    //注册成功
+                    [weakSelf registerSuccess];
+                }
                 
+                else {
+                    NSString *content = [NSString stringWithFormat:@"%@",[jsonRet objectForKey:@"content"]];
+                    if (!FBIsEmpty(content)) {
+                        [weakSelf showWithText:content];
+                    }
+                    
+                    return;
+                }
             } tag:tag];
             
             
@@ -226,116 +250,26 @@
  */
 - (void)registerSuccess
 {
-    //注册成功后要调用下登录接口
-    __weak RegisterViewController *weakSelf = self;
-    int tag = [[ShapingEngine shareInstance] getConnectTag];
+
+    //请求成功
+    //登录成功后，保存用户名跟密码到钥匙串里
+    [SSKeychain setPassword:emailText.text forService:@"com.sp.shaping" account:@"username"];
+    [SSKeychain setPassword:passwordText.text forService:@"com.sp.shaping" account:@"password"];
     
-//    [[ShapingEngine shareInstance] logInUserInfo:emailText.text token:nil password:self.passwordTF.text confirm:[ShapingEngine shareInstance].confirm tag:tag];
+    [self showWithText:@"注册成功"];
     
-    [[ShapingEngine shareInstance] addOnAppServiceBlock:^(NSInteger tag, NSDictionary *jsonRet, NSError *err) {
-        NSString* errorMsg = [ShapingEngine getErrorMsgWithReponseDic:jsonRet];
-        if (!jsonRet || errorMsg) {
-//            [LSCommonUtils showWarningTip:errorMsg At:weakSelf.view];
-            return;
-        }
-        
-        
-        //登录成功后，保存用户名跟密码到钥匙串里
-//        [SSKeychain setPassword:self.userNameTF.text forService:@"com.weijifen" account:@"username"];
-//        [SSKeychain setPassword:self.passwordTF.text forService:@"com.weijifen" account:@"password"];
-        
-        
-        /**
-         *  请求成功后，把服务端返回的信息存起来
-         */
-        NSDictionary *dataDic = [jsonRet objectForKey:@"data"];
-        
-        /**
-         *  登录成功后把token存起来
-         */
-        NSString *tokenStr = [jsonRet objectForKey:@"token"];
-        if (!FBIsEmpty(tokenStr)) {
-            [ShapingEngine saveUserToken:tokenStr];
-        }
-        
-//        JFUserInfo *userInfo = [[JFUserInfo alloc] init];
-//        [userInfo setUserInfoByJsonDic:dataDic];
-//        [ShapingEngine shareInstance].userPassword = self.passwordTF.text;
-//        [[ShapingEngine shareInstance] setUserInfo:userInfo];
-        [[ShapingEngine shareInstance] saveAccount];
-        
-        [weakSelf loginAction];
-        
-    } tag:tag];
-    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [[SPAppDelegate shareappdelegate] initMainView];
+    });
+
 }
 
 - (void)loginAction
 {
-    //    AppDelegate* appDelegate = (AppDelegate* )[[UIApplication sharedApplication] delegate];
-    //    [appDelegate signIn];
+
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
-//- (void)registerBegin
-//{
-//    
-//    NSString *email = emailText.text;
-//    NSString *nick = nickText.text;
-//    NSString *password = passwordText.text;
-//    //提交已修改的数据
-//    NSString *strurl = [NSString  stringWithFormat:@"%@user.email=%@&user.nickName=%@&user.password=%@",register_http,email,nick,password];
-//    
-//    NSLog(@"%@",strurl);
-//    
-//    NSString * encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes( kCFAllocatorDefault, (CFStringRef)strurl, NULL, NULL,  kCFStringEncodingUTF8 ));
-//    
-//    NSURL *url = [NSURL URLWithString:encodedString];
-//    
-//    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
-//    
-//    __weak ASIHTTPRequest *wrequest = request;
-//    
-//    
-//    [request setCompletionBlock:^{
-//        
-//        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:wrequest.responseData options:NSJSONReadingMutableContainers error:nil];
-//        if (dic)
-//        {
-//            NSLog(@"%@",dic);
-//            NSString *statueStr = [dic objectForKey:@"status"];
-//            
-//            if ([statueStr intValue] == 1) {
-//                //NSLog(@"%@",[dic objectForKey:@"id"]);
-//                NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
-//                NSString *userID = [numberFormatter stringFromNumber:[dic objectForKey:@"id"]];
-//                [self registerForEaseMob:userID];
-//            }else {
-//                NSString *content = [dic objectForKey:@"content"];
-//                //使用alwerView
-//                [WCAlertView showAlertWithTitle:nil message:content customizationBlock:^(WCAlertView *alertView) {
-//                    alertView.style = WCAlertViewStyleBlackHatched;
-//                } completionBlock:^(NSUInteger buttonIndex, WCAlertView *alertView) {
-//                    
-//                } cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-//                emailText.text = emailDefault;
-//                passwordText.text = passwordDefault;
-//                nickText.text = nickDefault;
-//                passwordText.secureTextEntry = NO;
-//            }
-//        }
-//    }];
-//    
-//    [request setFailedBlock:^{
-//        NSLog(@"failed");
-//        
-//    }];
-//    
-//    [request startAsynchronous];
-//    
-//    
-//}
 
-//
 - (BOOL)isEmpty{
     BOOL ret = NO;
     NSString *username = emailText.text;
@@ -344,6 +278,12 @@
     if ([username isEqualToString:emailDefault] || [password isEqualToString:passwordDefault]|| [nick isEqualToString:nickDefault]) {
         ret = YES;
         [self showWithText:@"请输入完整信息"];
+    }
+    
+    if (passwordText.text.length < 6) {
+
+        ret = YES;
+        [self showWithText:@"请输入不少于6位的密码"];
     }
     
     return ret;

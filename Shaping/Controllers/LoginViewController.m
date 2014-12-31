@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "RegisterViewController.h"
+#import "YHBaseNavigationController.h"
 #import "SSKeychain.h"
 
 @interface LoginViewController () <UITextFieldDelegate>
@@ -84,13 +85,13 @@
     __weak LoginViewController *weakSelf = self;
     int tag = [[ShapingEngine shareInstance] getConnectTag];
     
-    if (FBIsEmpty(self.emailTF.text)) {
+    if (FBIsEmpty(self.emailTF.text) || [self.emailTF.text isEqualToString:@"Email"]) {
         [self showWithText:@"请输入邮箱"];
         
         return;
     }
     
-    if (FBIsEmpty(self.passwordTF.text)) {
+    if (FBIsEmpty(self.passwordTF.text) || [self.passwordTF.text isEqualToString:@"密码"]) {
         [self showWithText:@"请输入密码"];
         
         return;
@@ -108,7 +109,6 @@
             //            [LSCommonUtils showWarningTip:errorMsg At:weakSelf.view];
             return;
         }
-
         
         /**
          *  请求成功后，把服务端返回的信息存起来
@@ -119,10 +119,20 @@
             
             //请求成功
             //登录成功后，保存用户名跟密码到钥匙串里
-            [SSKeychain setPassword:self.emailTF.text forService:@"com.sp.shaping" account:@"username"];
-            [SSKeychain setPassword:self.passwordTF.text forService:@"com.sp.shaping" account:@"password"];
+            [SSKeychain setPassword:weakSelf.emailTF.text forService:@"com.sp.shaping" account:@"username"];
+            [SSKeychain setPassword:weakSelf.passwordTF.text forService:@"com.sp.shaping" account:@"password"];
             
-            [[SPAppDelegate shareappdelegate] initMainView];
+            [weakSelf showWithText:@"登录成功"];
+            
+            NSString *userId = [NSString stringWithFormat:@"%@",[jsonRet objectForKey:@"id"]];
+            
+            //把用户ID保存起来
+            [ShapingEngine saveUserId:userId];
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [[SPAppDelegate shareappdelegate] initMainView];
+            });
+    
         }
         
         else {
@@ -131,17 +141,7 @@
 
             return;
         }
-    
-        //        JFUserInfo *userInfo = [[JFUserInfo alloc] init];
-        //        [userInfo setUserInfoByJsonDic:dataDic];
-        //        [ShapingEngine shareInstance].userPassword = self.passwordTF.text;
-        //        [[ShapingEngine shareInstance] setUserInfo:userInfo];
-//        [[ShapingEngine shareInstance] saveAccount];
-        
-//        [weakSelf loginAction];
-        
-        
-        
+
     } tag:tag];
 
     
@@ -166,7 +166,9 @@
  */
 - (IBAction)registerBtnClick:(UIButton *)sender {
     RegisterViewController *registerVC = [[RegisterViewController alloc] init];
-    [self presentViewController:registerVC animated:YES completion:nil];
+    YHBaseNavigationController *regNav = [[YHBaseNavigationController alloc] initWithRootViewController:registerVC];
+
+    [self presentViewController:regNav animated:YES completion:nil];
 }
 
 /**

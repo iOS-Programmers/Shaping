@@ -42,6 +42,15 @@ typedef void(^onAppServiceBlock)(NSInteger tag, NSDictionary* jsonRet, NSError* 
 
 + (NSString *)userToken;
 
+/**
+ *  登录成功后，保存用户id
+ *
+ *  @param str 用户的ID
+ */
++ (void)saveUserId:(NSString *)str;
+
++ (NSString *)userId;
+
 #pragma mark -Delegate
 - (int)getConnectTag;
 - (void)addOnAppServiceBlock:(onAppServiceBlock)block tag:(NSInteger)tag;
