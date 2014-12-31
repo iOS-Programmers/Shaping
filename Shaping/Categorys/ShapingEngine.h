@@ -72,7 +72,18 @@ typedef void(^onAppServiceBlock)(NSInteger tag, NSDictionary* jsonRet, NSError* 
 
 //首页热点推荐
 - (BOOL)getHomeHotTopListWith:(int)page tag:(int)tag;
+//热点推荐详情
+- (BOOL)getHotTopDetailsInfoWith:(NSString *)tId tag:(int)tag;
 //首页专辑推荐
 - (BOOL)getHomeAlbumTopListWith:(int)page tag:(int)tag;
+//专辑推荐详情
+- (BOOL)getAlbumTopDetailsInfoWith:(NSString *)tId tag:(int)tag;
+//首页Banner
+- (BOOL)getHomeBannerTopListWith:(int)page tag:(int)tag;
+//Banner详情
+- (BOOL)getBannerDetailsInfoWith:(NSString *)tId tag:(int)tag;
+
+//用户信息
+- (BOOL)getUserInfoWithUserId:(NSString *)uid tag:(int)tag;
 
 @end

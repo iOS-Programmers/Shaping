@@ -47,6 +47,7 @@
         [self initNavBar];
     }
     [self initUI];
+    [self refreshUserInfo];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -63,6 +64,32 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark - request
+-(void)refreshUserInfo{
+    
+    __weak MineViewController *weakSelf = self;
+    int tag = [[ShapingEngine shareInstance] getConnectTag];
+    [[ShapingEngine shareInstance] getUserInfoWithUserId:@"18" tag:tag];
+    [[ShapingEngine shareInstance] addOnAppServiceBlock:^(NSInteger tag, NSDictionary *jsonRet, NSError *err) {
+        
+        NSString* errorMsg = [ShapingEngine getErrorMsgWithReponseDic:jsonRet];
+        if (!jsonRet || errorMsg) {
+            
+            return;
+        }
+        NSDictionary *userDic = jsonRet;
+        SPUserInfo *userInfo = [[SPUserInfo alloc] init];
+        [userInfo setUserInfoByJsonDic:userDic];
+        [weakSelf refreshUI];
+        
+    } tag:tag];
+    
+}
+-(void)refreshUI{
+    
+    [self.tableView reloadData];
+}
 
 #pragma mark - custom
 - (void)initNavBar

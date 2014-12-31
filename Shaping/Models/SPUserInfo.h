@@ -11,6 +11,15 @@
 @interface SPUserInfo : NSObject
 
 @property (nonatomic, strong) NSString* uid;
+@property (nonatomic, strong) NSString* nickName;
+@property (nonatomic, strong) NSString* height;
+@property (nonatomic, strong) NSString* intro;
+@property (nonatomic, assign) int age;
+@property (nonatomic, assign) int attentionCount;
+@property (nonatomic, assign) int fansCount;
+@property (nonatomic, assign) int planCount;
+@property (nonatomic, assign) int expCount;
+
 @property (nonatomic, strong) NSString* jsonString;
 
 @property(nonatomic, strong) NSDictionary* userInfoByJsonDic;

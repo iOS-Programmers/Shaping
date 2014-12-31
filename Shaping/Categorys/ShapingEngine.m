@@ -283,16 +283,16 @@ static ShapingEngine* s_ShareInstance = nil;
     
     NSDictionary *jsonRet = [responseString objectFromJSONString];
     
-    [self isNeedAnewAuth:jsonRet];
-    
-    if ([jsonRet objectForKey:@"token"]) {
-        [ShapingEngine saveUserToken:[[jsonRet objectForKey:@"token"] description]];
-    }
+//    [self isNeedAnewAuth:jsonRet];
+//    
+//    if ([jsonRet objectForKey:@"token"]) {
+//        [ShapingEngine saveUserToken:[[jsonRet objectForKey:@"token"] description]];
+//    }
     NSMutableDictionary *mutJsonRet = [NSMutableDictionary dictionaryWithDictionary:jsonRet];
-    if ([[jsonRet objectForKey:@"data"] isKindOfClass:[NSNull class]]) {
-        NSMutableArray *tmpArray = [NSMutableArray array];
-        [mutJsonRet setObject:tmpArray forKey:@"data"];
-    }
+//    if ([[jsonRet objectForKey:@"data"] isKindOfClass:[NSNull class]]) {
+//        NSMutableArray *tmpArray = [NSMutableArray array];
+//        [mutJsonRet setObject:tmpArray forKey:@"data"];
+//    }
     
     NSLog(@"response tag:%d url=%@, string: %@", request.tag, [request url], responseString);
     dispatch_async(dispatch_get_main_queue(), ^(){
@@ -441,10 +441,55 @@ static ShapingEngine* s_ShareInstance = nil;
     [self sendHttpRequestWithUrl:url params:params requestMethod:@"GET" tag:tag];
     return YES;
 }
+//热点推荐详情
+- (BOOL)getHotTopDetailsInfoWith:(NSString *)tId tag:(int)tag{
+    NSString *url = [NSString stringWithFormat:@"%@/Api/Hot/%@", API_URL,tId];
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
+    
+    [self sendHttpRequestWithUrl:url params:params requestMethod:@"GET" tag:tag];
+    return YES;
+}
 
 //首页专辑推荐
 - (BOOL)getHomeAlbumTopListWith:(int)page tag:(int)tag{
     NSString *url = [NSString stringWithFormat:@"%@/Api/Album/topList/%d", API_URL,page];
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
+    
+    [self sendHttpRequestWithUrl:url params:params requestMethod:@"GET" tag:tag];
+    return YES;
+}
+//专辑推荐详情
+- (BOOL)getAlbumTopDetailsInfoWith:(NSString *)tId tag:(int)tag{
+    NSString *url = [NSString stringWithFormat:@"%@/Api/Album/%@", API_URL,tId];
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
+    
+    [self sendHttpRequestWithUrl:url params:params requestMethod:@"GET" tag:tag];
+    return YES;
+}
+
+//首页Banner
+- (BOOL)getHomeBannerTopListWith:(int)page tag:(int)tag{
+    NSString *url = [NSString stringWithFormat:@"%@/Api/Banner/topList/%d", API_URL,page];
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
+    
+    [self sendHttpRequestWithUrl:url params:params requestMethod:@"GET" tag:tag];
+    return YES;
+}
+//Banner详情
+- (BOOL)getBannerDetailsInfoWith:(NSString *)tId tag:(int)tag{
+    NSString *url = [NSString stringWithFormat:@"%@/Api/Banner/%@", API_URL,tId];
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
+    
+    [self sendHttpRequestWithUrl:url params:params requestMethod:@"GET" tag:tag];
+    return YES;
+}
+
+//用户信息
+- (BOOL)getUserInfoWithUserId:(NSString *)uid tag:(int)tag{
+    if (uid.length == 0) {
+        return NO;
+    }
+    NSString *url = [NSString stringWithFormat:@"%@/Api/UserInfo/%@", API_URL,uid];
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
     
     [self sendHttpRequestWithUrl:url params:params requestMethod:@"GET" tag:tag];

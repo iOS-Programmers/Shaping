@@ -21,6 +21,7 @@
     NSMutableArray *bannerArray;//轮播图数组
 }
 
+@property (nonatomic, strong) NSMutableArray *bannerList;
 @property (nonatomic, strong) NSMutableArray *hotTopList;
 @property (nonatomic, strong) NSMutableArray *albumTopList;
 
@@ -36,7 +37,7 @@
     bannerArray = [[NSMutableArray alloc] init];
     
     [self initNavBar];
-    [self initUI];
+    [self refreshBannerList];
     [self refreshHotList];
     [self refreshAlbumList];
     
@@ -45,6 +46,31 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)refreshBannerList{
+    
+    __weak HomeViewController *weakSelf = self;
+    int tag = [[ShapingEngine shareInstance] getConnectTag];
+    [[ShapingEngine shareInstance] getHomeBannerTopListWith:1 tag:tag];
+    [[ShapingEngine shareInstance] addOnAppServiceBlock:^(NSInteger tag, NSDictionary *jsonRet, NSError *err) {
+        
+        NSString* errorMsg = [ShapingEngine getErrorMsgWithReponseDic:jsonRet];
+        if (!jsonRet || errorMsg) {
+            return;
+        }
+        
+        weakSelf.bannerList = [[NSMutableArray alloc] init];
+        NSArray *listArray = [jsonRet arrayObjectForKey:@"list"];
+        for (NSDictionary *dic in listArray) {
+            SPTopicInfo *topicInfo = [[SPTopicInfo alloc] init];
+            [topicInfo setHotTopicInfoByDic:dic];
+            [weakSelf.bannerList addObject:topicInfo];
+        }
+        [weakSelf initUI];
+        [weakSelf.tableView reloadData];
+        
+    } tag:tag];
 }
 
 -(void)refreshHotList{
@@ -128,8 +154,11 @@
 {
     NSMutableArray *itemArr=[[NSMutableArray alloc]init];
     
-    for (int i = 0; i < 3; i ++) {
-        SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTitle:@"" image:[UIImage imageNamed:@"home_banner"] tag:0];
+    for (int i = 0; i < self.bannerList.count; i ++) {
+        SPTopicInfo *topicInfo = [_bannerList objectAtIndex:i];
+        NSData *imageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:@"http://img3.imgtn.bdimg.com/it/u=4170755183,273454520&fm=21&gp=0.jpg"]];
+        UIImage *image = [UIImage imageWithData:imageData];
+        SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTitle:topicInfo.title image:image tag:0];
         
         
         [itemArr addObject:item];
