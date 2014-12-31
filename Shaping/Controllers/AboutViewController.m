@@ -10,6 +10,7 @@
 
 @interface AboutViewController ()
 
+@property (weak, nonatomic) IBOutlet UILabel *versionLabel;
 @end
 
 @implementation AboutViewController
@@ -20,8 +21,16 @@
     self.titleText = @"关于Shaping";
     [self addNavigationBar];
     
-    self.webView.frame = CGRectMake(0, 64, [LXUtils GetScreeWidth], [LXUtils getContentViewHeight]);
-    [self loadDataWithURL:@"http://www.baidu.com"];
+    NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
+    /**
+     *  CFBundleShortVersionString  是取得版本号
+     *  CFBundleVersion             是取的Build号
+     *  不可混用，切记切记
+     */
+    NSString *currentVersion = infoDict[@"CFBundleShortVersionString"];
+    
+    self.versionLabel.text = [NSString stringWithFormat:@"当前版本号：%@ ",currentVersion];
+
 }
 
 - (void)didReceiveMemoryWarning {
