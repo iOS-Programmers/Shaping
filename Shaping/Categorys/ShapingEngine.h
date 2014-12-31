@@ -57,6 +57,9 @@ typedef void(^onAppServiceBlock)(NSInteger tag, NSDictionary* jsonRet, NSError* 
 - (void)removeOnAppServiceBlockForTag:(NSInteger)tag;
 
 #pragma mark - HttpRequest
+
+#pragma mark ------- 登录&注册
+
 //注册接口
 - (BOOL)registerUserInfo:(NSDictionary *)params tag:(int)tag;
 
@@ -69,6 +72,9 @@ typedef void(^onAppServiceBlock)(NSInteger tag, NSDictionary* jsonRet, NSError* 
  *  @return 
  */
 - (BOOL)logInUserInfo:(NSDictionary *)params tag:(int)tag;
+
+
+#pragma mark -------- 首页
 
 //首页热点推荐
 - (BOOL)getHomeHotTopListWith:(int)page tag:(int)tag;
@@ -85,5 +91,9 @@ typedef void(^onAppServiceBlock)(NSInteger tag, NSDictionary* jsonRet, NSError* 
 
 //用户信息
 - (BOOL)getUserInfoWithUserId:(NSString *)uid tag:(int)tag;
+
+#pragma mark -------- 动态
+//获取动态列表
+- (BOOL)getDynamicListWith:(int)page userType:(NSString *)userTypeId tag:(int)tag;
 
 @end

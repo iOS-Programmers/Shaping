@@ -496,4 +496,17 @@ static ShapingEngine* s_ShareInstance = nil;
     return YES;
 }
 
+//获取动态列表
+- (BOOL)getDynamicListWith:(int)page userType:(NSString *)userTypeId tag:(int)tag
+{
+    NSString *url = [NSString stringWithFormat:@"%@/Api/Dynamic/list", API_URL];
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
+    [params setValue:userTypeId forKey:@"id"];
+    [params setValue:[NSNumber numberWithInt:page] forKey:@"pageNum"];
+    
+    [self sendHttpRequestWithUrl:url params:params requestMethod:@"GET" postValue:NO tag:tag];
+    return YES;
+}
+
 @end

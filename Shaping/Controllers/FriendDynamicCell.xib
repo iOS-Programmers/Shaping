@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C81f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -127,7 +128,14 @@
                 </subviews>
                 <color key="backgroundColor" red="0.87450980392156863" green="0.87450980392156863" blue="0.87450980392156863" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="693" y="336"/>
+            <connections>
+                <outlet property="avtarImageBtn" destination="Nrl-J4-o6X" id="B4S-uG-H2A"/>
+                <outlet property="contentImage" destination="fet-ae-NgQ" id="vqm-Kh-4XU"/>
+                <outlet property="contentLabel" destination="U1w-SZ-GbV" id="WIc-NY-LLb"/>
+                <outlet property="creatTimeLabel" destination="jkn-3l-m0m" id="TUM-y8-vN9"/>
+                <outlet property="nickNameLabel" destination="Gr2-9K-b6n" id="1PS-EF-Lee"/>
+            </connections>
+            <point key="canvasLocation" x="643" y="355"/>
         </tableViewCell>
     </objects>
     <resources>

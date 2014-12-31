@@ -7,7 +7,6 @@
 //
 
 #import "SPTopicInfo.h"
-#import "JSONKit.h"
 #import "ShapingEngine.h"
 
 @implementation SPTopicInfo

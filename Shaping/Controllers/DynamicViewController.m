@@ -11,6 +11,7 @@
 #import "DynamicContentController.h"
 #import "MineViewController.h"
 #import "CommentListViewController.h"
+#import "SPDynamicInfo.h"
 
 @interface DynamicViewController ()<FriendDynamicCellDelegate>
 
@@ -24,7 +25,11 @@
     self.title = @"动态";
     self.tableView.rowHeight = 380;
     
+    [self.tableView frameSetHeight:[LXUtils getContentViewHeight] + 10];
+    
     [self initNav];
+    
+    [self refreshDynamicList];
 }
 
 - (void)initNav
@@ -49,6 +54,32 @@
     UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:leftBtn];
     self.navigationItem.leftBarButtonItem = leftItem;
 }
+
+-(void)refreshDynamicList{
+    
+    __weak DynamicViewController *weakSelf = self;
+    int tag = [[ShapingEngine shareInstance] getConnectTag];
+    [[ShapingEngine shareInstance] getDynamicListWith:1 userType:@"1" tag:tag];
+    [[ShapingEngine shareInstance] addOnAppServiceBlock:^(NSInteger tag, NSDictionary *jsonRet, NSError *err) {
+        
+        NSString* errorMsg = [ShapingEngine getErrorMsgWithReponseDic:jsonRet];
+        if (!jsonRet || errorMsg) {
+            return;
+        }
+
+        NSArray *listArray = [jsonRet arrayObjectForKey:@"list"];
+        for (NSDictionary *dic in listArray) {
+            SPDynamicInfo *dynamicInfo = [[SPDynamicInfo alloc] init];
+
+            [dynamicInfo setDynamicInfoByJsonDic:dic];
+            [weakSelf.dataSource addObject:dynamicInfo];
+        }
+        
+        [weakSelf.tableView reloadData];
+        
+    } tag:tag];
+}
+
 
 //左边按钮
 - (void)dynamicLeftItemClick
@@ -107,7 +138,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
+    return [self.dataSource count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -120,6 +151,14 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.delegate = self;
     }
+    
+    SPDynamicInfo *info = (SPDynamicInfo *)self.dataSource[indexPath.row];
+    
+    cell.nickNameLabel.text = info.nickName;
+    cell.creatTimeLabel.text = [LXUtils secondChangToDateString:info.createTime];
+    cell.contentLabel.text = info.content;
+
+    [cell.contentImage setImageWithURL:[NSURL URLWithString:info.image]];
     
     return cell;
 }

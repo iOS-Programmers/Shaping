@@ -129,6 +129,7 @@
 		164089821A3C6A1200DB4FF6 /* LeveyTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1640897E1A3C6A1200DB4FF6 /* LeveyTabBarController.m */; };
 		164089831A3C6A1200DB4FF6 /* selectLeveyTabBarIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = 164089801A3C6A1200DB4FF6 /* selectLeveyTabBarIndex.m */; };
 		165113F71A530D4C00E35A67 /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 165113F61A530D4C00E35A67 /* SSKeychain.m */; };
+		168B05C51A53F3B60079F70E /* SPDynamicInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 168B05C41A53F3B60079F70E /* SPDynamicInfo.m */; };
 		16AA40B11A31EF7E004C6057 /* CustomTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 16AA40B01A31EF7E004C6057 /* CustomTextField.m */; };
 		16AA40B51A320B04004C6057 /* DynamicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 16AA40B31A320B04004C6057 /* DynamicCell.m */; };
 		16AA40B61A320B04004C6057 /* DynamicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16AA40B41A320B04004C6057 /* DynamicCell.xib */; };
@@ -398,6 +399,8 @@
 		164089801A3C6A1200DB4FF6 /* selectLeveyTabBarIndex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = selectLeveyTabBarIndex.m; sourceTree = "<group>"; };
 		165113F51A530D4C00E35A67 /* SSKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKeychain.h; sourceTree = "<group>"; };
 		165113F61A530D4C00E35A67 /* SSKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKeychain.m; sourceTree = "<group>"; };
+		168B05C31A53F3B60079F70E /* SPDynamicInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPDynamicInfo.h; sourceTree = "<group>"; };
+		168B05C41A53F3B60079F70E /* SPDynamicInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPDynamicInfo.m; sourceTree = "<group>"; };
 		16AA40AF1A31EF7E004C6057 /* CustomTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTextField.h; sourceTree = "<group>"; };
 		16AA40B01A31EF7E004C6057 /* CustomTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTextField.m; sourceTree = "<group>"; };
 		16AA40B21A320B04004C6057 /* DynamicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicCell.h; sourceTree = "<group>"; };
@@ -484,6 +487,7 @@
 		07E535991A524071005E1DA9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				168B05C21A53F37F0079F70E /* Dynamic */,
 				07E5359B1A5240AD005E1DA9 /* SPUserInfo.h */,
 				07E5359C1A5240AD005E1DA9 /* SPUserInfo.m */,
 				7E9336731A5302190039FC66 /* SPTopicInfo.h */,
@@ -1088,6 +1092,15 @@
 			path = SSKeychain;
 			sourceTree = "<group>";
 		};
+		168B05C21A53F37F0079F70E /* Dynamic */ = {
+			isa = PBXGroup;
+			children = (
+				168B05C31A53F3B60079F70E /* SPDynamicInfo.h */,
+				168B05C41A53F3B60079F70E /* SPDynamicInfo.m */,
+			);
+			name = Dynamic;
+			sourceTree = "<group>";
+		};
 		16B3E40A1A3402630041FCBF /* SGFocusImage */ = {
 			isa = PBXGroup;
 			children = (
@@ -1300,6 +1313,7 @@
 				07E535E51A524527005E1DA9 /* ASICloudFilesContainer.m in Sources */,
 				07E535DB1A524527005E1DA9 /* ASIAuthenticationDialog.m in Sources */,
 				07E535E81A524527005E1DA9 /* ASICloudFilesObject.m in Sources */,
+				168B05C51A53F3B60079F70E /* SPDynamicInfo.m in Sources */,
 				16217FE51A31938A00ADCCDC /* PlanViewController.m in Sources */,
 				7E9336751A5302190039FC66 /* SPTopicInfo.m in Sources */,
 				160A93921A31890B00D17DAB /* UIImage+GIF.m in Sources */,
