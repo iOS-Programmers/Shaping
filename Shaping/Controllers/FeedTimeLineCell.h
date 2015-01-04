@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SPDynamicInfo.h"
 
 @protocol FeedTimeLineCellDelegate;
 
 @interface FeedTimeLineCell : UITableViewCell
 
+@property (strong, nonatomic) SPDynamicInfo *dynamicInfo;
 @property (weak, nonatomic) IBOutlet UIImageView *conImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIButton *hotButton;

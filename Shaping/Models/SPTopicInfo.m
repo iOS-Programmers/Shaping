@@ -23,10 +23,16 @@
     }
     objectForKey = [dic objectForKey:@"list_img"];
     if (objectForKey) {
-        _imgUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",[ShapingEngine shareInstance].baseUrl,[objectForKey description]]];
+        _imgUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[ShapingEngine shareInstance].baseUrl,[objectForKey description]]];
     }
     _isIndex = [[dic objectForKey:@"isIndex"] intValue];
     _createTime = [[dic objectForKey:@"createTime"] intValue];
+    
+    _likeCount = [[dic objectForKey:@"likeCount"] intValue];
+    _planCount = [[dic objectForKey:@"planCount"] intValue];
+    _zanCount = [[dic objectForKey:@"zanCount"] intValue];
+    _discussCount = [[dic objectForKey:@"discussCount"] intValue];
+    
 }
 
 - (void)setHotTopicInfoByDic:(NSDictionary*)dic{
@@ -63,10 +69,14 @@
     }
     objectForKey = [dic objectForKey:@"index_img"];
     if (objectForKey) {
-        _imgUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",[ShapingEngine shareInstance].baseUrl,[objectForKey description]]];
+        _imgUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[ShapingEngine shareInstance].baseUrl,[objectForKey description]]];
     }
     _isIndex = [[dic objectForKey:@"isIndex"] intValue];
     _createTime = [[dic objectForKey:@"createTime"] intValue];
+    _likeCount = [[dic objectForKey:@"likeCount"] intValue];
+    _planCount = [[dic objectForKey:@"planCount"] intValue];
+    _zanCount = [[dic objectForKey:@"zanCount"] intValue];
+    _discussCount = [[dic objectForKey:@"discussCount"] intValue];
 }
 - (void)setAlbumTopicInfoByDic:(NSDictionary*)dic{
     if (![dic isKindOfClass:[NSDictionary class]]) {

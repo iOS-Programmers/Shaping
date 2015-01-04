@@ -40,4 +40,14 @@
         [self.delegate likeActionWithFeedTime:self];
     }
 }
+
+-(void)setDynamicInfo:(SPDynamicInfo *)dynamicInfo{
+    
+    _dynamicInfo = dynamicInfo;
+    
+    [self.conImageView setImageWithURL:[NSURL URLWithString:@"http://y0.ifengimg.com/e7f199c1e0dbba14/2013/0722/rdn_51ece7b8ad179.jpg"] placeholderImage:[UIImage imageNamed:@"feed_test"]];
+    self.titleLabel.text = dynamicInfo.content;
+//    [self.hotButton setTitle:dynamicInfo forState:0];
+}
+
 @end

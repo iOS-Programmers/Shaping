@@ -19,7 +19,7 @@
 #define CONNECT_TIMEOUT     20
 #define SP_Confirm @""
 
-static NSString* BASE_URL = @"http://115.29.246.35";
+static NSString* BASE_URL = @"http://115.29.246.35/upload/";
 static NSString* API_URL = @"http://115.29.246.35";//http://test2.api.hiwemeet.com
 //static NSString* API_URL = @"http://test2.api.hiwemeet.com";
 
@@ -490,6 +490,17 @@ static ShapingEngine* s_ShareInstance = nil;
         return NO;
     }
     NSString *url = [NSString stringWithFormat:@"%@/Api/UserInfo/%@", API_URL,uid];
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
+    
+    [self sendHttpRequestWithUrl:url params:params requestMethod:@"GET" tag:tag];
+    return YES;
+}
+
+- (BOOL)getUserDetailsInfoWithUserId:(NSString *)uid tag:(int)tag{
+    if (uid.length == 0) {
+        return NO;
+    }
+    NSString *url = [NSString stringWithFormat:@"%@/Api/User/%@", API_URL,uid];
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
     
     [self sendHttpRequestWithUrl:url params:params requestMethod:@"GET" tag:tag];

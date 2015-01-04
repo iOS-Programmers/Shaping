@@ -7,16 +7,23 @@
 //
 
 #import "IntroduceViewController.h"
+#import "ShapingEngine.h"
 
 @interface IntroduceViewController ()
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @property (strong, nonatomic) IBOutlet UIView *contentView;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *contentLabel;
+@property (weak, nonatomic) IBOutlet UILabel *explainLabel;
 @property (strong, nonatomic) IBOutlet UIView *actionView;
 @property (strong, nonatomic) IBOutlet UIImageView *contentImageView;
 @property (strong, nonatomic) IBOutlet UIView *avatarGridView;
 @property (strong, nonatomic) IBOutlet UIButton *workButton;
 @property (strong, nonatomic) IBOutlet UIButton *joinPlanButton;
+@property (weak, nonatomic) IBOutlet UIButton *discussButton;
+@property (weak, nonatomic) IBOutlet UIButton *zanButton;
+@property (weak, nonatomic) IBOutlet UIButton *likeButton;
 @end
 
 @implementation IntroduceViewController
@@ -25,6 +32,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = @"介绍";
+    [self refreshData];
     [self refreshUI];
 }
 
@@ -43,10 +51,59 @@
 }
 */
 
+-(void)refreshData{
+    if (_vcType == 1) {
+        [self refreshHotList];
+    }else if (_vcType == 2){
+        [self refreshAlbumList];
+    }
+}
+
+-(void)refreshHotList{
+    
+    __weak IntroduceViewController *weakSelf = self;
+    int tag = [[ShapingEngine shareInstance] getConnectTag];
+    [[ShapingEngine shareInstance] getHotTopDetailsInfoWith:_topicInfo.tId tag:tag];
+    [[ShapingEngine shareInstance] addOnAppServiceBlock:^(NSInteger tag, NSDictionary *jsonRet, NSError *err) {
+        
+        NSString* errorMsg = [ShapingEngine getErrorMsgWithReponseDic:jsonRet];
+        if (!jsonRet || errorMsg) {
+            return;
+        }
+        [_topicInfo setHotTopicInfoByDic:jsonRet];
+        [weakSelf refreshUI];
+        
+    } tag:tag];
+}
+
+-(void)refreshAlbumList{
+    
+    __weak IntroduceViewController *weakSelf = self;
+    int tag = [[ShapingEngine shareInstance] getConnectTag];
+    [[ShapingEngine shareInstance] getAlbumTopDetailsInfoWith:_topicInfo.tId tag:tag];
+    [[ShapingEngine shareInstance] addOnAppServiceBlock:^(NSInteger tag, NSDictionary *jsonRet, NSError *err) {
+        
+        NSString* errorMsg = [ShapingEngine getErrorMsgWithReponseDic:jsonRet];
+        if (!jsonRet || errorMsg) {
+            
+            return;
+        }
+        
+        [_topicInfo setAlbumTopicInfoByDic:jsonRet];
+        [weakSelf refreshUI];
+        
+    } tag:tag];
+}
+
 #pragma mark - custom
 -(void)refreshUI{
     
-    [self.contentImageView setImageWithURL:[NSURL URLWithString:@"http://s9.knowsky.com/tupian/tu/2/2012021411055957878.jpg"] placeholderImage:[UIImage imageNamed:@""]];
+    [self.contentImageView setImageWithURL:_topicInfo.imgUrl placeholderImage:[UIImage imageNamed:@""]];
+    self.titleLabel.text = _topicInfo.title;
+    self.contentLabel.text = _topicInfo.content;
+    [self.discussButton setTitle:[NSString stringWithFormat:@" %d",_topicInfo.discussCount] forState:0];
+    [self.zanButton setTitle:[NSString stringWithFormat:@" %d",_topicInfo.zanCount] forState:0];
+    [self.likeButton setTitle:[NSString stringWithFormat:@" %d",_topicInfo.likeCount] forState:0];
     
     [self.scrollView setContentSize:CGSizeMake(self.view.frame.size.width, self.contentView.frame.size.height + self.actionView.frame.size.height)];
     

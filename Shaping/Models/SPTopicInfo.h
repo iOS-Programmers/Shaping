@@ -17,6 +17,11 @@
 @property (nonatomic, assign) int isIndex;//是否推荐 1是0否
 @property (nonatomic, readonly) NSURL* imgUrl;
 
+@property (nonatomic, assign) int likeCount;
+@property (nonatomic, assign) int planCount;
+@property (nonatomic, assign) int zanCount;
+@property (nonatomic, assign) int discussCount;
+
 @property(nonatomic, strong) NSString* jsonString;
 
 - (void)setHotTopicInfoByDic:(NSDictionary*)dic;

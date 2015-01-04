@@ -7,7 +7,12 @@
 //
 
 #import "YHBaseViewController.h"
+#import "SPTopicInfo.h"
 
 @interface IntroduceViewController : YHBaseViewController
+
+@property (nonatomic, strong) SPTopicInfo *topicInfo;
+
+@property (nonatomic, assign) int vcType;//1为热点推荐 2为专辑推荐
 
 @end

@@ -11,6 +11,7 @@
 #import "CommentListViewController.h"
 #import "FriendSearchViewController.h"
 #import "EditInformationViewController.h"
+#import "SPDynamicInfo.h"
 
 @interface MineViewController () <UITableViewDataSource, UITableViewDelegate,FeedTimeLineCellDelegate>
 
@@ -42,12 +43,24 @@
     self.tableView.rowHeight = 205;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
+    if (!_userInfo) {
+        _userInfo = [[SPUserInfo alloc] init];
+        _userInfo.uid = @"1";
+    }
+    if (!_userDetailsInfo) {
+        _userDetailsInfo = [[SPUserInfo alloc] init];
+        _userDetailsInfo.uid = @"1";
+    }
+    
+    
     [self.tableView reloadData];
     if (!_isFriend) {
         [self initNavBar];
     }
     [self initUI];
     [self refreshUserInfo];
+    [self getUserDetailsInfo];
+    [self refreshDynamicList];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -70,7 +83,7 @@
     
     __weak MineViewController *weakSelf = self;
     int tag = [[ShapingEngine shareInstance] getConnectTag];
-    [[ShapingEngine shareInstance] getUserInfoWithUserId:@"18" tag:tag];
+    [[ShapingEngine shareInstance] getUserInfoWithUserId:_userInfo.uid tag:tag];
     [[ShapingEngine shareInstance] addOnAppServiceBlock:^(NSInteger tag, NSDictionary *jsonRet, NSError *err) {
         
         NSString* errorMsg = [ShapingEngine getErrorMsgWithReponseDic:jsonRet];
@@ -79,14 +92,71 @@
             return;
         }
         NSDictionary *userDic = jsonRet;
-        SPUserInfo *userInfo = [[SPUserInfo alloc] init];
-        [userInfo setUserInfoByJsonDic:userDic];
+        weakSelf.userInfo = [[SPUserInfo alloc] init];
+        [weakSelf.userInfo setUserInfoByJsonDic:userDic];
         [weakSelf refreshUI];
         
     } tag:tag];
     
 }
+
+-(void)getUserDetailsInfo{
+    
+    __weak MineViewController *weakSelf = self;
+    int tag = [[ShapingEngine shareInstance] getConnectTag];
+    [[ShapingEngine shareInstance] getUserDetailsInfoWithUserId:_userInfo.uid tag:tag];
+    [[ShapingEngine shareInstance] addOnAppServiceBlock:^(NSInteger tag, NSDictionary *jsonRet, NSError *err) {
+        
+        NSString* errorMsg = [ShapingEngine getErrorMsgWithReponseDic:jsonRet];
+        if (!jsonRet || errorMsg) {
+            
+            return;
+        }
+        NSDictionary *userDic = jsonRet;
+        weakSelf.userDetailsInfo = [[SPUserInfo alloc] init];
+        [weakSelf.userDetailsInfo setUserDetailsInfoByJsonDic:userDic];
+        [weakSelf refreshUI];
+        
+    } tag:tag];
+    
+}
+
+-(void)refreshDynamicList{
+    
+    if (_userInfo.uid.length == 0) {
+        return;
+    }
+    
+    __weak MineViewController *weakSelf = self;
+    int tag = [[ShapingEngine shareInstance] getConnectTag];
+    [[ShapingEngine shareInstance] getDynamicListWith:1 userType:_userInfo.uid tag:tag];
+    [[ShapingEngine shareInstance] addOnAppServiceBlock:^(NSInteger tag, NSDictionary *jsonRet, NSError *err) {
+        
+        NSString* errorMsg = [ShapingEngine getErrorMsgWithReponseDic:jsonRet];
+        if (!jsonRet || errorMsg) {
+            return;
+        }
+        
+        NSArray *listArray = [jsonRet arrayObjectForKey:@"list"];
+        for (NSDictionary *dic in listArray) {
+            
+            SPDynamicInfo *dynamicInfo = [[SPDynamicInfo alloc] init];
+            [dynamicInfo setDynamicInfoByJsonDic:dic];
+            [weakSelf.dataSource addObject:dynamicInfo];
+        }
+        
+        [weakSelf.tableView reloadData];
+        
+    } tag:tag];
+}
+
 -(void)refreshUI{
+    
+    self.positionLabel.text = self.userInfo.location;
+    self.introductionLabel.text = self.userInfo.intro;
+    self.attentionLabel.text = [NSString stringWithFormat:@"%d",self.userInfo.attentionCount];
+    self.fansLabel.text = [NSString stringWithFormat:@"%d",self.userInfo.fansCount];
+    self.planLabel.text = [NSString stringWithFormat:@"%d",self.userInfo.planCount];
     
     [self.tableView reloadData];
 }
@@ -156,7 +226,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
+    return self.dataSource.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -169,6 +239,10 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.delegate = self;
     }
+    
+    SPDynamicInfo *dynamicInfo = self.dataSource[indexPath.row];
+    cell.dynamicInfo = dynamicInfo;
+    
 //    [cell.conImageView setImageWithURL:[NSURL URLWithString:@"http://y0.ifengimg.com/e7f199c1e0dbba14/2013/0722/rdn_51ece7b8ad179.jpg"] placeholderImage:[UIImage imageNamed:@""]];
     
 //    NSDictionary *rankDic = self.dataSource[indexPath.row];

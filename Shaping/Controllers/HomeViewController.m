@@ -13,6 +13,7 @@
 #import "IntroduceViewController.h"
 #import "ShapingEngine.h"
 #import "SPTopicInfo.h"
+#import "YHBaseWebViewController.h"
 
 @interface HomeViewController () <SGFocusImageFrameDelegate>
 {
@@ -158,7 +159,7 @@
         SPTopicInfo *topicInfo = [_bannerList objectAtIndex:i];
         NSData *imageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:@"http://img3.imgtn.bdimg.com/it/u=4170755183,273454520&fm=21&gp=0.jpg"]];
         UIImage *image = [UIImage imageWithData:imageData];
-        SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTitle:topicInfo.title image:image tag:0];
+        SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTitle:topicInfo.title image:image tag:i];
         
         
         [itemArr addObject:item];
@@ -179,9 +180,14 @@
 {
     
     if (item.tag == 0) {
-        FriendDynamicViewController *vc = [[FriendDynamicViewController alloc] init];
-        vc.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:vc animated:YES];
+//        FriendDynamicViewController *vc = [[FriendDynamicViewController alloc] init];
+//        vc.hidesBottomBarWhenPushed = YES;
+//        [self.navigationController pushViewController:vc animated:YES];
+        
+        YHBaseWebViewController *webVc = [[YHBaseWebViewController alloc] init];
+        [webVc loadDataWithURL:@"http://www.baidu.com"];
+        webVc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:webVc animated:YES];
     }
     if (item.tag == 1) {
         
@@ -307,8 +313,20 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    SPTopicInfo *topicInfo = nil;
+    
     if (indexPath.section == 0) {
+        topicInfo = _hotTopList[indexPath.row];
         IntroduceViewController *vc = [[IntroduceViewController alloc] init];
+        vc.topicInfo = topicInfo;
+        vc.vcType = 1;
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if (indexPath.section == 1){
+        topicInfo = _albumTopList[indexPath.row];
+        IntroduceViewController *vc = [[IntroduceViewController alloc] init];
+        vc.topicInfo = topicInfo;
+        vc.vcType = 2;
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }
