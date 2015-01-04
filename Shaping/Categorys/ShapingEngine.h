@@ -96,4 +96,10 @@ typedef void(^onAppServiceBlock)(NSInteger tag, NSDictionary* jsonRet, NSError* 
 //获取动态列表
 - (BOOL)getDynamicListWith:(int)page userType:(NSString *)userTypeId tag:(int)tag;
 
+//动态添加赞
+- (BOOL)getDynamicAddZanWithDynamicId:(NSString *)dynamicId userid:(NSString *)userid tag:(int)tag;
+
+//动态取消赞
+- (BOOL)getDynamicDeleteZanWithDynamicId:(NSString *)dynamicId userid:(NSString *)userid tag:(int)tag;
+
 @end

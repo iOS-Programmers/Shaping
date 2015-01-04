@@ -509,4 +509,38 @@ static ShapingEngine* s_ShareInstance = nil;
     return YES;
 }
 
+//动态添加赞
+- (BOOL)getDynamicAddZanWithDynamicId:(NSString *)dynamicId userid:(NSString *)userid tag:(int)tag
+{
+    if (FBIsEmpty(dynamicId) || FBIsEmpty(userid)) {
+        return NO;
+    }
+    
+    NSString *url = [NSString stringWithFormat:@"%@/Api/Dynamic/addZan", API_URL];
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
+    [params setValue:dynamicId forKey:@"dynamicZan.dynamicId"];
+    [params setValue:userid forKey:@"dynacZan.uid"];
+    
+    [self sendHttpRequestWithUrl:url params:params requestMethod:@"GET" postValue:NO tag:tag];
+    return YES;
+}
+
+//动态取消赞
+- (BOOL)getDynamicDeleteZanWithDynamicId:(NSString *)dynamicId userid:(NSString *)userid tag:(int)tag
+{
+    if (FBIsEmpty(dynamicId) || FBIsEmpty(userid)) {
+        return NO;
+    }
+    
+    NSString *url = [NSString stringWithFormat:@"%@/Api/Dynamic/delZan", API_URL];
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
+    [params setValue:dynamicId forKey:@"dynamicZan.dynamicId"];
+    [params setValue:userid forKey:@"dynacZan.uid"];
+    
+    [self sendHttpRequestWithUrl:url params:params requestMethod:@"GET" postValue:NO tag:tag];
+    return YES;
+}
+
 @end
