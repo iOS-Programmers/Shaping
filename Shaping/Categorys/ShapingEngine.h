@@ -98,8 +98,21 @@ typedef void(^onAppServiceBlock)(NSInteger tag, NSDictionary* jsonRet, NSError* 
 - (BOOL)getUserInfoWithUserId:(NSString *)uid tag:(int)tag;
 
 #pragma mark -------- 动态
-//获取动态列表
+
+//添加动态
+- (BOOL)getDynamicAddDynamicWith:(NSString *)content userid:(NSString *)userId tag:(int)tag;
+
+//获取指定用户动态列表
 - (BOOL)getDynamicListWith:(int)page userType:(NSString *)userTypeId tag:(int)tag;
+
+//根据用户类型获取动态
+- (BOOL)getDynamicListByUserType:(NSString *)userTypeId page:(NSString *)page pageSize:(NSString *)pageSize tag:(int)tag;
+
+//给动态添加评论
+- (BOOL)getDynamicAddCommentWith:(NSString *)content userid:(NSString *)userid tag:(int)tag;
+
+//获取指定动态的评论列表
+- (BOOL)getDynamicCommentListWith:(NSString *)page dynamicId:(NSString *)dynamicId pageSize:(NSString *)pageSize tag:(int)tag;
 
 //动态添加赞
 - (BOOL)getDynamicAddZanWithDynamicId:(NSString *)dynamicId userid:(NSString *)userid tag:(int)tag;
@@ -107,4 +120,18 @@ typedef void(^onAppServiceBlock)(NSInteger tag, NSDictionary* jsonRet, NSError* 
 //动态取消赞
 - (BOOL)getDynamicDeleteZanWithDynamicId:(NSString *)dynamicId userid:(NSString *)userid tag:(int)tag;
 
+//动态被赞计数
+- (BOOL)getDynamicZanCountWithDynamicId:(NSString *)dynamicId tag:(int)tag;
+
+//删除动态
+- (BOOL)deleteDynamicWithDynamicId:(NSString *)dynamicId userid:(NSString *)userid tag:(int)tag;
+
+//动态添加喜欢
+- (BOOL)getDynamicAddLikeWithDynamicId:(NSString *)dynamicId userid:(NSString *)userid tag:(int)tag;
+
+//动态取消喜欢
+- (BOOL)getDynamicDeleteLikeWithDynamicId:(NSString *)dynamicId userid:(NSString *)userid tag:(int)tag;
+
+//动态被喜欢计数
+- (BOOL)getDynamicLikeCountWithDynamicId:(NSString *)dynamicId tag:(int)tag;
 @end
