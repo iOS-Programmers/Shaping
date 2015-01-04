@@ -106,6 +106,8 @@
 		16217FF01A3194A100ADCCDC /* MineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16217FEE1A3194A100ADCCDC /* MineViewController.xib */; };
 		16217FF41A31957700ADCCDC /* PublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16217FF21A31957700ADCCDC /* PublishViewController.m */; };
 		16217FF51A31957700ADCCDC /* PublishViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16217FF31A31957700ADCCDC /* PublishViewController.xib */; };
+		163CC02E1A599E0200E65F9F /* AttentionUserListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 163CC02D1A599E0200E65F9F /* AttentionUserListViewController.m */; };
+		163CC0311A599E1700E65F9F /* FansListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 163CC0301A599E1700E65F9F /* FansListViewController.m */; };
 		163CCE4C1A3CA9B200889C2B /* CollectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 163CCE4A1A3CA9B200889C2B /* CollectViewController.m */; };
 		163CCE4D1A3CA9B200889C2B /* CollectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 163CCE4B1A3CA9B200889C2B /* CollectViewController.xib */; };
 		163CCE521A3CA9DE00889C2B /* FriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 163CCE501A3CA9DE00889C2B /* FriendViewController.m */; };
@@ -360,6 +362,10 @@
 		16217FF11A31957700ADCCDC /* PublishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishViewController.h; sourceTree = "<group>"; };
 		16217FF21A31957700ADCCDC /* PublishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishViewController.m; sourceTree = "<group>"; };
 		16217FF31A31957700ADCCDC /* PublishViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PublishViewController.xib; sourceTree = "<group>"; };
+		163CC02C1A599E0200E65F9F /* AttentionUserListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttentionUserListViewController.h; sourceTree = "<group>"; };
+		163CC02D1A599E0200E65F9F /* AttentionUserListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttentionUserListViewController.m; sourceTree = "<group>"; };
+		163CC02F1A599E1700E65F9F /* FansListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FansListViewController.h; sourceTree = "<group>"; };
+		163CC0301A599E1700E65F9F /* FansListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FansListViewController.m; sourceTree = "<group>"; };
 		163CCE491A3CA9B200889C2B /* CollectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectViewController.h; sourceTree = "<group>"; };
 		163CCE4A1A3CA9B200889C2B /* CollectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectViewController.m; sourceTree = "<group>"; };
 		163CCE4B1A3CA9B200889C2B /* CollectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectViewController.xib; sourceTree = "<group>"; };
@@ -942,6 +948,10 @@
 				16217FEC1A3194A100ADCCDC /* MineViewController.h */,
 				16217FED1A3194A100ADCCDC /* MineViewController.m */,
 				16217FEE1A3194A100ADCCDC /* MineViewController.xib */,
+				163CC02C1A599E0200E65F9F /* AttentionUserListViewController.h */,
+				163CC02D1A599E0200E65F9F /* AttentionUserListViewController.m */,
+				163CC02F1A599E1700E65F9F /* FansListViewController.h */,
+				163CC0301A599E1700E65F9F /* FansListViewController.m */,
 				7E65EC7A1A33758500B9855F /* FeedTimeLineCell.h */,
 				7E65EC7B1A33758500B9855F /* FeedTimeLineCell.m */,
 				7E65EC7C1A33758500B9855F /* FeedTimeLineCell.xib */,
@@ -1285,6 +1295,7 @@
 				160A93B01A318BDD00D17DAB /* LXUtils.m in Sources */,
 				7E0A10841A3CB97D00883D50 /* CommentListViewController.m in Sources */,
 				07E535E61A524527005E1DA9 /* ASICloudFilesContainerRequest.m in Sources */,
+				163CC0311A599E1700E65F9F /* FansListViewController.m in Sources */,
 				07E5359D1A5240AD005E1DA9 /* SPUserInfo.m in Sources */,
 				160A93951A31890B00D17DAB /* UIImageView+WebCache.m in Sources */,
 				165113F71A530D4C00E35A67 /* SSKeychain.m in Sources */,
@@ -1348,6 +1359,7 @@
 				07E535E01A524527005E1DA9 /* ASIHTTPRequest.m in Sources */,
 				164089831A3C6A1200DB4FF6 /* selectLeveyTabBarIndex.m in Sources */,
 				07E535EB1A524527005E1DA9 /* ASIS3Bucket.m in Sources */,
+				163CC02E1A599E0200E65F9F /* AttentionUserListViewController.m in Sources */,
 				160A93881A31890B00D17DAB /* MKAnnotationView+WebCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1406,6 +1418,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1422,9 +1435,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
+				SDKROOT = iphoneos8.1;
 			};
 			name = Debug;
 		};
@@ -1444,7 +1457,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1454,8 +1468,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				SDKROOT = iphoneos;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos8.1;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1466,6 +1480,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Shaping/Shaping-Prefix.pch";
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
@@ -1477,6 +1492,7 @@
 					"$(PROJECT_DIR)/Shaping/Vendor/ZBarSDK",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1486,7 +1502,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Shaping/Shaping-Prefix.pch";
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
@@ -1498,6 +1515,7 @@
 					"$(PROJECT_DIR)/Shaping/Vendor/ZBarSDK",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

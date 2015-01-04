@@ -13,9 +13,10 @@
 #import "EditInformationViewController.h"
 #import "SPDynamicInfo.h"
 
-@interface MineViewController () <UITableViewDataSource, UITableViewDelegate,FeedTimeLineCellDelegate>
+#import "AttentionUserListViewController.h"
+#import "FansListViewController.h"
 
-@property (nonatomic, strong) IBOutlet UIView *headView;
+@interface MineViewController () <UITableViewDataSource, UITableViewDelegate,FeedTimeLineCellDelegate>
 
 @property (strong, nonatomic) IBOutlet UIView *personInfoView;
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImage;
@@ -30,6 +31,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *levelInfoLabel;
 @property (weak, nonatomic) IBOutlet UILabel *positionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *introductionLabel;
+
+- (IBAction)onAttentNumBtnClick:(UIButton *)sender;
+- (IBAction)onFansNumClick:(UIButton *)sender;
+- (IBAction)onPlanBtnClick:(UIButton *)sender;
+
 
 @end
 
@@ -265,4 +271,31 @@
     
 }
 
+/**
+ *  点击查看关注的人按钮
+ */
+- (IBAction)onAttentNumBtnClick:(UIButton *)sender {
+
+    AttentionUserListViewController *vc = [[AttentionUserListViewController alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+
+}
+
+/**
+ *  点击粉丝数按钮
+ */
+- (IBAction)onFansNumClick:(UIButton *)sender {
+
+    FansListViewController *vc = [[FansListViewController alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+
+}
+
+/**
+ *  点击计划按钮
+ */
+- (IBAction)onPlanBtnClick:(UIButton *)sender {
+}
 @end
