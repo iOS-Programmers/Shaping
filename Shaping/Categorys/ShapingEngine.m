@@ -72,8 +72,8 @@ static ShapingEngine* s_ShareInstance = nil;
     [self deleteAccount];
     _userInfo = [[SPUserInfo alloc] init];
     [self setUserInfo:_userInfo];
-    //退出登录后token设置默认值
-    [[NSUserDefaults standardUserDefaults] setObject:@"1" forKey:@"jf_token"];
+
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"sp_userId"];
 }
 
 -(NSString *)baseUrl{
@@ -83,6 +83,15 @@ static ShapingEngine* s_ShareInstance = nil;
     return [ShapingEngine userToken];
 }
 #pragma mark - userInfo
+
+- (BOOL)isLogin
+{
+    if (!FBIsEmpty([[NSUserDefaults standardUserDefaults] objectForKey:@"sp_userId"])) {
+        return YES;
+    }
+    
+    return NO;
+}
 
 /**
  *  登录成功后，保存用户token，后面的所有接口请求用到
@@ -110,6 +119,8 @@ static ShapingEngine* s_ShareInstance = nil;
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
 }
+
+
 
 + (NSString *)userId
 {
@@ -508,6 +519,22 @@ static ShapingEngine* s_ShareInstance = nil;
 }
 
 //获取动态列表
+#pragma mark -------- 动态
+
+//添加动态
+- (BOOL)getDynamicAddDynamicWith:(NSString *)content userid:(NSString *)userId tag:(int)tag
+{
+    NSString *url = [NSString stringWithFormat:@"%@/Api/Dynamic/addDynamic", API_URL];
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
+    [params setValue:content forKey:@"dynamic.content"];
+    [params setValue:userId forKey:@"userynamic.uid"];
+    
+    [self sendHttpRequestWithUrl:url params:params requestMethod:@"GET" postValue:NO tag:tag];
+    return YES;
+}
+
+//获取指定用户动态列表
 - (BOOL)getDynamicListWith:(int)page userType:(NSString *)userTypeId tag:(int)tag
 {
     NSString *url = [NSString stringWithFormat:@"%@/Api/Dynamic/list", API_URL];
@@ -515,6 +542,49 @@ static ShapingEngine* s_ShareInstance = nil;
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
     [params setValue:userTypeId forKey:@"id"];
     [params setValue:[NSNumber numberWithInt:page] forKey:@"pageNum"];
+    
+    [self sendHttpRequestWithUrl:url params:params requestMethod:@"GET" postValue:NO tag:tag];
+    return YES;
+}
+
+//根据用户类型获取动态
+- (BOOL)getDynamicListByUserType:(NSString *)userTypeId page:(NSString *)page pageSize:(NSString *)pageSize tag:(int)tag
+{
+    NSString *url = [NSString stringWithFormat:@"%@/Api/Dynamic/getDynaByUserType", API_URL];
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
+    [params setValue: userTypeId forKey:@"id"];
+    [params setValue: page forKey:@"page"];
+    [params setValue: pageSize forKey:@"pageSize"];
+    
+    [self sendHttpRequestWithUrl:url params:params requestMethod:@"GET" postValue:NO tag:tag];
+    return YES;
+
+}
+
+//给动态添加评论
+- (BOOL)getDynamicAddCommentWith:(NSString *)content userid:(NSString *)userid tag:(int)tag
+{
+    NSString *url = [NSString stringWithFormat:@"%@/Api/Dynamic/addDiscuss", API_URL];
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
+    [params setValue:content forKey:@"dynamic_discuss.content"];
+    [params setValue:userid forKey:@"dynamic_discuss.uid"];
+    
+    [self sendHttpRequestWithUrl:url params:params requestMethod:@"GET" postValue:NO tag:tag];
+    
+    return YES;
+}
+
+//获取指定动态的评论列表
+- (BOOL)getDynamicCommentListWith:(NSString *)page dynamicId:(NSString *)dynamicId pageSize:(NSString *)pageSize tag:(int)tag
+{
+    NSString *url = [NSString stringWithFormat:@"%@/Api/Dynamic/getdiscussByPage", API_URL];
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
+    [params setValue:page forKey:@"pageNum"];
+    [params setValue: dynamicId forKey:@"id"];
+    [params setValue: pageSize forKey:@"pageSize"];
     
     [self sendHttpRequestWithUrl:url params:params requestMethod:@"GET" postValue:NO tag:tag];
     return YES;
@@ -549,6 +619,88 @@ static ShapingEngine* s_ShareInstance = nil;
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
     [params setValue:dynamicId forKey:@"dynamicZan.dynamicId"];
     [params setValue:userid forKey:@"dynacZan.uid"];
+    
+    [self sendHttpRequestWithUrl:url params:params requestMethod:@"GET" postValue:NO tag:tag];
+    return YES;
+}
+
+//动态被赞计数
+- (BOOL)getDynamicZanCountWithDynamicId:(NSString *)dynamicId tag:(int)tag
+{
+    if (FBIsEmpty(dynamicId)) {
+        return NO;
+    }
+    
+    NSString *url = [NSString stringWithFormat:@"%@/Api/Dynamic/zanCount", API_URL];
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
+    [params setValue:dynamicId forKey:@"dynamicZan.dynamicId"];
+    
+    [self sendHttpRequestWithUrl:url params:params requestMethod:@"GET" postValue:NO tag:tag];
+    return YES;
+}
+
+//删除动态
+- (BOOL)deleteDynamicWithDynamicId:(NSString *)dynamicId tag:(int)tag
+{
+    if (FBIsEmpty(dynamicId)) {
+        return NO;
+    }
+    
+    NSString *url = [NSString stringWithFormat:@"%@/Api/Dynamic/delDiscuss", API_URL];
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
+    [params setValue:dynamicId forKey:@"dynamicDiscuss.id"];
+    
+    [self sendHttpRequestWithUrl:url params:params requestMethod:@"GET" postValue:NO tag:tag];
+    return YES;
+}
+
+//动态添加喜欢
+- (BOOL)getDynamicAddLikeWithDynamicId:(NSString *)dynamicId userid:(NSString *)userid tag:(int)tag
+{
+    if (FBIsEmpty(dynamicId) || FBIsEmpty(userid)) {
+        return NO;
+    }
+    
+    NSString *url = [NSString stringWithFormat:@"%@/Api/Dynamic/addLike", API_URL];
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
+    [params setValue:dynamicId forKey:@"dynamicLike.dynamicId"];
+    [params setValue:userid forKey:@"dynacLike.uid"];
+    
+    [self sendHttpRequestWithUrl:url params:params requestMethod:@"GET" postValue:NO tag:tag];
+    return YES;
+}
+
+//动态取消喜欢
+- (BOOL)getDynamicDeleteLikeWithDynamicId:(NSString *)dynamicId userid:(NSString *)userid tag:(int)tag
+{
+    if (FBIsEmpty(dynamicId) || FBIsEmpty(userid)) {
+        return NO;
+    }
+    
+    NSString *url = [NSString stringWithFormat:@"%@/Api/Dynamic/delLike", API_URL];
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
+    [params setValue:dynamicId forKey:@"dynamicLike.dynamicId"];
+    [params setValue:userid forKey:@"dynacLike.uid"];
+    
+    [self sendHttpRequestWithUrl:url params:params requestMethod:@"GET" postValue:NO tag:tag];
+    return YES;
+}
+
+//动态被喜欢计数
+- (BOOL)getDynamicLikeCountWithDynamicId:(NSString *)dynamicId tag:(int)tag
+{
+    if (FBIsEmpty(dynamicId)) {
+        return NO;
+    }
+    
+    NSString *url = [NSString stringWithFormat:@"%@/Api/Dynamic/likeCount", API_URL];
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
+    [params setValue:dynamicId forKey:@"dynamicLike.dynamicId"];
     
     [self sendHttpRequestWithUrl:url params:params requestMethod:@"GET" postValue:NO tag:tag];
     return YES;

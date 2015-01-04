@@ -129,6 +129,12 @@
             //把用户ID保存起来
             [ShapingEngine saveUserId:userId];
             
+            if (weakSelf.callType == CALL_OUTSIDE) {
+                [weakSelf dismissViewControllerAnimated:YES completion:^{
+                    
+                }];
+            }
+            
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [[SPAppDelegate shareappdelegate] initMainView];
             });

@@ -7,8 +7,10 @@
 //
 
 #import "SettingViewController.h"
+#import "LoginViewController.h"
+#import "YHBaseNavigationController.h"
 
-@interface SettingViewController ()
+@interface SettingViewController () <UIActionSheetDelegate>
 
 @end
 
@@ -95,9 +97,53 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSInteger row = [indexPath section];
+    NSInteger section = [indexPath section];
+    NSInteger row = [indexPath row];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    switch (section) {
+        case 0: {
+        
+        
+        }
+            break;
+            
+        case 1: {
+        
+            //退出登录
+            UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                          initWithTitle:@"确定要退出登录吗"
+                                          delegate:self
+                                          cancelButtonTitle:@"取消"
+                                          destructiveButtonTitle:@"退出登录"
+                                          otherButtonTitles:nil];
+            actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+            [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
+
+#pragma mark - UIActionSheetDelegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        [[ShapingEngine shareInstance] logout];
+
+        LoginViewController *loginViewController = [[LoginViewController alloc] init];
+        YHBaseNavigationController *loginNav = [[YHBaseNavigationController alloc] initWithRootViewController:loginViewController];
+        loginViewController.navigationController.navigationBarHidden = YES;
+        loginViewController.callType = CALL_OUTSIDE;
+        loginViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;//添加动画
+        [self presentViewController:loginNav animated:YES completion:^{
+            
+        }];
+        
+    }
 }
 
 @end

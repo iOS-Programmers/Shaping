@@ -24,7 +24,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
-    BOOL isLogin = NO;
+    BOOL isLogin = [[ShapingEngine shareInstance] isLogin];
     if (!isLogin) {
         LoginViewController *loginViewController = [[LoginViewController alloc] init];
         YHBaseNavigationController *loginNav = [[YHBaseNavigationController alloc] initWithRootViewController:loginViewController];
