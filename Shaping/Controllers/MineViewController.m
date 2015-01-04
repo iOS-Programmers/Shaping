@@ -49,6 +49,8 @@
     self.tableView.rowHeight = 205;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
+    [self.tableView frameSetHeight:[LXUtils getContentViewHeight] + 10];
+    
     if (!_userInfo) {
         _userInfo = [[SPUserInfo alloc] init];
         _userInfo.uid = @"1";

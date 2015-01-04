@@ -15,6 +15,8 @@
 
 @interface DynamicViewController ()<FriendDynamicCellDelegate>
 
+@property (nonatomic, copy) NSString *userType;
+
 @end
 
 @implementation DynamicViewController
@@ -24,6 +26,10 @@
     // Do any additional setup after loading the view from its nib.
     self.title = @"动态";
     self.tableView.rowHeight = 380;
+    
+    self.userType = @"1";
+    
+    self.canPullRefresh = YES;
     
     [self.tableView frameSetHeight:[LXUtils getContentViewHeight] + 10];
     
@@ -59,14 +65,18 @@
     
     __weak DynamicViewController *weakSelf = self;
     int tag = [[ShapingEngine shareInstance] getConnectTag];
-    [[ShapingEngine shareInstance] getDynamicListWith:1 userType:@"1" tag:tag];
+    [[ShapingEngine shareInstance] getDynamicListByUserType:self.userType page:@"0" pageSize:@"20" tag:tag];
     [[ShapingEngine shareInstance] addOnAppServiceBlock:^(NSInteger tag, NSDictionary *jsonRet, NSError *err) {
+        
+        [weakSelf.header endRefreshing];
         
         NSString* errorMsg = [ShapingEngine getErrorMsgWithReponseDic:jsonRet];
         if (!jsonRet || errorMsg) {
             return;
         }
 
+        [weakSelf.dataSource removeAllObjects];
+        
         NSArray *listArray = [jsonRet arrayObjectForKey:@"list"];
         for (NSDictionary *dic in listArray) {
             SPDynamicInfo *dynamicInfo = [[SPDynamicInfo alloc] init];
@@ -99,25 +109,31 @@
     switch (Index) {
             
         case 0:
-//            [self haoyouBtnClicked];
+        {
+            self.userType = @"0";
+        }
             
             break;
             
         case 1:
-            
-//            [self jiaolianBtnClickde];
+        {
+            self.userType = @"1";
+        }
             
             break;
             
         case 2:
-            
-//            [self huisuoBtnClicked];
-            
+        {
+            self.userType = @"2";
+        }
+            break;
         default:
             
             break;
             
     }
+    
+    [self refreshDynamicList];
     
 }
 
@@ -158,7 +174,9 @@
     cell.creatTimeLabel.text = [LXUtils secondChangToDateString:info.createTime];
     cell.contentLabel.text = info.content;
 
-    [cell.contentImage setImageWithURL:[NSURL URLWithString:info.image]];
+    if (!FBIsEmpty(info.image) && ![info.image isEqualToString:@"<null>"]) {
+        [cell.contentImage setImageWithURL:[NSURL URLWithString:info.image]];
+    }
     
     return cell;
 }
@@ -183,6 +201,17 @@
     vc.hidesBottomBarWhenPushed = YES;
     vc.isFriend = YES;
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+#pragma mark 下拉刷新的Delegate
+
+- (void)refreshViewBeginRefreshing:(MJRefreshBaseView *)refreshView
+{
+    //下拉刷新时的操作
+    if (self.header == refreshView) {
+        
+        [self refreshDynamicList];
+    }
 }
 
 @end

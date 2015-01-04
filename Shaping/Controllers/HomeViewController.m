@@ -37,6 +37,8 @@
     
     bannerArray = [[NSMutableArray alloc] init];
     
+    [self.tableView frameSetHeight:[LXUtils getContentViewHeight] + 10];
+    
     [self initNavBar];
     [self refreshBannerList];
     [self refreshHotList];
@@ -157,15 +159,13 @@
     
     for (int i = 0; i < self.bannerList.count; i ++) {
         SPTopicInfo *topicInfo = [_bannerList objectAtIndex:i];
-        NSData *imageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:@"http://img3.imgtn.bdimg.com/it/u=4170755183,273454520&fm=21&gp=0.jpg"]];
+        NSData *imageData = [[NSData alloc] initWithContentsOfURL:topicInfo.imgUrl];
         UIImage *image = [UIImage imageWithData:imageData];
         SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTitle:topicInfo.title image:image tag:i];
         
         
         [itemArr addObject:item];
     }
-    
-    
 
     
     CGRect theFrame = CGRectMake(0, 0, 320, 140);

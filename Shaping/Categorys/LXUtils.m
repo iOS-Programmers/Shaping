@@ -314,6 +314,9 @@
         return @"";
     }
     
+    if ([dateStr isEqualToString:@"<null>"]) {
+        return @"";
+    }
     long long time = [dateStr longLongValue];
     
     NSDate *date = [[NSDate alloc]initWithTimeIntervalSince1970:time];
@@ -327,6 +330,10 @@
 + (NSString *)secondChangToDate:(NSString *)dateStr {
     
     if (FBIsEmpty(dateStr)) {
+        return @"";
+    }
+    
+    if ([dateStr isEqualToString:@"<null>"]) {
         return @"";
     }
     

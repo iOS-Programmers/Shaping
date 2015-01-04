@@ -23,6 +23,8 @@
     self.tableView.rowHeight = 130;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
+    [self.tableView frameSetHeight:[LXUtils getContentViewHeight] + 10];
+    
     [self initNavBar];
 }
 

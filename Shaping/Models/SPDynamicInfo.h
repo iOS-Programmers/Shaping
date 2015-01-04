@@ -14,11 +14,13 @@
 @property (nonatomic, strong) NSString* content;
 @property (nonatomic, strong) NSString* dyna_zanId;
 @property (nonatomic, strong) NSString* createTime;
+@property (nonatomic, strong) NSString* diss_content;
 @property (nonatomic, strong) NSString* nickName;
 @property (nonatomic, strong) NSString* image;
 @property (nonatomic, strong) NSString* place;
 @property (nonatomic, strong) NSString* dyna_likeId;
 @property (nonatomic, strong) NSString* user_dynamic_id;
+@property (nonatomic, strong) NSString* userType;
 
 @property(nonatomic, strong) NSString* jsonString;
 
