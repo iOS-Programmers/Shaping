@@ -23,6 +23,11 @@ typedef void(^onAppServiceBlock)(NSInteger tag, NSDictionary* jsonRet, NSError* 
 @property(nonatomic, strong) NSString* uid;
 @property(nonatomic, strong) SPUserInfo* userInfo;
 
+/**
+ *  判断用户是否登录
+ */
+@property(nonatomic) BOOL isLogin;
+
 + (ShapingEngine*)shareInstance;
 + (NSString*)getErrorMsgWithReponseDic:(NSDictionary*)dic;
 + (NSString*)getErrorCodeWithReponseDic:(NSDictionary*)dic;

@@ -26,11 +26,31 @@
         _intro = [objectForKey description];
     }
     
-    _age = [[dic objectForKey:@"age"] intValue];
-    _attentionCount = [[dic objectForKey:@"attentionCount"] intValue];
-    _fansCount = [[dic objectForKey:@"fansCount"] intValue];
-    _planCount = [[dic objectForKey:@"planCount"] intValue];
-    _expCount = [[dic objectForKey:@"expCount"] intValue];
+    objectForKey = [dic objectForKey:@"age"];
+    if (objectForKey && ![objectForKey isKindOfClass:[NSNull class]]) {
+       _age = [[dic objectForKey:@"age"] intValue];
+    }
+    
+    objectForKey = [dic objectForKey:@"attentionCount"];
+    if (objectForKey && ![objectForKey isKindOfClass:[NSNull class]]) {
+        _attentionCount = [[dic objectForKey:@"attentionCount"] intValue];
+    }
+    
+    objectForKey = [dic objectForKey:@"fansCount"];
+    if (objectForKey && ![objectForKey isKindOfClass:[NSNull class]]) {
+        _fansCount = [[dic objectForKey:@"fansCount"] intValue];
+    }
+    
+    objectForKey = [dic objectForKey:@"planCount"];
+    if (objectForKey && ![objectForKey isKindOfClass:[NSNull class]]) {
+         _planCount = [[dic objectForKey:@"planCount"] intValue];
+    }
+    
+    objectForKey = [dic objectForKey:@"expCount"];
+    if (objectForKey && ![objectForKey isKindOfClass:[NSNull class]]) {
+        _expCount = [[dic objectForKey:@"expCount"] intValue];
+    }
+    
 }
 - (void)setUserInfoByJsonDic:(NSDictionary*)dic{
     if (![dic isKindOfClass:[NSDictionary class]]) {

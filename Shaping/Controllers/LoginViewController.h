@@ -8,6 +8,13 @@
 
 #import "YHBaseViewController.h"
 
+typedef enum : NSUInteger {
+    CALL_DEFAULT = 0,
+    CALL_OUTSIDE = 1, //从外面调用的，需要dismiss一下
+} CALL_TYPE;
+
 @interface LoginViewController : YHBaseViewController
+
+@property (nonatomic) CALL_TYPE callType;
 
 @end

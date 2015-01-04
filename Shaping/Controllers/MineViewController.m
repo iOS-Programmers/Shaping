@@ -48,6 +48,7 @@
     }
     [self initUI];
     [self refreshUserInfo];
+
 }
 
 - (void)didReceiveMemoryWarning {

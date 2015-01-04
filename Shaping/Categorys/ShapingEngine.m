@@ -72,8 +72,8 @@ static ShapingEngine* s_ShareInstance = nil;
     [self deleteAccount];
     _userInfo = [[SPUserInfo alloc] init];
     [self setUserInfo:_userInfo];
-    //退出登录后token设置默认值
-    [[NSUserDefaults standardUserDefaults] setObject:@"1" forKey:@"jf_token"];
+
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"sp_userId"];
 }
 
 -(NSString *)baseUrl{
@@ -83,6 +83,15 @@ static ShapingEngine* s_ShareInstance = nil;
     return [ShapingEngine userToken];
 }
 #pragma mark - userInfo
+
+- (BOOL)isLogin
+{
+    if (!FBIsEmpty([[NSUserDefaults standardUserDefaults] objectForKey:@"sp_userId"])) {
+        return YES;
+    }
+    
+    return NO;
+}
 
 /**
  *  登录成功后，保存用户token，后面的所有接口请求用到
@@ -110,6 +119,8 @@ static ShapingEngine* s_ShareInstance = nil;
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
 }
+
+
 
 + (NSString *)userId
 {
