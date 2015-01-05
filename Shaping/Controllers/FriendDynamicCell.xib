@@ -48,16 +48,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.86666666670000003" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Mmy-Ay-t4p">
-                                <rect key="frame" x="237" y="333" width="63" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <state key="normal" image="feeds_links">
-                                    <color key="titleColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="selected" image="feeds_links_red"/>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="今天在健身房，张教练很nice，指导很细心。" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="U1w-SZ-GbV">
                                 <rect key="frame" x="8" y="293" width="296" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -121,6 +111,22 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="selected" image="feeds_praise_blue"/>
+                                <connections>
+                                    <action selector="zanAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="WYI-pQ-Oza"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Mmy-Ay-t4p">
+                                <rect key="frame" x="237" y="333" width="63" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <state key="normal" image="feeds_links">
+                                    <color key="titleColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="selected" image="feeds_links_red"/>
+                                <connections>
+                                    <action selector="likeAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="tbJ-S7-ndL"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -133,7 +139,9 @@
                 <outlet property="contentImage" destination="fet-ae-NgQ" id="vqm-Kh-4XU"/>
                 <outlet property="contentLabel" destination="U1w-SZ-GbV" id="WIc-NY-LLb"/>
                 <outlet property="creatTimeLabel" destination="jkn-3l-m0m" id="TUM-y8-vN9"/>
+                <outlet property="likeBtn" destination="Mmy-Ay-t4p" id="5kP-nR-ZDP"/>
                 <outlet property="nickNameLabel" destination="Gr2-9K-b6n" id="1PS-EF-Lee"/>
+                <outlet property="zanBtn" destination="kYw-2K-dzF" id="N9C-0F-GSb"/>
             </connections>
             <point key="canvasLocation" x="643" y="355"/>
         </tableViewCell>

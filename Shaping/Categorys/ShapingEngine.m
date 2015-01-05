@@ -214,15 +214,15 @@ static ShapingEngine* s_ShareInstance = nil;
     if (dic == nil) {
         return @"请检查网络连接是否正常";
     }
-    if ([dic objectForKey:@"error_no"] == nil) {
+    if ([dic objectForKey:@"status"] == nil) {
         return nil;
     }
-    if ([[dic objectForKey:@"error_no"] integerValue] == 0){
+    if ([[dic objectForKey:@"status"] integerValue] == 1){
         return nil;
     }
-    NSString* error = [dic objectForKey:@"error_info"];
+    NSString* error = [dic objectForKey:@"content"];
     if (!error) {
-        error = [dic objectForKey:@"error_no"];
+        error = [dic objectForKey:@"content"];
     }
     if (error == nil) {
         error = @"unknow error";

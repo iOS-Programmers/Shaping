@@ -174,7 +174,7 @@
 
 - (void)showWithText:(NSString *)text
 {
-    _hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    _hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 	
 	// Configure for text only and offset down
 	_hud.mode = MBProgressHUDModeText;

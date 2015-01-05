@@ -16,16 +16,27 @@
 @property (weak, nonatomic) IBOutlet UILabel *creatTimeLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *contentImage;
 
+@property (weak, nonatomic) IBOutlet UIButton *zanBtn;
+
+@property (weak, nonatomic) IBOutlet UIButton *likeBtn;
+
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 @property (assign, nonatomic) id <FriendDynamicCellDelegate>delegate;
 
 - (IBAction)commentAction:(id)sender;
 - (IBAction)avatarAction:(id)sender;
+- (IBAction)zanAction:(id)sender;
+- (IBAction)likeAction:(id)sender;
+
 @end
 
 @protocol FriendDynamicCellDelegate <NSObject>
 @optional
+
 -(void)commentClickWithFeedTime:(FriendDynamicCell *)cell;
 -(void)avatarCilckWithFeedTime:(FriendDynamicCell *)cell;
+
+-(void)zanBtnClickWithFeedTime:(FriendDynamicCell *)cell;
+-(void)likeBtnClickWithFeedTime:(FriendDynamicCell *)cell;
 
 @end

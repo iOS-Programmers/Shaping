@@ -9,6 +9,7 @@
 #import "SettingViewController.h"
 #import "LoginViewController.h"
 #import "YHBaseNavigationController.h"
+#import "EditInformationViewController.h"
 
 @interface SettingViewController () <UIActionSheetDelegate>
 
@@ -104,7 +105,44 @@
     
     switch (section) {
         case 0: {
-        
+         
+            switch (row) {
+                case 0:
+                {
+                    //个人资料
+                    EditInformationViewController *vc = [[EditInformationViewController alloc] init];
+//                    self.userInfo.nickName = self.userDetailsInfo.nickName;
+//                    vc.userInfo = self.userInfo;
+                    vc.hidesBottomBarWhenPushed = YES;
+                    [self.navigationController pushViewController:vc animated:YES];
+                    
+                }
+                    break;
+                    
+                case 1: {
+                    //清空缓存数据
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        [self showWithText:@"清除成功！"];
+                    });
+                
+                }
+                    break;
+                    
+                case 2: {
+                    //意见反馈
+                
+                }
+                    break;
+                    
+                case 3: {
+                    //等级经验详情
+                
+                }
+                    break;
+                    
+                default:
+                    break;
+            }
         
         }
             break;

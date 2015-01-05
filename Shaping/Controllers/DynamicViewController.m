@@ -191,16 +191,172 @@
 }
 
 #pragma mark - FriendDynamicCellDelegate
+
 -(void)commentClickWithFeedTime:(FriendDynamicCell *)cell{
     CommentListViewController *vc = [[CommentListViewController alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
+
 -(void)avatarCilckWithFeedTime:(FriendDynamicCell *)cell{
     MineViewController *vc = [[MineViewController alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
     vc.isFriend = YES;
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+
+#pragma mark - 点赞 & 喜欢
+
+-(void)zanBtnClickWithFeedTime:(FriendDynamicCell *)cell
+{
+    cell.zanBtn.selected = !cell.zanBtn.selected;
+    
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    
+    SPDynamicInfo *info = (SPDynamicInfo *)self.dataSource[indexPath.row];
+    
+    if (cell.zanBtn.selected) {
+        //添加赞
+        [self zanDynamicWithDynamicId:info.dyna_likeId];
+    }
+    else {
+        //取消赞
+        [self deleteZanDynamicWithDynamicId:info.dyna_likeId];
+    }
+}
+
+-(void)likeBtnClickWithFeedTime:(FriendDynamicCell *)cell
+{
+    cell.likeBtn.selected = !cell.likeBtn.selected;
+    
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    
+    SPLog(@"--你点击的是第-- %ld---行",indexPath.row);
+    
+    SPDynamicInfo *info = (SPDynamicInfo *)self.dataSource[indexPath.row];
+    
+    if (cell.likeBtn.selected) {
+        //添加喜欢
+        [self likeDynamicWithDynamicId:info.dyna_likeId];
+    }
+    else {
+        //取消喜欢
+        [self deletelikeDynamicWithDynamicId:info.dyna_likeId];
+    }
+    
+}
+
+/**
+ *  点击喜欢按钮
+ */
+- (void)likeDynamicWithDynamicId:(NSString *)dynamicId
+{
+    if (FBIsEmpty(dynamicId)) {
+        return;
+    }
+    
+    __weak DynamicViewController *weakSelf = self;
+    int tag = [[ShapingEngine shareInstance] getConnectTag];
+    [[ShapingEngine shareInstance] getDynamicAddLikeWithDynamicId:dynamicId userid:[ShapingEngine userId] tag:tag];
+    [[ShapingEngine shareInstance] addOnAppServiceBlock:^(NSInteger tag, NSDictionary *jsonRet, NSError *err) {
+        
+        NSString* errorMsg = [ShapingEngine getErrorMsgWithReponseDic:jsonRet];
+        if (!jsonRet || errorMsg) {
+
+            [weakSelf showWithText:errorMsg];
+
+            return;
+        }
+        
+        [weakSelf showWithText:@"添加喜欢"];
+    }
+     
+    tag:tag];
+}
+
+/**
+ *  点击取消喜欢
+ */
+- (void)deletelikeDynamicWithDynamicId:(NSString *)dynamicId
+{
+    if (FBIsEmpty(dynamicId)) {
+        return;
+    }
+    
+    __weak DynamicViewController *weakSelf = self;
+    int tag = [[ShapingEngine shareInstance] getConnectTag];
+    [[ShapingEngine shareInstance] getDynamicDeleteLikeWithDynamicId:dynamicId userid:[ShapingEngine userId] tag:tag];
+    [[ShapingEngine shareInstance] addOnAppServiceBlock:^(NSInteger tag, NSDictionary *jsonRet, NSError *err) {
+        
+        NSString* errorMsg = [ShapingEngine getErrorMsgWithReponseDic:jsonRet];
+        if (!jsonRet || errorMsg) {
+
+            [weakSelf showWithText:errorMsg];
+            
+            return;
+        }
+        
+        [weakSelf showWithText:@"取消喜欢"];
+    }
+     
+    tag:tag];
+}
+
+/**
+ *  点赞按钮
+ */
+- (void)zanDynamicWithDynamicId:(NSString *)dynamicId
+{
+    if (FBIsEmpty(dynamicId)) {
+        return;
+    }
+    
+    __weak DynamicViewController *weakSelf = self;
+    int tag = [[ShapingEngine shareInstance] getConnectTag];
+    [[ShapingEngine shareInstance] getDynamicAddZanWithDynamicId:dynamicId userid:[ShapingEngine userId] tag:tag];
+    [[ShapingEngine shareInstance] addOnAppServiceBlock:^(NSInteger tag, NSDictionary *jsonRet, NSError *err) {
+        
+        NSString* errorMsg = [ShapingEngine getErrorMsgWithReponseDic:jsonRet];
+        if (!jsonRet || errorMsg) {
+            
+            [weakSelf showWithText:errorMsg];
+
+            return;
+        }
+
+        [weakSelf showWithText:@"已👍"];
+    }
+     
+                                                    tag:tag];
+}
+
+/**
+ *  点击取消赞
+ */
+- (void)deleteZanDynamicWithDynamicId:(NSString *)dynamicId
+{
+    if (FBIsEmpty(dynamicId)) {
+        return;
+    }
+    
+    __weak DynamicViewController *weakSelf = self;
+    int tag = [[ShapingEngine shareInstance] getConnectTag];
+    [[ShapingEngine shareInstance] getDynamicDeleteZanWithDynamicId:dynamicId userid:[ShapingEngine userId] tag:tag];
+    [[ShapingEngine shareInstance] addOnAppServiceBlock:^(NSInteger tag, NSDictionary *jsonRet, NSError *err) {
+        
+        NSString* errorMsg = [ShapingEngine getErrorMsgWithReponseDic:jsonRet];
+        if (!jsonRet || errorMsg) {
+            
+            [weakSelf showWithText:errorMsg];
+
+            return;
+        }
+        
+        [weakSelf showWithText:@"取消👍"];
+    }
+     
+                                                    tag:tag];
 }
 
 #pragma mark 下拉刷新的Delegate

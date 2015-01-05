@@ -31,4 +31,18 @@
         [self.delegate avatarCilckWithFeedTime:self];
     }
 }
+
+- (IBAction)zanAction:(id)sender {
+
+    if (_delegate && [self.delegate respondsToSelector:@selector(zanBtnClickWithFeedTime:)]) {
+        [self.delegate zanBtnClickWithFeedTime:self];
+    }
+}
+
+- (IBAction)likeAction:(id)sender {
+
+    if (_delegate && [self.delegate respondsToSelector:@selector(likeBtnClickWithFeedTime:)]) {
+        [self.delegate likeBtnClickWithFeedTime:self];
+    }
+}
 @end
