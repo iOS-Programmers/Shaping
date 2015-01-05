@@ -45,6 +45,20 @@
     
     [self.contentView addSubview:_textView];
     
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(10,IOS7_OR_LATER ?25:5, 70,30);
+    btn.backgroundColor = [UIColor clearColor];
+    [btn setImage:[UIImage imageNamed:@"btn_back"] forState:UIControlStateNormal];
+    [btn setImage:[UIImage imageNamed:@"btn_back"] forState:UIControlStateHighlighted];
+    [btn setTitle:@"返回" forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    btn.titleLabel.font = [UIFont systemFontOfSize:15];
+    btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    [btn addTarget:self action:@selector(leftNavAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem* leftItem=[[UIBarButtonItem alloc]initWithCustomView:btn];
+
+    self.navigationItem.leftBarButtonItem = leftItem;
     
     self.imagePicker =[[UIImagePickerController alloc] init];
     _imagePicker.delegate = self;
@@ -67,6 +81,14 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (void)leftNavAction:(id)sender
+{
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+
+}
 
 /**
  *  发布动态
