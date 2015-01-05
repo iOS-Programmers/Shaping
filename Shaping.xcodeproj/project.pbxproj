@@ -131,6 +131,8 @@
 		164089821A3C6A1200DB4FF6 /* LeveyTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1640897E1A3C6A1200DB4FF6 /* LeveyTabBarController.m */; };
 		164089831A3C6A1200DB4FF6 /* selectLeveyTabBarIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = 164089801A3C6A1200DB4FF6 /* selectLeveyTabBarIndex.m */; };
 		165113F71A530D4C00E35A67 /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 165113F61A530D4C00E35A67 /* SSKeychain.m */; };
+		165B953A1A5A21C4006CCFCE /* SPTextEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 165B95381A5A21C4006CCFCE /* SPTextEditViewController.m */; };
+		165B953B1A5A21C4006CCFCE /* SPTextEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 165B95391A5A21C4006CCFCE /* SPTextEditViewController.xib */; };
 		168B05C51A53F3B60079F70E /* SPDynamicInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 168B05C41A53F3B60079F70E /* SPDynamicInfo.m */; };
 		16AA40B11A31EF7E004C6057 /* CustomTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 16AA40B01A31EF7E004C6057 /* CustomTextField.m */; };
 		16AA40B51A320B04004C6057 /* DynamicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 16AA40B31A320B04004C6057 /* DynamicCell.m */; };
@@ -405,6 +407,9 @@
 		164089801A3C6A1200DB4FF6 /* selectLeveyTabBarIndex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = selectLeveyTabBarIndex.m; sourceTree = "<group>"; };
 		165113F51A530D4C00E35A67 /* SSKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKeychain.h; sourceTree = "<group>"; };
 		165113F61A530D4C00E35A67 /* SSKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKeychain.m; sourceTree = "<group>"; };
+		165B95371A5A21C4006CCFCE /* SPTextEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPTextEditViewController.h; sourceTree = "<group>"; };
+		165B95381A5A21C4006CCFCE /* SPTextEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPTextEditViewController.m; sourceTree = "<group>"; };
+		165B95391A5A21C4006CCFCE /* SPTextEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPTextEditViewController.xib; sourceTree = "<group>"; };
 		168B05C31A53F3B60079F70E /* SPDynamicInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPDynamicInfo.h; sourceTree = "<group>"; };
 		168B05C41A53F3B60079F70E /* SPDynamicInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPDynamicInfo.m; sourceTree = "<group>"; };
 		16AA40AF1A31EF7E004C6057 /* CustomTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTextField.h; sourceTree = "<group>"; };
@@ -973,6 +978,9 @@
 				7E97AF7C1A3D903A00C2CE86 /* EditInformationViewController.h */,
 				7E97AF7D1A3D903A00C2CE86 /* EditInformationViewController.m */,
 				7E97AF7E1A3D903A00C2CE86 /* EditInformationViewController.xib */,
+				165B95371A5A21C4006CCFCE /* SPTextEditViewController.h */,
+				165B95381A5A21C4006CCFCE /* SPTextEditViewController.m */,
+				165B95391A5A21C4006CCFCE /* SPTextEditViewController.xib */,
 			);
 			name = Mine;
 			sourceTree = "<group>";
@@ -1215,6 +1223,7 @@
 				16BE66151A3D46D200F74D5B /* FriendDynamicViewController.xib in Resources */,
 				163CCE4D1A3CA9B200889C2B /* CollectViewController.xib in Resources */,
 				16217FEB1A31941400ADCCDC /* DynamicViewController.xib in Resources */,
+				165B953B1A5A21C4006CCFCE /* SPTextEditViewController.xib in Resources */,
 				07E535F11A524527005E1DA9 /* README-GHUnit in Resources */,
 				160A93A51A318BC400D17DAB /* MJRefresh.bundle in Resources */,
 				160A937D1A31890B00D17DAB /* 37x-Checkmark.png in Resources */,
@@ -1309,6 +1318,7 @@
 				160A92671A317E9700D17DAB /* SPAppDelegate.m in Sources */,
 				7E0A10931A3CCFC300883D50 /* FriendSearchViewController.m in Sources */,
 				16B3E4131A3405DD0041FCBF /* SGFocusImageFrame.m in Sources */,
+				165B953A1A5A21C4006CCFCE /* SPTextEditViewController.m in Sources */,
 				07E535EE1A524527005E1DA9 /* ASIS3ObjectRequest.m in Sources */,
 				07E535E11A524527005E1DA9 /* ASIInputStream.m in Sources */,
 				160A93811A31890B00D17DAB /* ChineseToPinyinResource.m in Sources */,

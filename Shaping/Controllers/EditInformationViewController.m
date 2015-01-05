@@ -7,11 +7,15 @@
 //
 
 #import "EditInformationViewController.h"
+#import "SPTextEditViewController.h"
+#import "YHBaseNavigationController.h"
 
 @interface EditInformationViewController ()
 
 @property (strong, nonatomic) IBOutlet UIView *headView;
 @property (strong, nonatomic) IBOutlet UIImageView *avatarImageView;
+
+@property (copy, nonatomic) NSString *nickeName;
 @end
 
 @implementation EditInformationViewController
@@ -121,8 +125,34 @@
     return cell;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+    switch (indexPath.row) {
+        case 0:
+        {
+            //昵称
+            SPTextEditViewController *vc = [[SPTextEditViewController alloc] init];
+            YHBaseNavigationController *nav = [[YHBaseNavigationController alloc] initWithRootViewController:vc];
+            vc.titleStr = @"昵称";
+            __weak EditInformationViewController *weak_self = self;
+            EditBackBlock block = ^(NSString *str)
+            {
+                weak_self.nickeName = str;
+                //这里进行修改昵称的请求
+            };
+            [vc setBackBlock:block];
+            
+            vc.modalTransitionStyle = UIModalTransitionStyleCoverVertical;//添加动画
+            [self presentViewController:nav animated:YES completion:^{}];
+
+        }
+            break;
+            
+        default:
+            break;
+    }
 }
 
 @end
