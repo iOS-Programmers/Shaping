@@ -133,6 +133,7 @@
 		165113F71A530D4C00E35A67 /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 165113F61A530D4C00E35A67 /* SSKeychain.m */; };
 		165B953A1A5A21C4006CCFCE /* SPTextEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 165B95381A5A21C4006CCFCE /* SPTextEditViewController.m */; };
 		165B953B1A5A21C4006CCFCE /* SPTextEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 165B95391A5A21C4006CCFCE /* SPTextEditViewController.xib */; };
+		165B953F1A5A40AE006CCFCE /* PlacehoderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 165B953E1A5A40AE006CCFCE /* PlacehoderTextView.m */; };
 		168B05C51A53F3B60079F70E /* SPDynamicInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 168B05C41A53F3B60079F70E /* SPDynamicInfo.m */; };
 		16AA40B11A31EF7E004C6057 /* CustomTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 16AA40B01A31EF7E004C6057 /* CustomTextField.m */; };
 		16AA40B51A320B04004C6057 /* DynamicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 16AA40B31A320B04004C6057 /* DynamicCell.m */; };
@@ -410,6 +411,8 @@
 		165B95371A5A21C4006CCFCE /* SPTextEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPTextEditViewController.h; sourceTree = "<group>"; };
 		165B95381A5A21C4006CCFCE /* SPTextEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPTextEditViewController.m; sourceTree = "<group>"; };
 		165B95391A5A21C4006CCFCE /* SPTextEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPTextEditViewController.xib; sourceTree = "<group>"; };
+		165B953D1A5A40AE006CCFCE /* PlacehoderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlacehoderTextView.h; sourceTree = "<group>"; };
+		165B953E1A5A40AE006CCFCE /* PlacehoderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlacehoderTextView.m; sourceTree = "<group>"; };
 		168B05C31A53F3B60079F70E /* SPDynamicInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPDynamicInfo.h; sourceTree = "<group>"; };
 		168B05C41A53F3B60079F70E /* SPDynamicInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPDynamicInfo.m; sourceTree = "<group>"; };
 		16AA40AF1A31EF7E004C6057 /* CustomTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTextField.h; sourceTree = "<group>"; };
@@ -510,6 +513,7 @@
 		07E5359A1A524087005E1DA9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				165B953C1A5A40AE006CCFCE /* PlacehoderTextView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1110,6 +1114,16 @@
 			path = SSKeychain;
 			sourceTree = "<group>";
 		};
+		165B953C1A5A40AE006CCFCE /* PlacehoderTextView */ = {
+			isa = PBXGroup;
+			children = (
+				165B953D1A5A40AE006CCFCE /* PlacehoderTextView.h */,
+				165B953E1A5A40AE006CCFCE /* PlacehoderTextView.m */,
+			);
+			name = PlacehoderTextView;
+			path = "../../../../瞬间/Moment/Moment/View/PlacehoderTextView";
+			sourceTree = "<group>";
+		};
 		168B05C21A53F37F0079F70E /* Dynamic */ = {
 			isa = PBXGroup;
 			children = (
@@ -1370,6 +1384,7 @@
 				164089831A3C6A1200DB4FF6 /* selectLeveyTabBarIndex.m in Sources */,
 				07E535EB1A524527005E1DA9 /* ASIS3Bucket.m in Sources */,
 				163CC02E1A599E0200E65F9F /* AttentionUserListViewController.m in Sources */,
+				165B953F1A5A40AE006CCFCE /* PlacehoderTextView.m in Sources */,
 				160A93881A31890B00D17DAB /* MKAnnotationView+WebCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

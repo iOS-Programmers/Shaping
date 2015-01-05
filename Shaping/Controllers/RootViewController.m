@@ -136,17 +136,33 @@
 #pragma mark - 点击发布按钮
 - (void)publishbuttonClicked
 {
+    
+    PublishViewController *publishViewController = [[PublishViewController alloc] init];
+    YHBaseNavigationController *pulishNav = [[YHBaseNavigationController alloc] initWithRootViewController:publishViewController];
+    //    [self.navigationController pushViewController:pulishNav animated:YES];
+    
+    
     CHTumblrMenuView *menuView = [[CHTumblrMenuView alloc] init];
     
     [menuView addMenuItemWithTitle:@"相册" andIcon:[UIImage imageNamed:@"photo"] andSelectedBlock:^{
         NSLog(@"Photo selected");
-        [self gotoPublish];
+//        [self gotoPublish];
+        publishViewController.intype = PhotoAlbumType;
+        [self presentViewController:pulishNav animated:YES completion:^{
+            
+        }];
+        
         
     }];
     
     [menuView addMenuItemWithTitle:@"相机" andIcon:[UIImage imageNamed:@"xiangji"] andSelectedBlock:^{
         NSLog(@"Text selected");
-        [self gotoPublish];
+//        [self gotoPublish];
+        publishViewController.intype = CameraType;
+        
+        [self presentViewController:pulishNav animated:YES completion:^{
+            
+        }];
     }];
     
     [menuView show];
