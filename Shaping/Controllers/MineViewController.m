@@ -223,6 +223,8 @@
 - (IBAction)onEditBtnClick:(UIButton *)sender {
     
     EditInformationViewController *vc = [[EditInformationViewController alloc] init];
+    self.userInfo.nickName = self.userDetailsInfo.nickName;
+    vc.userInfo = self.userInfo;
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
