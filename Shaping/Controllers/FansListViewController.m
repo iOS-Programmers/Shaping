@@ -22,6 +22,8 @@
     self.title = @"粉丝";
     self.tableView.rowHeight = 48;
     self.tableView.tableFooterView = [[UIView alloc] init];
+    
+    [self refreshFansList];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,6 +41,38 @@
 }
 */
 
+-(void)refreshFansList{
+    
+    __weak FansListViewController *weakSelf = self;
+    int tag = [[ShapingEngine shareInstance] getConnectTag];
+        [[ShapingEngine shareInstance] getAttentionListWithFollowerId:[ShapingEngine userId] tag:tag];
+    [[ShapingEngine shareInstance] addOnAppServiceBlock:^(NSInteger tag, NSDictionary *jsonRet, NSError *err) {
+        
+        [weakSelf.header endRefreshing];
+        
+        NSString* errorMsg = [ShapingEngine getErrorMsgWithReponseDic:jsonRet];
+        if (!jsonRet || errorMsg) {
+            return;
+        }
+        
+        [weakSelf.dataSource removeAllObjects];
+        
+        NSArray *listArray = [jsonRet arrayObjectForKey:@"list"];
+        for (NSDictionary *dic in listArray) {
+            
+            NSMutableDictionary *dics = [[NSMutableDictionary alloc] init];
+            
+            [dics addEntriesFromDictionary:dic];
+            
+            [weakSelf.dataSource addObject:dics];
+        }
+        
+        [weakSelf.tableView reloadData];
+        
+    } tag:tag];
+}
+
+
 #pragma mark - UITableView DataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -47,7 +81,7 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
+    return [self.dataSource count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

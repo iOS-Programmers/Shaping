@@ -11,4 +11,8 @@
 @interface FriendShowViewCell : UITableViewCell
 
 @property (strong, nonatomic) IBOutlet UIImageView *avatarImageView;
+@property (weak, nonatomic) IBOutlet UILabel *nickNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *textLabel;
+
+@property (weak, nonatomic) IBOutlet UIButton *attentionBtn;
 @end

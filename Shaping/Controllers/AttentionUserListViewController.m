@@ -23,11 +23,45 @@
     self.tableView.rowHeight = 48;
     
     self.tableView.tableFooterView = [[UIView alloc] init];
+    
+    [self refreshAttentionList];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)refreshAttentionList{
+    
+    __weak AttentionUserListViewController *weakSelf = self;
+    int tag = [[ShapingEngine shareInstance] getConnectTag];
+    [[ShapingEngine shareInstance] getAttentionListWithFollowerId:[ShapingEngine userId] tag:tag];
+//    [[ShapingEngine shareInstance] getAttentionListWithFollowerId:@"1" tag:tag];
+    [[ShapingEngine shareInstance] addOnAppServiceBlock:^(NSInteger tag, NSDictionary *jsonRet, NSError *err) {
+        
+        [weakSelf.header endRefreshing];
+        
+        NSString* errorMsg = [ShapingEngine getErrorMsgWithReponseDic:jsonRet];
+        if (!jsonRet || errorMsg) {
+            return;
+        }
+        
+        [weakSelf.dataSource removeAllObjects];
+        
+        NSArray *listArray = [jsonRet arrayObjectForKey:@"list"];
+        for (NSDictionary *dic in listArray) {
+            
+            NSMutableDictionary *dics = [[NSMutableDictionary alloc] init];
+            
+            [dics addEntriesFromDictionary:dic];
+            
+            [weakSelf.dataSource addObject:dics];
+        }
+        
+        [weakSelf.tableView reloadData];
+        
+    } tag:tag];
 }
 
 /*
@@ -48,7 +82,7 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
+    return [self.dataSource count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -60,6 +94,11 @@
         cell = [cells objectAtIndex:0];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
+    
+    NSMutableDictionary *dics = self.dataSource[indexPath.row];
+    
+    cell.nickNameLabel.text = [NSString stringWithFormat:@"%@",[dics objectForKey:@"isFollower"]];
+    
     [cell.avatarImageView setImageWithURL:[NSURL URLWithString:@"http://y0.ifengimg.com/e7f199c1e0dbba14/2013/0722/rdn_51ece7b8ad179.jpg"] placeholderImage:[UIImage imageNamed:@""]];
     
     return cell;
