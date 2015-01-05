@@ -1191,7 +1191,7 @@
 				ORGANIZATIONNAME = YH;
 				TargetAttributes = {
 					160A92521A317E9700D17DAB = {
-						DevelopmentTeam = NCJ9XGFG95;
+						DevelopmentTeam = X3D48WNE4L;
 					};
 					160A926D1A317E9700D17DAB = {
 						TestTargetID = 160A92521A317E9700D17DAB;
@@ -1527,7 +1527,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Shaping/Shaping-Prefix.pch";
