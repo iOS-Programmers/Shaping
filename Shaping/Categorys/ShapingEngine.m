@@ -570,11 +570,12 @@ static ShapingEngine* s_ShareInstance = nil;
 }
 
 //给动态添加评论
-- (BOOL)getDynamicAddCommentWith:(NSString *)content userid:(NSString *)userid tag:(int)tag
+- (BOOL)getDynamicAddCommentWith:(NSString *)content userid:(NSString *)userid dynamicId:(NSString *)dynamicId tag:(int)tag
 {
     NSString *url = [NSString stringWithFormat:@"%@/Api/Dynamic/addDiscuss", API_URL];
     
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
+    [params setValue:dynamicId forKey:@"dynamic_discuss.dynamicId"];
     [params setValue:content forKey:@"dynamic_discuss.content"];
     [params setValue:userid forKey:@"dynamic_discuss.uid"];
     

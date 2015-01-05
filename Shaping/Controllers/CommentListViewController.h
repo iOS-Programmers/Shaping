@@ -7,7 +7,10 @@
 //
 
 #import "YHBaseTableViewController.h"
+#import "SPDynamicInfo.h"
 
 @interface CommentListViewController : YHBaseTableViewController
+
+@property (nonatomic, strong) SPDynamicInfo *dynamicInfo;
 
 @end

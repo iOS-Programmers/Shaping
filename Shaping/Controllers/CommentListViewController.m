@@ -23,6 +23,7 @@
     self.title = @"评论";
     self.tableView.rowHeight = 60;
     [self initNavBar];
+    [self refreshCommentList];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,6 +40,27 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+-(void)refreshCommentList{
+    
+    if (_dynamicInfo.user_dynamic_id.length == 0) {
+        return;
+    }
+    
+    __weak CommentListViewController *weakSelf = self;
+    int tag = [[ShapingEngine shareInstance] getConnectTag];
+    [[ShapingEngine shareInstance] getDynamicCommentListWith:@"1" dynamicId:_dynamicInfo.user_dynamic_id pageSize:@"10" tag:tag];
+    [[ShapingEngine shareInstance] addOnAppServiceBlock:^(NSInteger tag, NSDictionary *jsonRet, NSError *err) {
+        
+        NSString* errorMsg = [ShapingEngine getErrorMsgWithReponseDic:jsonRet];
+        if (!jsonRet || errorMsg) {
+            return;
+        }
+        
+        [weakSelf.tableView reloadData];
+        
+    } tag:tag];
+}
 
 #pragma mark - custom
 - (void)initNavBar

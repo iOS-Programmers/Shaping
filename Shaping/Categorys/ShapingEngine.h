@@ -113,7 +113,7 @@ typedef void(^onAppServiceBlock)(NSInteger tag, NSDictionary* jsonRet, NSError* 
 - (BOOL)getDynamicListByUserType:(NSString *)userTypeId page:(NSString *)page pageSize:(NSString *)pageSize tag:(int)tag;
 
 //给动态添加评论
-- (BOOL)getDynamicAddCommentWith:(NSString *)content userid:(NSString *)userid tag:(int)tag;
+- (BOOL)getDynamicAddCommentWith:(NSString *)content userid:(NSString *)userid dynamicId:(NSString *)dynamicId tag:(int)tag;
 
 //获取指定动态的评论列表
 - (BOOL)getDynamicCommentListWith:(NSString *)page dynamicId:(NSString *)dynamicId pageSize:(NSString *)pageSize tag:(int)tag;
