@@ -136,4 +136,20 @@ typedef void(^onAppServiceBlock)(NSInteger tag, NSDictionary* jsonRet, NSError* 
 
 //动态被喜欢计数
 - (BOOL)getDynamicLikeCountWithDynamicId:(NSString *)dynamicId tag:(int)tag;
+
+#pragma mark ---------- 关注
+
+//获取我关注的人列表
+- (BOOL)getAttentionListWithFollowerId:(NSString *)followerId tag:(int)tag;
+
+//获取关注我的人（粉丝）列表
+- (BOOL)getFansListWithIsFollowerId:(NSString *)isFollowerId tag:(int)tag;
+
+//添加关注
+- (BOOL)getAddAttentionWithFollowerId:(NSString *)isFollowerId followerId:(NSString *)followerId tag:(int)tag;
+
+//取消关注
+- (BOOL)getCancelAttentionWithFollowerId:(NSString *)isFollowerId followerId:(NSString *)followerId tag:(int)tag;
+
+
 @end

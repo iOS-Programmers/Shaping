@@ -706,4 +706,72 @@ static ShapingEngine* s_ShareInstance = nil;
     return YES;
 }
 
+#pragma mark ---------- 关注
+
+//获取我关注的人列表
+- (BOOL)getAttentionListWithFollowerId:(NSString *)followerId tag:(int)tag
+{
+    if (FBIsEmpty(followerId)) {
+        return NO;
+    }
+    
+    NSString *url = [NSString stringWithFormat:@"%@/Api/Attention/list", API_URL];
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
+    [params setValue:followerId forKey:@"attention.follower"];
+    
+    [self sendHttpRequestWithUrl:url params:params requestMethod:@"GET" postValue:NO tag:tag];
+    return YES;
+}
+
+//获取关注我的人（粉丝）列表
+- (BOOL)getFansListWithIsFollowerId:(NSString *)isFollowerId tag:(int)tag
+{
+    if (FBIsEmpty(isFollowerId)) {
+        return NO;
+    }
+    
+    NSString *url = [NSString stringWithFormat:@"%@/Api/Attention/list", API_URL];
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
+    [params setValue:isFollowerId forKey:@"attention.isFollower"];
+    
+    [self sendHttpRequestWithUrl:url params:params requestMethod:@"GET" postValue:NO tag:tag];
+    return YES;
+}
+
+//添加关注
+- (BOOL)getAddAttentionWithFollowerId:(NSString *)isFollowerId followerId:(NSString *)followerId tag:(int)tag
+{
+    if (FBIsEmpty(isFollowerId) || FBIsEmpty(followerId)) {
+        return NO;
+    }
+    
+    NSString *url = [NSString stringWithFormat:@"%@/Api/Attention/add", API_URL];
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
+    [params setValue:followerId forKey:@"attention.follower"];
+    [params setValue:isFollowerId forKey:@"attention.isFollower"];
+    
+    [self sendHttpRequestWithUrl:url params:params requestMethod:@"GET" postValue:NO tag:tag];
+    return YES;
+}
+
+//取消关注
+- (BOOL)getCancelAttentionWithFollowerId:(NSString *)isFollowerId followerId:(NSString *)followerId tag:(int)tag
+{
+    if (FBIsEmpty(isFollowerId) || FBIsEmpty(followerId)) {
+        return NO;
+    }
+    
+    NSString *url = [NSString stringWithFormat:@"%@/Api/Attention/cancel", API_URL];
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
+    [params setValue:followerId forKey:@"attention.follower"];
+    [params setValue:isFollowerId forKey:@"attention.isFollower"];
+    
+    [self sendHttpRequestWithUrl:url params:params requestMethod:@"GET" postValue:NO tag:tag];
+    return YES;
+}
+
 @end
