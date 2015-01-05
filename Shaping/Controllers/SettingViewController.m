@@ -130,7 +130,22 @@
                     
                 case 2: {
                     //意见反馈
-                
+                    NSMutableString *mailUrl = [[NSMutableString alloc]init];
+                    //添加收件人
+                    NSArray *toRecipients = [NSArray arrayWithObject: @"first@example.com"];
+                    [mailUrl appendFormat:@"mailto:%@", [toRecipients componentsJoinedByString:@","]];
+                    //添加抄送
+                    NSArray *ccRecipients = [NSArray arrayWithObjects:@"second@example.com", @"third@example.com", nil];
+                    [mailUrl appendFormat:@"?cc=%@", [ccRecipients componentsJoinedByString:@","]];
+                    //添加密送
+                    NSArray *bccRecipients = [NSArray arrayWithObjects:@"fourth@example.com", nil];
+                    [mailUrl appendFormat:@"&bcc=%@", [bccRecipients componentsJoinedByString:@","]];
+                    //添加主题
+                    [mailUrl appendString:@"&subject=my email"];
+                    //添加邮件内容
+                    [mailUrl appendString:@"&body=<b>email</b> body!"];
+                    NSString* email = [mailUrl stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];     
+                    [[UIApplication sharedApplication] openURL: [NSURL URLWithString:email]];
                 }
                     break;
                     

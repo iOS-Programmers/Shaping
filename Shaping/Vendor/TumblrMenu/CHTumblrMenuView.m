@@ -85,6 +85,7 @@
         self.backgroundColor = [UIColor clearColor];
         backgroundView_ = [[UIImageView alloc] initWithFrame:self.bounds];
         backgroundView_.backgroundColor = UIColorToRGB(0xfefefe);
+        backgroundView_.backgroundColor = [UIColor colorWithWhite:1 alpha:0.9];
         backgroundView_.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         [self addSubview:backgroundView_];
         buttons_ = [[NSMutableArray alloc] initWithCapacity:6];
