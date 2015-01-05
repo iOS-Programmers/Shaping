@@ -16,6 +16,9 @@
 @property (strong, nonatomic) IBOutlet UIImageView *avatarImageView;
 
 @property (copy, nonatomic) NSString *nickeName;
+@property (copy, nonatomic) NSString *location;
+@property (copy, nonatomic) NSString *height;
+@property (copy, nonatomic) NSString *intro;
 @end
 
 @implementation EditInformationViewController
@@ -110,6 +113,7 @@
     return sectionView;
 }
 
+static int introLabel_tag = 210;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CustomerTableIdentifier = @"TableViewCell";
@@ -118,9 +122,45 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CustomerTableIdentifier];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        
+        UILabel *introLabel = [[UILabel alloc] init];
+        introLabel.frame = CGRectMake(100, 0, cell.frame.size.width - 140, 54);
+        introLabel.backgroundColor = [UIColor clearColor];
+        introLabel.font = [UIFont systemFontOfSize:14];
+        introLabel.textColor = [UIColor lightGrayColor];
+        introLabel.textAlignment = NSTextAlignmentRight;
+        introLabel.numberOfLines = 0;
+        introLabel.tag = introLabel_tag;
+        [cell addSubview:introLabel];
+        
     }
     NSString *text = self.dataSource[indexPath.section][indexPath.row];
     cell.textLabel.text = text;
+    
+    UILabel *introLabel = (UILabel *)[cell viewWithTag:introLabel_tag];
+    CGRect introLabelFrame = introLabel.frame;
+    if (indexPath.section == 0) {
+        introLabelFrame.size.height = 54;
+        if (indexPath.row == 0) {
+            introLabel.text = _userInfo.nickName;
+        }else if (indexPath.row == 1){
+            
+        }else if (indexPath.row == 2){
+            introLabel.text = _userInfo.location;
+        }else if (indexPath.row == 3){
+            introLabel.text = _userInfo.height;
+        }else if (indexPath.row == 4){
+            
+        }else if (indexPath.row == 5){
+            
+        }
+    }else if (indexPath.section == 1){
+        introLabelFrame.size.height = 100;
+        if (indexPath.row == 0) {
+            introLabel.text = _userInfo.intro;
+        }
+    }
+    introLabel.frame = introLabelFrame;
     
     return cell;
 }
@@ -129,30 +169,117 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
-    switch (indexPath.row) {
-        case 0:
-        {
-            //昵称
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0 || indexPath.row == 2 || indexPath.row == 3 ) {
+            NSString *text = @"昵称";
+            if (indexPath.row == 2) {
+                text = @"长居地";
+            }
+            if (indexPath.row == 3) {
+                text = @"身高";
+            }
+            //
             SPTextEditViewController *vc = [[SPTextEditViewController alloc] init];
             YHBaseNavigationController *nav = [[YHBaseNavigationController alloc] initWithRootViewController:vc];
-            vc.titleStr = @"昵称";
+            vc.titleStr = text;
             __weak EditInformationViewController *weak_self = self;
             EditBackBlock block = ^(NSString *str)
             {
-                weak_self.nickeName = str;
-                //这里进行修改昵称的请求
+                if (indexPath.row == 0) {
+                    weak_self.nickeName = str;
+                }
+                if (indexPath.row == 2) {
+                    weak_self.location = str;
+                }
+                if (indexPath.row == 3) {
+                    weak_self.height = str;
+                }
+                [weak_self updateUserInfo:(int)indexPath.row];
             };
             [vc setBackBlock:block];
             
             vc.modalTransitionStyle = UIModalTransitionStyleCoverVertical;//添加动画
             [self presentViewController:nav animated:YES completion:^{}];
-
         }
-            break;
-            
-        default:
-            break;
+        
+    }else if (indexPath.section == 1){
+        //签名
+        SPTextEditViewController *vc = [[SPTextEditViewController alloc] init];
+        YHBaseNavigationController *nav = [[YHBaseNavigationController alloc] initWithRootViewController:vc];
+        vc.titleStr = @"签名";
+        __weak EditInformationViewController *weak_self = self;
+        EditBackBlock block = ^(NSString *str)
+        {
+            weak_self.intro = str;
+            [weak_self updateUserInfo:6];
+        };
+        [vc setBackBlock:block];
+        
+        vc.modalTransitionStyle = UIModalTransitionStyleCoverVertical;//添加动画
+        [self presentViewController:nav animated:YES completion:^{}];
     }
+    
+    return;
+    
+//    switch (indexPath.row) {
+//        case 0:
+//        {
+//            
+//
+//        }
+//            break;
+//            
+//        default:
+//            break;
+//    }
+}
+
+-(void)updateUserInfo:(int)type{
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:0];
+    if (type == 0 && self.nickeName.length > 0) {
+        [params setValue:self.nickeName forKey:@"user.nickName"];
+    }
+    if (type == 2 && self.location.length > 0) {
+        [params setValue:self.location forKey:@"user.location"];
+    }
+    if (type == 3 && self.height.length > 0) {
+        [params setValue:self.height forKey:@"user.height"];
+    }
+    if (type == 6 && self.intro.length > 0) {
+        [params setValue:self.intro forKey:@"user.intro"];
+    }
+    
+    if (params.count == 0) {
+        return;
+    }
+    
+    __weak EditInformationViewController *weakSelf = self;
+    int tag = [[ShapingEngine shareInstance] getConnectTag];
+    [[ShapingEngine shareInstance] updateUserInfoWith:params tag:tag];
+    [[ShapingEngine shareInstance] addOnAppServiceBlock:^(NSInteger tag, NSDictionary *jsonRet, NSError *err) {
+        
+        NSString* errorMsg = [ShapingEngine getErrorMsgWithReponseDic:jsonRet];
+        if (!jsonRet || errorMsg) {
+            return;
+        }
+        
+        if (type == 0) {
+            weakSelf.userInfo.nickName = weakSelf.nickeName;
+        }
+        if (type == 2) {
+            weakSelf.userInfo.location = weakSelf.location;
+        }
+        if (type == 3) {
+            weakSelf.userInfo.height = weakSelf.height;
+        }
+        if (type == 6) {
+            weakSelf.userInfo.intro = weakSelf.intro;
+        }
+        
+        [weakSelf.tableView reloadData];
+        
+    } tag:tag];
 }
 
 @end

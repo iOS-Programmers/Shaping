@@ -10,4 +10,6 @@
 
 @interface EditInformationViewController : YHBaseTableViewController
 
+@property (nonatomic, strong) SPUserInfo *userInfo;
+
 @end

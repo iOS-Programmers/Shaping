@@ -517,6 +517,13 @@ static ShapingEngine* s_ShareInstance = nil;
     [self sendHttpRequestWithUrl:url params:params requestMethod:@"GET" tag:tag];
     return YES;
 }
+- (BOOL)updateUserInfoWith:(NSDictionary *)params tag:(int)tag{
+    
+    NSString *url = [NSString stringWithFormat:@"%@/Api/User/update", API_URL];
+    [self sendHttpRequestWithUrl:url params:params requestMethod:@"POST" tag:tag];
+    
+    return YES;
+}
 
 //获取动态列表
 #pragma mark -------- 动态

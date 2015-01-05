@@ -98,6 +98,8 @@ typedef void(^onAppServiceBlock)(NSInteger tag, NSDictionary* jsonRet, NSError* 
 - (BOOL)getUserInfoWithUserId:(NSString *)uid tag:(int)tag;
 //用户个人信息
 - (BOOL)getUserDetailsInfoWithUserId:(NSString *)uid tag:(int)tag;
+//更新用户信息
+- (BOOL)updateUserInfoWith:(NSDictionary *)params tag:(int)tag;
 
 #pragma mark -------- 动态
 
