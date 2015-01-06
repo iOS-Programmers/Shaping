@@ -284,7 +284,17 @@ static ShapingEngine* s_ShareInstance = nil;
 #pragma mark - ASIHTTPRequest Delegate
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
-    
+    if (request.responseStatusCode != 200) {
+        dispatch_async(dispatch_get_main_queue(), ^(){
+            
+            onAppServiceBlock block = [self getonAppServiceBlockByTag:request.tag];
+            if (block) {
+                [self removeOnAppServiceBlockForTag:request.tag];
+                block(request.tag, nil, nil);
+            }
+        });
+        return;
+    }
     NSString *responseString = nil;
     if ([request responseEncoding] == [request defaultResponseEncoding] && [request responseData]) {
         responseString = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
