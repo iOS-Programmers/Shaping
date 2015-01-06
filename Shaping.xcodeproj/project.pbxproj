@@ -168,6 +168,7 @@
 		7E97AF7B1A3D82B200C2CE86 /* IntroduceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E97AF791A3D82B200C2CE86 /* IntroduceViewController.xib */; };
 		7E97AF7F1A3D903A00C2CE86 /* EditInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E97AF7D1A3D903A00C2CE86 /* EditInformationViewController.m */; };
 		7E97AF801A3D903A00C2CE86 /* EditInformationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E97AF7E1A3D903A00C2CE86 /* EditInformationViewController.xib */; };
+		A96605D11A5BD083007BAA20 /* icon_加载更多.png in Resources */ = {isa = PBXBuildFile; fileRef = A96605D01A5BD082007BAA20 /* icon_加载更多.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -466,6 +467,7 @@
 		7E97AF7C1A3D903A00C2CE86 /* EditInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditInformationViewController.h; sourceTree = "<group>"; };
 		7E97AF7D1A3D903A00C2CE86 /* EditInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditInformationViewController.m; sourceTree = "<group>"; };
 		7E97AF7E1A3D903A00C2CE86 /* EditInformationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditInformationViewController.xib; sourceTree = "<group>"; };
+		A96605D01A5BD082007BAA20 /* icon_加载更多.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_加载更多.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -962,6 +964,7 @@
 				7E0A10861A3CBDAF00883D50 /* CommentViewCell.h */,
 				7E0A10871A3CBDAF00883D50 /* CommentViewCell.m */,
 				7E0A10881A3CBDAF00883D50 /* CommentViewCell.xib */,
+				A96605D01A5BD082007BAA20 /* icon_加载更多.png */,
 				7E0A108B1A3CC30200883D50 /* InputViewController.h */,
 				7E0A108C1A3CC30200883D50 /* InputViewController.m */,
 				7E0A108D1A3CC30200883D50 /* InputViewController.xib */,
@@ -1257,6 +1260,7 @@
 				16217FE11A31935600ADCCDC /* HomeViewController.xib in Resources */,
 				7E0A108F1A3CC30200883D50 /* InputViewController.xib in Resources */,
 				16217FF01A3194A100ADCCDC /* MineViewController.xib in Resources */,
+				A96605D11A5BD083007BAA20 /* icon_加载更多.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

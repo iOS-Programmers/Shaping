@@ -7,7 +7,10 @@
 //
 
 #import "YHBaseViewController.h"
+@protocol InputViewControllerDelegate <NSObject>
+- (void) refreshCommentLists;
+@end
 
 @interface InputViewController : YHBaseViewController
-
+@property (assign) id<InputViewControllerDelegate> delegate;
 @end

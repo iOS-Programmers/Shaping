@@ -62,7 +62,24 @@
 }
 -(void)rightItemClick:(id)sender{
     
-    
+    if (self.inputTextView.text.length==0) {
+        return;
+    }
+    __weak InputViewController *weakSelf = self;
+    int tag = [[ShapingEngine shareInstance] getConnectTag];
+    [[ShapingEngine shareInstance] getDynamicAddCommentWith:self.inputTextView.text userid:[ShapingEngine userId] dynamicId:@"1" tag:tag];
+    [[ShapingEngine shareInstance] addOnAppServiceBlock:^(NSInteger tag, NSDictionary *jsonRet, NSError *err) {
+        
+        NSString* errorMsg = [ShapingEngine getErrorMsgWithReponseDic:jsonRet];
+        if (!jsonRet || errorMsg) {
+            return;
+        }
+        
+        [self dismissViewControllerAnimated:YES completion:^{
+            [self.delegate refreshCommentLists];
+        }];
+        
+    } tag:tag];
 }
 -(void)leftItemClick:(id)sender{
     [self dismissViewControllerAnimated:YES completion:^{

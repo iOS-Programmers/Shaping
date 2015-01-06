@@ -12,5 +12,6 @@
 @interface CommentListViewController : YHBaseTableViewController
 
 @property (nonatomic, strong) SPDynamicInfo *dynamicInfo;
+@property (nonatomic, assign) int totalRow;
 
 @end
